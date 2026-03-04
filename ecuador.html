@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — Weekly Report Ecuador — 2 Mar 2026</title>
+<style>
+:root {
+  --navy:#001337;--gold:#938565;--gold-light:rgba(147,133,101,0.8);
+  --gold-dim:rgba(147,133,101,0.5);--white:#F5F4F0;
+  --deep-black:#111;--charcoal:#3a3a3a;
+  --sans:'Helvetica Neue',Arial,sans-serif;
+  --serif:Georgia,'Times New Roman',serif;
+  --mono:'Courier New',Courier,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--sans);background:#ccc;color:var(--deep-black);font-size:12px;line-height:1.55;}
+@media print{
+  body{background:white;margin:0;padding:0;}
+  .page{page-break-after:always;box-shadow:none;margin:0;width:100%!important;min-height:297mm;}
+  .page:last-child{page-break-after:avoid;}
+  .page-gap{display:none;}
+}
+@page{size:A4 portrait;margin:0mm;}
+.page{width:210mm;min-height:297mm;position:relative;overflow:hidden;background:var(--white);display:flex;flex-direction:column;margin:0 auto 20px;box-shadow:0 4px 30px rgba(0,0,0,0.18);}
+.page-1{background:var(--navy);color:var(--white);}
+.gold-rule{width:3px;background:linear-gradient(180deg,var(--gold) 0%,rgba(147,133,101,0.08) 100%);position:absolute;left:0;top:0;bottom:0;z-index:10;}
+
+/* LOGO */
+.logo-bars{display:flex;flex-direction:column;gap:2.5px;justify-content:flex-end;width:30px;}
+.bar{height:4px;border-radius:1px;background:var(--gold);}
+.bar-1{width:30px;opacity:0.4;}.bar-2{width:24px;opacity:0.55;}.bar-3{width:18px;opacity:0.7;}.bar-4{width:12px;opacity:0.85;}.bar-5{width:7px;opacity:1;}
+
+/* HEADER */
+.header{background:var(--navy);padding:15px 26px 12px;border-bottom:1px solid rgba(147,133,101,0.3);display:flex;align-items:flex-start;justify-content:space-between;position:relative;}
+.header::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold) 0%,transparent 60%);}
+.logo-wrap{display:flex;align-items:center;gap:10px;}
+.brand-name{font-family:var(--sans);font-weight:800;font-size:17px;letter-spacing:2.5px;color:var(--white);line-height:1;}
+.brand-sub{font-size:8.5px;letter-spacing:3px;color:var(--gold);font-weight:300;text-transform:uppercase;margin-top:2px;}
+.header-right{text-align:right;}
+.report-label{font-family:var(--serif);font-style:italic;font-size:11px;color:var(--gold-light);}
+.report-date{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,0.5);margin-top:2px;}
+.dept-line{font-size:8px;font-weight:600;letter-spacing:0.8px;color:var(--gold);text-transform:uppercase;margin-top:3px;}
+
+/* MACRO STRIP */
+.macro-hero{background:rgba(0,0,0,0.22);border-bottom:1px solid rgba(147,133,101,0.18);padding:11px 26px;display:flex;gap:0;}
+.macro-item{flex:1;padding:0 13px;border-right:1px solid rgba(147,133,101,0.18);display:flex;flex-direction:column;justify-content:center;}
+.macro-item:first-child{padding-left:0;}
+.macro-item:last-child{border-right:none;}
+.m-label{font-size:7.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.m-value{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--white);line-height:1;}
+.m-delta{font-family:var(--mono);font-size:9px;margin-top:2px;}
+.up{color:#4ADE80;}.down{color:#F87171;}.flat{color:rgba(255,255,255,0.65);}
+
+/* SENTIMENT */
+.sentiment-strip{padding:9px 26px;display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(147,133,101,0.12);}
+.sent-label{font-family:var(--serif);font-style:italic;font-size:10.5px;color:var(--gold-light);min-width:72px;}
+.sent-bar-wrap{flex:1;height:7px;background:rgba(255,255,255,0.08);border-radius:4px;position:relative;overflow:hidden;}
+.sent-bar{position:absolute;left:0;top:0;bottom:0;right:0;background:linear-gradient(90deg,#4ADE80,#FBBF24,#F87171);border-radius:4px;}
+.sent-needle{position:absolute;top:-3px;width:2px;height:13px;background:var(--white);border-radius:1px;box-shadow:0 0 6px rgba(255,255,255,0.9);transform:translateX(-50%);}
+.sent-tags{display:flex;gap:8px;}
+.sent-tag{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:3px 8px;border-radius:2px;}
+.bear{background:rgba(248,113,113,0.22);color:#F87171;border:1px solid rgba(248,113,113,0.35);}
+.neutral{background:rgba(251,191,36,0.12);color:#FBBF24;border:1px solid rgba(251,191,36,0.3);}
+.bull{background:rgba(74,222,128,0.12);color:#4ADE80;border:1px solid rgba(74,222,128,0.25);}
+.active-sent{font-weight:800!important;font-size:9px!important;}
+
+/* SEMANA PASADA STRIP */
+.semana-pasada{background:rgba(0,0,0,0.15);border-bottom:1px solid rgba(147,133,101,0.15);padding:9px 26px;}
+.sp-title{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.sp-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+.sp-item{padding:0 12px;border-right:1px solid rgba(147,133,101,0.15);display:flex;flex-direction:column;}
+.sp-item:first-child{padding-left:0;}
+.sp-item:last-child{border-right:none;}
+.sp-name{font-size:8.5px;color:rgba(255,255,255,0.72);margin-bottom:2px;}
+.sp-val{font-family:var(--mono);font-size:13px;font-weight:700;color:#FFFFFF;}
+.sp-chg{font-family:var(--mono);font-size:9px;margin-top:1px;}
+
+/* TWO COL */
+.two-col{flex:1;display:grid;grid-template-columns:55% 45%;gap:0;}
+.col-left{padding:13px 22px 13px 26px;border-right:1px solid rgba(147,133,101,0.12);}
+.col-right{padding:13px 20px;}
+.sec-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:5px;border-bottom:1px solid rgba(147,133,101,0.22);}
+.sec-head-bar{width:3px;height:15px;background:var(--gold);border-radius:1.5px;flex-shrink:0;}
+.sec-title{font-family:var(--serif);font-size:13px;font-weight:400;color:var(--white);font-style:italic;}
+.sec-num{font-family:var(--mono);font-size:8.5px;color:rgba(255,255,255,0.4);margin-left:auto;}
+
+/* EVENTS */
+.event-item{display:flex;gap:9px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.055);}
+.event-item:last-child{border-bottom:none;}
+.ev-dot{width:6px;height:6px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.ev-dot.global{background:var(--gold);}
+.ev-dot.local{background:#60A5FA;}
+.ev-dot.eco{background:#4ADE80;}
+.ev-tag{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:2px;}
+.ev-text{font-size:10.5px;color:#FFFFFF;line-height:1.4;}
+.ev-text strong{color:#FFFFFF;font-weight:700;}
+.ev-impact{font-family:var(--mono);font-size:8.5px;margin-top:2px;}
+.ev-impact.high{color:#F87171;}.ev-impact.med{color:#FBBF24;}.ev-impact.low{color:#4ADE80;}
+
+/* CALENDAR */
+.cal-table{width:100%;border-collapse:collapse;}
+.cal-table th{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);padding:5px 7px;border-bottom:1px solid rgba(147,133,101,0.25);text-align:left;}
+.cal-table td{padding:5px 7px;border-bottom:1px solid rgba(255,255,255,0.08);vertical-align:top;}
+.cal-table tr:last-child td{border-bottom:none;}
+.cal-date{font-family:var(--mono);font-size:9.5px;font-weight:700;color:#FFD700;white-space:nowrap;}
+.cal-event{font-size:10px;color:#FFFFFF;font-weight:600;margin-bottom:1px;}
+.cal-desc{font-size:8.5px;color:rgba(255,255,255,0.72);line-height:1.3;}
+.cal-impact{display:inline-block;font-size:7px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-top:2px;}
+.imp-high{background:rgba(248,113,113,0.2);color:#F87171;border:1px solid rgba(248,113,113,0.3);}
+.imp-med{background:rgba(251,191,36,0.15);color:#FBBF24;border:1px solid rgba(251,191,36,0.3);}
+.imp-low{background:rgba(74,222,128,0.12);color:#4ADE80;border:1px solid rgba(74,222,128,0.25);}
+
+/* PAGE FOOTER */
+.page-footer{padding:7px 26px;border-top:1px solid rgba(147,133,101,0.18);display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.18);}
+.footer-left{font-family:var(--serif);font-style:italic;font-size:9px;color:var(--gold-light);}
+.footer-right{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,0.45);}
+.footer-disc{font-size:7.5px;color:rgba(255,255,255,0.45);text-align:center;flex:1;padding:0 12px;}
+
+/* PAGES 2-3 LIGHT */
+.page-2,.page-3{background:var(--white);}
+.header-light{background:var(--navy);padding:11px 26px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);}
+.hl-name{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:2px;color:var(--white);}
+.hl-sub{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:300;}
+.hl-page{font-family:var(--mono);font-size:8.5px;color:var(--gold);letter-spacing:1px;}
+.p2-body{flex:1;display:flex;flex-direction:column;padding:14px 26px;gap:13px;}
+
+/* LECTURA DE APERTURA */
+.apertura-strip{background:rgba(0,19,55,0.04);border:1px solid rgba(0,19,55,0.1);border-radius:4px;padding:11px 14px;}
+.ap-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid rgba(0,19,55,0.1);}
+.ap-title{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--navy);}
+.ap-badge{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:3px 9px;border-radius:2px;background:rgba(251,191,36,0.15);color:#B45309;border:1px solid rgba(251,191,36,0.3);}
+.ap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.ap-item{background:var(--navy);border-radius:3px;padding:9px 11px;}
+.ap-item-label{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.ap-item-name{font-size:10px;color:rgba(255,255,255,0.75);margin-bottom:5px;}
+.ap-item-val{font-family:var(--mono);font-size:15px;font-weight:700;color:#FFFFFF;line-height:1;}
+.ap-item-chg{font-family:var(--mono);font-size:9px;margin-top:3px;}
+.ap-item-note{font-size:8.5px;color:rgba(255,255,255,0.70);margin-top:4px;line-height:1.3;}
+
+/* SECTION HEADER LIGHT */
+.sh-light{display:flex;align-items:center;gap:8px;margin-bottom:11px;}
+.sh-bar{width:3px;height:18px;background:var(--gold);border-radius:2px;flex-shrink:0;}
+.sh-title{font-family:var(--serif);font-size:14px;color:var(--navy);font-style:italic;}
+.sh-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(147,133,101,0.4),transparent);margin-left:6px;}
+
+/* MARKET RADAR */
+.radar-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.radar-card{background:var(--navy);border-radius:4px;padding:11px 13px;position:relative;overflow:hidden;}
+.radar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
+.rc-label{font-size:8px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);}
+.rc-name{font-family:var(--serif);font-size:11.5px;color:var(--white);margin:3px 0;font-style:italic;}
+.rc-val{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--white);line-height:1;}
+.rc-change{font-family:var(--mono);font-size:9px;margin-top:3px;}
+.rc-desc{font-size:9px;color:rgba(255,255,255,0.80);margin-top:5px;line-height:1.35;}
+.rc-signal{display:inline-block;font-size:7.5px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-top:6px;}
+.sig-buy{background:rgba(74,222,128,0.18);color:#4ADE80;border:1px solid rgba(74,222,128,0.35);}
+.sig-wait{background:rgba(251,191,36,0.12);color:#FBBF24;border:1px solid rgba(251,191,36,0.3);}
+.sig-neutral{background:rgba(147,133,101,0.12);color:var(--gold);border:1px solid rgba(147,133,101,0.25);}
+.sig-watch{background:rgba(96,165,250,0.12);color:#60A5FA;border:1px solid rgba(96,165,250,0.3);}
+
+/* SCENARIOS */
+.scenario-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.sc-card{border-radius:3px;padding:10px 11px;}
+.sc-base{background:rgba(0,19,55,0.05);border:1px solid rgba(0,19,55,0.13);}
+.sc-bull{background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.2);}
+.sc-bear{background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.18);}
+.sc-label{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
+.sc-base .sc-label{color:var(--navy);}.sc-bull .sc-label{color:#166534;}.sc-bear .sc-label{color:#991B1B;}
+.sc-prob{font-family:var(--mono);font-size:14px;font-weight:600;line-height:1;margin-bottom:5px;}
+.sc-base .sc-prob{color:var(--navy);}.sc-bull .sc-prob{color:#16A34A;}.sc-bear .sc-prob{color:#DC2626;}
+.sc-text{font-size:9px;color:var(--deep-black);line-height:1.4;}
+
+/* REC CARDS */
+.rec-section{display:flex;flex-direction:column;gap:11px;}
+.rec-card{border:1px solid rgba(0,19,55,0.1);border-radius:4px;overflow:hidden;}
+.rec-header{background:var(--navy);padding:9px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.rec-num{font-family:var(--mono);font-size:16px;font-weight:500;color:rgba(147,133,101,0.4);min-width:28px;}
+.rec-asset{font-family:var(--sans);font-weight:700;font-size:12px;color:var(--white);letter-spacing:0.5px;}
+.rec-sub{font-size:8.5px;color:rgba(255,255,255,0.70);margin-top:1px;}
+.rec-action-badge{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:4px 10px;border-radius:2px;white-space:nowrap;flex-shrink:0;}
+.action-buy{background:rgba(74,222,128,0.22);color:#16A34A;border:1px solid rgba(74,222,128,0.4);}
+.action-wait{background:rgba(251,191,36,0.15);color:#B45309;border:1px solid rgba(251,191,36,0.35);}
+.action-tactical{background:rgba(167,139,250,0.15);color:#7C3AED;border:1px solid rgba(167,139,250,0.3);}
+.rec-body{padding:10px 13px;background:white;}
+.rec-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:9px;}
+.rm-item{background:rgba(0,19,55,0.04);border-radius:3px;padding:6px 8px;border:1px solid rgba(0,19,55,0.07);}
+.rm-label{font-size:7.5px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--charcoal);margin-bottom:3px;}
+.rm-val{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--navy);}
+.rm-val.green{color:#15803D;}.rm-val.red{color:#B91C1C;}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.rt-title{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--charcoal);margin-bottom:4px;}
+.rt-text{font-size:9.5px;color:var(--deep-black);line-height:1.5;}
+.intl-badge{display:inline-block;margin-top:7px;font-size:7.5px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 8px;border-radius:2px;background:rgba(0,100,200,0.07);color:#1D4ED8;border:1px solid rgba(29,78,216,0.18);}
+.local-badge{display:inline-block;margin-top:7px;font-size:7.5px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 8px;border-radius:2px;background:rgba(0,153,51,0.07);color:#15803D;border:1px solid rgba(21,128,61,0.2);}
+.rr-bar-wrap{margin-bottom:8px;}
+.rr-label{font-size:7.5px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--charcoal);margin-bottom:4px;}
+.rr-track{height:7px;background:rgba(0,19,55,0.07);border-radius:4px;position:relative;overflow:hidden;}
+.rr-risk{position:absolute;left:0;top:0;bottom:0;background:#EF4444;opacity:0.65;border-radius:4px 0 0 4px;}
+.rr-reward{position:absolute;top:0;bottom:0;background:#22C55E;opacity:0.65;border-radius:0 4px 4px 0;}
+.rr-ratio{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--navy);margin-top:3px;}
+.risk-box{padding:7px 9px;background:rgba(0,19,55,0.04);border-radius:3px;border:1px solid rgba(0,19,55,0.09);}
+
+/* MISC */
+.note-strip{background:rgba(0,153,51,0.06);border:1px solid rgba(0,153,51,0.18);border-radius:3px;padding:8px 12px;font-size:9.5px;display:flex;align-items:flex-start;gap:8px;color:var(--deep-black);}
+.pf-light{padding:8px 26px;border-top:1px solid rgba(0,19,55,0.1);display:flex;justify-content:space-between;align-items:center;background:rgba(0,19,55,0.03);}
+.pfl-brand{font-family:var(--serif);font-style:italic;font-size:9px;color:var(--gold);}
+.pfl-disc{font-size:7.5px;color:rgba(0,0,0,0.3);text-align:center;flex:1;padding:0 12px;}
+.pfl-page{font-family:var(--mono);font-size:8px;color:var(--gold-dim);}
+.page-gap{height:12px;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1 ═══════════ -->
+<div class="page page-1">
+<div class="gold-rule"></div>
+
+<div class="header">
+  <div class="logo-wrap">
+    <div class="logo-bars"><div class="bar bar-1"></div><div class="bar bar-2"></div><div class="bar bar-3"></div><div class="bar bar-4"></div><div class="bar bar-5"></div></div>
+    <div><div class="brand-name">LIBERTY FINANCE</div><div class="brand-sub">A Legacy with Future</div></div>
+  </div>
+  <div class="header-right">
+    <div class="report-label">🇪🇨 Weekly Report — Ecuador</div>
+    <div class="report-date">Semana 02 — 06 de marzo, 2026 &nbsp;·&nbsp; Lunes, 2 marzo 2026</div>
+    <div class="dept-line">Dep. Asesoría de Inversiones &amp; Research</div>
+  </div>
+</div>
+
+<!-- MACRO STRIP -->
+<div class="macro-hero">
+  <div class="macro-item"><div class="m-label">WTI Petróleo</div><div class="m-value">$75.82</div><div class="m-delta up">▲ +8.4% esta semana</div></div>
+  <div class="macro-item"><div class="m-label">Riesgo País EMBI</div><div class="m-value">~420</div><div class="m-delta down">▼ Mín. 11 años (413 ene)</div></div>
+  <div class="macro-item"><div class="m-label">Producción Crudo</div><div class="m-value">458k</div><div class="m-delta flat">bbl/día · 2 mar 2026</div></div>
+  <div class="macro-item"><div class="m-label">Banano Expo. Ene</div><div class="m-value">36.6M</div><div class="m-delta up">▲ +9.7% vs ene 2025</div></div>
+  <div class="macro-item"><div class="m-label">PIB 2026 Proy.</div><div class="m-value">+2.5%</div><div class="m-delta flat">Banco Mundial</div></div>
+  <div class="macro-item"><div class="m-label">Eurobonos 2034</div><div class="m-value">8.75%</div><div class="m-delta up">✓ $4B emitidos ene 2026</div></div>
+</div>
+
+<!-- SENTIMENT -->
+<div class="sentiment-strip">
+  <div class="sent-label">Sentimiento</div>
+  <div class="sent-bar-wrap"><div class="sent-bar"></div><div class="sent-needle" style="left:53%"></div></div>
+  <div class="sent-tags">
+    <div class="sent-tag bear">Bajista</div>
+    <div class="sent-tag neutral active-sent">⚡ Mixto / Alerta</div>
+    <div class="sent-tag bull">Alcista</div>
+  </div>
+</div>
+
+<!-- SEMANA PASADA -->
+<div class="semana-pasada">
+  <div class="sp-title">📊 Semana Pasada — 24 al 28 de febrero 2026</div>
+  <div class="sp-row">
+    <div class="sp-item">
+      <div class="sp-name">WTI Petróleo</div>
+      <div class="sp-val">$66.8</div>
+      <div class="sp-chg flat">→ Cierre vie 28 feb</div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-name">Brent</div>
+      <div class="sp-val">$72.87</div>
+      <div class="sp-chg up">▲ Máx. 7 meses</div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-name">FCX Freeport</div>
+      <div class="sp-val">$69.75</div>
+      <div class="sp-chg up">▲ ATH el jue 25 feb</div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-name">EMBI Ecuador</div>
+      <div class="sp-val">~430</div>
+      <div class="sp-chg flat">→ Estable tras emisión</div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-name">Banano (PMS)</div>
+      <div class="sp-val">$7.50</div>
+      <div class="sp-chg flat">→ caja 43 lbs · 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- TWO COL -->
+<div class="two-col">
+  <div class="col-left">
+    <div class="sec-head"><div class="sec-head-bar"></div><div class="sec-title">Noticias &amp; Contexto Clave</div><div class="sec-num">01</div></div>
+
+    <div class="event-item"><div class="ev-dot global"></div><div>
+      <div class="ev-tag">Global · Geopolítico</div>
+      <div class="ev-text"><strong>Conflicto EE.UU.–Israel vs Irán.</strong> WTI sube +8.4% en una semana. Para Ecuador: ingresos petroleros al alza, pero importar derivados también se encarece. Saldo neto <strong>positivo mientras WTI supere ~$65</strong>.</div>
+      <div class="ev-impact high">Impacto: ALTO — Doble filo fiscal</div>
+    </div></div>
+
+    <div class="event-item"><div class="ev-dot local"></div><div>
+      <div class="ev-tag">Local · Petróleo</div>
+      <div class="ev-text"><strong>Petroecuador exporta +2M barriles adicionales</strong> en mar–abr. Producción: 458k bbl/día. Presupuesto asumía $53.5/bbl — WTI hoy $75.82. <strong>Campaña perforación: meta 380k bbl/día desde mayo.</strong></div>
+      <div class="ev-impact high">Impacto: ALTO — Ingreso fiscal adicional</div>
+    </div></div>
+
+    <div class="event-item"><div class="ev-dot local"></div><div>
+      <div class="ev-tag">Local · Deuda Soberana</div>
+      <div class="ev-text"><strong>Eurobonos $4.000M emitidos en enero.</strong> Cupón 8.75% y 9.25%. Moody's mejoró calificación. EMBI ~420 pts — mínimo en 11 años. Demanda histórica $18B (sobresuscripción 4.5x).</div>
+      <div class="ev-impact med">Impacto: MEDIO–ALTO — Confianza récord</div>
+    </div></div>
+
+    <div class="event-item"><div class="ev-dot eco"></div><div>
+      <div class="ev-tag">Agro · Banano</div>
+      <div class="ev-text"><strong>Conflicto interrumpe ruta Medio Oriente</strong> (11–15% del banano). Navieras suspenden reservas. Costo adicional: <strong>$7M/semana</strong>. UE +15.6% y Rusia +24.5% compensan parcialmente.</div>
+      <div class="ev-impact med">Impacto: MEDIO — Sector busca rutas alternas</div>
+    </div></div>
+
+    <div class="event-item"><div class="ev-dot eco"></div><div>
+      <div class="ev-tag">Macro · Reforma</div>
+      <div class="ev-text"><strong>Subsidio diésel: compensación finaliza mar–may 2026.</strong> Riesgo de presión en transportistas. Seguimiento prioritario esta semana.</div>
+      <div class="ev-impact med">Impacto: MEDIO — Riesgo político interno</div>
+    </div></div>
+  </div>
+
+  <div class="col-right">
+    <div class="sec-head"><div class="sec-head-bar"></div><div class="sec-title">Agenda Económica</div><div class="sec-num">02</div></div>
+    <table class="cal-table">
+      <thead><tr><th>Fecha</th><th>Evento</th><th>Imp.</th></tr></thead>
+      <tbody>
+        <tr><td><div class="cal-date">Lun 2 Mar</div></td><td><div class="cal-event">Apertura post-Irán</div><div class="cal-desc">WTI + EM bonds. Alerta geopolítica activa.</div></td><td><span class="cal-impact imp-high">Alto</span></td></tr>
+        <tr><td><div class="cal-date">4–11 Mar</div></td><td><div class="cal-event">China NPC</div><div class="cal-desc">Meta PIB + estímulo fiscal. Clave commodities.</div></td><td><span class="cal-impact imp-high">Alto</span></td></tr>
+        <tr><td><div class="cal-date">Jue 5 Mar</div></td><td><div class="cal-event">EE.UU. Jobless Claims</div><div class="cal-desc">Dato empleo — dólar y spreads EM.</div></td><td><span class="cal-impact imp-med">Medio</span></td></tr>
+        <tr><td><div class="cal-date">Vie 6 Mar</div></td><td><div class="cal-event">NFP Febrero EE.UU.</div><div class="cal-desc">Consensus: +185k / 4.1%. Impacta eurobonos.</div></td><td><span class="cal-impact imp-high">Alto</span></td></tr>
+        <tr><td><div class="cal-date">Semana</div></td><td><div class="cal-event">Evolución Irán + Ormuz</div><div class="cal-desc">Seguimiento diario: banano y petróleo.</div></td><td><span class="cal-impact imp-high">Alto</span></td></tr>
+        <tr><td><div class="cal-date">Mar–Abr</div></td><td><div class="cal-event">Fin compensación diésel</div><div class="cal-desc">Bono transportistas vence. Riesgo social.</div></td><td><span class="cal-impact imp-med">Medio</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="footer-left">Liberty Finance · Ecuador</div>
+  <div class="footer-disc">Análisis informativo. No constituye asesoría personalizada. Invertir implica riesgos incluyendo pérdida del capital.</div>
+  <div class="footer-right">1 / 3</div>
+</div>
+</div>
+
+<div class="page-gap"></div>
+
+<!-- ═══════════ PAGE 2 ═══════════ -->
+<div class="page page-2">
+<div class="header-light">
+  <div><div class="hl-name">LIBERTY FINANCE</div><div class="hl-sub">🇪🇨 Ecuador · Apertura &amp; Market Radar</div></div>
+  <div style="font-family:var(--serif);font-style:italic;font-size:10.5px;color:rgba(245,244,240,0.65);">Semana 02.03.2026</div>
+  <div class="hl-page">2 / 3</div>
+</div>
+
+<div class="p2-body">
+
+  <!-- LECTURA DE APERTURA -->
+  <div class="apertura-strip">
+    <div class="ap-title-row">
+      <div class="ap-title">📡 Lectura de Apertura — Lunes 2 de marzo 2026</div>
+      <div class="ap-badge">⚡ Alerta Geopolítica Activa</div>
+    </div>
+    <div class="ap-grid">
+      <div class="ap-item">
+        <div class="ap-item-label">WTI Crude</div>
+        <div class="ap-item-name">Apertura lunes</div>
+        <div class="ap-item-val">$72.67</div>
+        <div class="ap-item-chg up">▲ +$5.65 vs vie (+8.4%)</div>
+        <div class="ap-item-note">Gap alcista por ataque a Irán el fin de semana</div>
+      </div>
+      <div class="ap-item">
+        <div class="ap-item-label">Brent</div>
+        <div class="ap-item-name">Apertura lunes</div>
+        <div class="ap-item-val">$79.50</div>
+        <div class="ap-item-chg up">▲ +9.1% vs cierre vier.</div>
+        <div class="ap-item-note">Máximo en 7 meses; cierre estrecho Ormuz</div>
+      </div>
+      <div class="ap-item">
+        <div class="ap-item-label">XAUUSD Oro</div>
+        <div class="ap-item-name">Spot apertura</div>
+        <div class="ap-item-val">$2,857</div>
+        <div class="ap-item-chg up">▲ Máximos históricos</div>
+        <div class="ap-item-note">Demanda refugio activa; DXY+oro en paralelo</div>
+      </div>
+      <div class="ap-item">
+        <div class="ap-item-label">EMBI Ecuador</div>
+        <div class="ap-item-name">Riesgo país</div>
+        <div class="ap-item-val">~420</div>
+        <div class="ap-item-chg flat">→ Estable; mín. 11 años</div>
+        <div class="ap-item-note">Conflicto geopolítico no ha impactado aún</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKET RADAR -->
+  <div>
+    <div class="sh-light"><div class="sh-bar"></div><div class="sh-title">Market Radar — Instrumentos Clave Ecuador</div><div class="sh-line"></div></div>
+    <div class="radar-grid">
+      <div class="radar-card">
+        <div class="rc-label">🌐 Global · Energía</div>
+        <div class="rc-name">WTI Crude Oil</div>
+        <div class="rc-val">$75.82</div>
+        <div class="rc-change up">▲ +$5.65 (+8.1%) esta semana</div>
+        <div class="rc-desc">Referencia directa del crudo ecuatoriano. Presupuesto 2026 asumía $53.50. Cada dólar por encima genera ~$6–8M adicionales para el Estado. Saldo neto positivo mientras WTI supere ~$65.</div>
+        <span class="rc-signal sig-buy">↑ Favorable para Ecuador</span>
+      </div>
+      <div class="radar-card">
+        <div class="rc-label">🇪🇨 Local · Soberano</div>
+        <div class="rc-name">Eurobonos Ecuador 2034</div>
+        <div class="rc-val">8.75%</div>
+        <div class="rc-change up">▲ EMBI ~420 — mín. 11 años</div>
+        <div class="rc-desc">Emisión $4B en enero con demanda $18B (4.5x sobresuscripción). Moody's mejoró calificación. EMBI bajó de 1.925 a 420 pts en 2 años. Tendencia: seguir comprimiendo hacia 350–380.</div>
+        <span class="rc-signal sig-buy">ACUMULAR</span>
+      </div>
+      <div class="radar-card">
+        <div class="rc-label">🌐 Libertex · Metal CFD</div>
+        <div class="rc-name">XAUUSD — Oro Spot</div>
+        <div class="rc-val">$2,857</div>
+        <div class="rc-change up">▲ Máximos históricos</div>
+        <div class="rc-desc">Cobertura geopolítica directa. Ventaja Ecuador: economía dolarizada = sin riesgo cambiario en XAUUSD. DXY+oro al alza en paralelo = señal de pánico real en mercados.</div>
+        <span class="rc-signal sig-buy">MANTENER / AÑADIR</span>
+      </div>
+      <div class="radar-card">
+        <div class="rc-label">🌐 NYSE · Libertex CFD</div>
+        <div class="rc-name">FCX Freeport-McMoRan</div>
+        <div class="rc-val">~$65–66</div>
+        <div class="rc-change up">▲ ATH $69.75 el jue 25 feb</div>
+        <div class="rc-desc">Mayor productor de cobre del mundo (1.1MM ton/año). Beta ~1.75. Catalizador clave: NPC China (4–11 Mar). Si confirman estímulo, FCX puede +10–15% en días.</div>
+        <span class="rc-signal sig-wait">ESPERAR NPC China</span>
+      </div>
+      <div class="radar-card">
+        <div class="rc-label">🇪🇨 Local · Agro</div>
+        <div class="rc-name">Banano — Sector Exportador</div>
+        <div class="rc-val">+9.7%</div>
+        <div class="rc-change up">▲ enero 2026 vs enero 2025</div>
+        <div class="rc-desc">PMS 2026: $7.50/caja. 36.6M cajas en enero. Riesgo: conflicto interrumpe ruta Medio Oriente ($7M/sem en riesgo). UE +15.6% y Rusia +24.5% compensan. Sector busca rutas alternativas.</div>
+        <span class="rc-signal sig-neutral">NEUTRAL — Monitorear</span>
+      </div>
+      <div class="radar-card">
+        <div class="rc-label">🌐 Macro · EM Risk</div>
+        <div class="rc-name">DXY + NFP Viernes</div>
+        <div class="rc-val">~106</div>
+        <div class="rc-change flat">→ NFP viernes 6 Mar</div>
+        <div class="rc-desc">Ecuador dolarizado: sin riesgo cambiario directo. Pero DXY fuerte presiona spreads EM y encarece refinanciamiento. NFP viernes es el dato macro decisivo de la semana para eurobonos.</div>
+        <span class="rc-signal sig-watch">VIGILAR — vie 6 mar</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIOS -->
+  <div>
+    <div class="sh-light"><div class="sh-bar"></div><div class="sh-title">Escenarios para la Semana</div><div class="sh-line"></div></div>
+    <div class="scenario-row">
+      <div class="sc-card sc-base"><div class="sc-label">Escenario Base</div><div class="sc-prob">55%</div><div class="sc-text">WTI se estabiliza entre $70–80. Eurobonos mantienen niveles. Banano redirige rutas. Riesgo país ~420. Crecimiento +2.5% sostenido.</div></div>
+      <div class="sc-card sc-bull"><div class="sc-label">Escenario Alcista</div><div class="sc-prob">25%</div><div class="sc-text">NPC China confirma estímulo masivo + WTI >$90 → EMBI baja a 360 pts. Eurobonos aprecian +4–6%. Ingresos fiscales Ecuador se disparan sobre lo presupuestado.</div></div>
+      <div class="sc-card sc-bear"><div class="sc-label">Escenario Bajista</div><div class="sc-prob">20%</div><div class="sc-text">Cierre total Ormuz + derivados >$100 → déficit neto Ecuador (importa más que exporta en valor). Protestas subsidio diésel. EMBI sube a 500+.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="pf-light">
+  <div class="pfl-brand">Liberty Finance · A Legacy with Future</div>
+  <div class="pfl-disc">Reporte informativo. No constituye asesoría personalizada. Valores referenciales al 02/03/2026.</div>
+  <div class="pfl-page">2 / 3</div>
+</div>
+</div>
+
+<div class="page-gap"></div>
+
+<!-- ═══════════ PAGE 3 ═══════════ -->
+<div class="page page-3">
+<div class="header-light">
+  <div><div class="hl-name">LIBERTY FINANCE</div><div class="hl-sub">🇪🇨 Ecuador · TOP-4 Recomendaciones</div></div>
+  <div style="font-family:var(--serif);font-style:italic;font-size:10.5px;color:rgba(245,244,240,0.65);">Semana 02.03.2026 · Ecuador</div>
+  <div class="hl-page">3 / 3</div>
+</div>
+
+<div class="p2-body" style="padding-top:13px;">
+  <div class="note-strip">
+    <span style="font-size:14px;">📌</span>
+    <span><strong>TOP-4 esta semana:</strong> petróleo geopolítico + eurobonos en ventana táctica. Mix: <strong>2 internacionales via Libertex</strong> &nbsp;·&nbsp; <strong>1 soberano USD</strong> &nbsp;·&nbsp; <strong>1 táctico petróleo Libertex</strong></span>
+  </div>
+
+  <div class="sh-light"><div class="sh-bar"></div><div class="sh-title">TOP-4 Recomendaciones de la Semana</div><div class="sh-line"></div></div>
+
+  <div class="rec-section">
+
+    <!-- REC 01 -->
+    <div class="rec-card">
+      <div class="rec-header">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="rec-num">01</div>
+          <div><div class="rec-asset">XAUUSD — Oro Spot CFD &nbsp;<span style="font-size:10px;opacity:0.55;font-weight:300;">(Libertex · Metal CFD)</span></div>
+          <div class="rec-sub">Cobertura geopolítica directa · Sin riesgo cambiario para inversores ecuatorianos dolarizados</div></div>
+        </div>
+        <div class="rec-action-badge action-buy">MANTENER / AÑADIR</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rm-item"><div class="rm-label">Precio ref.</div><div class="rm-val">~$2.857/oz</div></div>
+          <div class="rm-item"><div class="rm-label">Target</div><div class="rm-val green">$2.950–3.050</div></div>
+          <div class="rm-item"><div class="rm-label">Stop loss</div><div class="rm-val red">$2.780</div></div>
+          <div class="rm-item"><div class="rm-label">Horizonte</div><div class="rm-val">4–12 sem.</div></div>
+        </div>
+        <div class="rec-grid">
+          <div><div class="rt-title">Tesis de Inversión</div>
+          <div class="rt-text">Oro en máximos históricos impulsado por conflicto Irán–Israel. Ventaja especial para Ecuador: <strong>economía 100% dolarizada</strong> = sin riesgo cambiario adicional en XAUUSD. Cobertura perfecta en USD. DXY+oro subiendo en paralelo confirma pánico real en mercados. Disponible en Libertex como Metal CFD — spread ultra-bajo.</div>
+          <div class="intl-badge">🌐 INTERNACIONAL · Libertex Metal CFD · USD</div></div>
+          <div>
+            <div class="rr-bar-wrap"><div class="rr-label">Riesgo / Retorno</div><div class="rr-track"><div class="rr-risk" style="width:21%"></div><div class="rr-reward" style="left:21%;width:56%"></div></div><div class="rr-ratio">R:R ≈ 1:2.7</div></div>
+            <div class="risk-box"><div class="rt-title">Riesgo principal</div><div class="rt-text">Tregua diplomática → toma de utilidades. Prob.: 25%. Stop obligatorio en $2.780.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 02 -->
+    <div class="rec-card">
+      <div class="rec-header">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="rec-num">02</div>
+          <div><div class="rec-asset">FCX — Freeport-McMoRan Inc. &nbsp;<span style="font-size:10px;opacity:0.55;font-weight:300;">(NYSE · Libertex Stock CFD)</span></div>
+          <div class="rec-sub">Mayor productora de cobre del mundo · Beta 1.75 · Catalizador NPC China · Disponible en Libertex</div></div>
+        </div>
+        <div class="rec-action-badge action-wait">ESPERAR ENTRADA</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rm-item"><div class="rm-label">Precio ref.</div><div class="rm-val">~$65–66</div></div>
+          <div class="rm-item"><div class="rm-label">Zona entrada</div><div class="rm-val">$63–67</div></div>
+          <div class="rm-item"><div class="rm-label">Target</div><div class="rm-val green">$72–78</div></div>
+          <div class="rm-item"><div class="rm-label">Horizonte</div><div class="rm-val">3–8 sem.</div></div>
+        </div>
+        <div class="rec-grid">
+          <div><div class="rt-title">Tesis de Inversión</div>
+          <div class="rt-text">Freeport-McMoRan: <strong>mayor productor de cobre del mundo</strong> (1.1MM ton/año). ATH reciente $69.75 el 25 feb. Catalizador esta semana: <strong>NPC China (4–11 Mar)</strong> — si confirman estímulo en infraestructura, FCX puede +10–15% en días. Disponible en Libertex como Stock CFD sin comisiones de conversión.</div>
+          <div class="intl-badge">🌐 NYSE · Libertex Stock CFD · USD</div></div>
+          <div>
+            <div class="rr-bar-wrap"><div class="rr-label">Riesgo / Retorno</div><div class="rr-track"><div class="rr-risk" style="width:22%"></div><div class="rr-reward" style="left:22%;width:56%"></div></div><div class="rr-ratio">R:R ≈ 1:2.5</div></div>
+            <div class="risk-box"><div class="rt-title">Condición de entrada</div><div class="rt-text">Cobre LME >$4.35/lb + NPC China confirma estímulo. Sin ambas señales: mantener cash.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 03 -->
+    <div class="rec-card">
+      <div class="rec-header">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="rec-num">03</div>
+          <div><div class="rec-asset">Eurobonos Ecuador 2034 &nbsp;<span style="font-size:10px;opacity:0.55;font-weight:300;">(Soberano · USD)</span></div>
+          <div class="rec-sub">Cupón 8.75% anual en USD · Moody's mejoró calificación · EMBI en mínimo de 11 años</div></div>
+        </div>
+        <div class="rec-action-badge action-buy">ACUMULAR</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rm-item"><div class="rm-label">Cupón anual</div><div class="rm-val green">8.75% USD</div></div>
+          <div class="rm-item"><div class="rm-label">Vencimiento</div><div class="rm-val">2034</div></div>
+          <div class="rm-item"><div class="rm-label">EMBI actual</div><div class="rm-val">~420 pts</div></div>
+          <div class="rm-item"><div class="rm-label">Horizonte</div><div class="rm-val">Largo plazo</div></div>
+        </div>
+        <div class="rec-grid">
+          <div><div class="rt-title">Tesis de Inversión</div>
+          <div class="rt-text">Ecuador volvió a mercados en enero con <strong>demanda récord: $18B en órdenes para $4B</strong> (sobresuscripción 4.5x). Moody's mejoró calificación. EMBI bajó de 1.925 a 420 pts bajo Noboa. Cupón 8.75% en USD es excepcional. Mientras EMBI siga comprimiendo hacia 350–380, los bonos aprecian en precio además del cupón. <strong>Doble retorno: capital + ingreso.</strong></div>
+          <div class="local-badge">🇪🇨 SOBERANO ECUADOR · USD · Bloomberg secundario</div></div>
+          <div>
+            <div class="rr-bar-wrap"><div class="rr-label">Riesgo / Retorno</div><div class="rr-track"><div class="rr-risk" style="width:25%"></div><div class="rr-reward" style="left:25%;width:50%"></div></div><div class="rr-ratio">R:R ≈ 1:2 + cupón 8.75%</div></div>
+            <div class="risk-box" style="background:rgba(0,153,51,0.04);border-color:rgba(0,153,51,0.15);"><div class="rt-title">Riesgo principal</div><div class="rt-text">WTI >$100 → déficit neto por derivados → presión fiscal → spreads suben. Prob.: 20%.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 04 -->
+    <div class="rec-card">
+      <div class="rec-header">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="rec-num">04</div>
+          <div><div class="rec-asset">USOIL — WTI Crude Oil CFD &nbsp;<span style="font-size:10px;opacity:0.55;font-weight:300;">(Libertex · Oil CFD)</span></div>
+          <div class="rec-sub">Play táctico directo sobre el principal commodity ecuatoriano · Alta volatilidad · Ventana corta</div></div>
+        </div>
+        <div class="rec-action-badge action-tactical">TÁCTICA CORTA</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rm-item"><div class="rm-label">WTI actual</div><div class="rm-val">~$75.82</div></div>
+          <div class="rm-item"><div class="rm-label">Zona entrada</div><div class="rm-val">$72–77</div></div>
+          <div class="rm-item"><div class="rm-label">Target corto</div><div class="rm-val green">$82–90</div></div>
+          <div class="rm-item"><div class="rm-label">Stop</div><div class="rm-val red">$68</div></div>
+        </div>
+        <div class="rec-grid">
+          <div><div class="rt-title">Tesis de Inversión</div>
+          <div class="rt-text">Ecuador exporta crudo con referencia WTI. Presupuesto calculado a $53.5/bbl — cada dólar adicional = ingresos extras para el Estado. El CFD de WTI en Libertex permite <strong>participar directamente en este movimiento</strong>. Mientras Ormuz esté en riesgo y OPEP sin capacidad de compensar totalmente, la tendencia es alcista. <strong>Horizonte máximo: 1–3 semanas.</strong></div>
+          <div class="intl-badge">🌐 INTERNACIONAL · Libertex Oil CFD · USD</div></div>
+          <div>
+            <div class="rr-bar-wrap"><div class="rr-label">Riesgo / Retorno</div><div class="rr-track"><div class="rr-risk" style="width:25%"></div><div class="rr-reward" style="left:25%;width:50%"></div></div><div class="rr-ratio">R:R ≈ 1:2</div></div>
+            <div class="risk-box" style="background:rgba(124,58,237,0.05);border-color:rgba(124,58,237,0.15);"><div class="rt-title" style="color:#7C3AED;">Riesgo crítico</div><div class="rt-text"><strong>Salida inmediata</strong> ante señal de tregua. Petróleo puede caer -10% en horas. Stop $68 es obligatorio.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="pf-light">
+  <div class="pfl-brand">Liberty Finance · A Legacy with Future</div>
+  <div class="pfl-disc">Reporte preparado por el Dep. de Asesoría de Inversiones e Investigación. No constituye asesoría personalizada. Invertir implica riesgos incluyendo pérdida del capital. Valores referenciales al 02/03/2026.</div>
+  <div class="pfl-page">3 / 3</div>
+</div>
+</div>
+
+</body>
+</html>
