@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — Weekly Report Chile — 2 Mar 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:       #001337;
+  --navy-mid:   #0a1f52;
+  --taslan:     #264567;
+  --deep-black: #131313;
+  --charcoal:   #AAAAAA;
+  --taupe:      #3F362D;
+  --gold:       #938565;
+  --gold-light: #b8a882;
+  --gold-dim:   #5a5140;
+  --white:      #F5F4F0;
+  --off-white:  #E8E6E0;
+  --paper:      #F0EEE8;
+  --red:        #C0392B;
+  --green:      #1E8449;
+  --mono:       'JetBrains Mono', monospace;
+  --sans:       'Nunito Sans', sans-serif;
+  --serif:      'Cormorant Garamond', Georgia, serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: var(--sans);
+  background: #ddd;
+  color: var(--deep-black);
+  font-size: 11px;
+  line-height: 1.5;
+}
+@media print {
+  body { background: white; margin: 0; padding: 0; }
+  .page { page-break-after: always; box-shadow: none; margin: 0; width: 100% !important; min-height: 297mm; }
+  .page:last-child { page-break-after: avoid; }
+  .page-gap { display: none; }
+}
+@page { size: A4 portrait; margin: 0mm; }
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 20px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+}
+.page-1 { background: var(--navy); color: var(--white); }
+
+/* GOLD RULE */
+.gold-rule {
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold) 0%, rgba(147,133,101,0.1) 100%);
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  z-index: 10;
+}
+
+/* LOGO SVG */
+.logo-bars { display: flex; flex-direction: column; gap: 2.5px; justify-content: flex-end; width: 30px; }
+.bar { height: 4px; border-radius: 1px; background: var(--gold); }
+.bar-1 { width: 30px; opacity:0.4; }
+.bar-2 { width: 24px; opacity:0.55; }
+.bar-3 { width: 18px; opacity:0.7; }
+.bar-4 { width: 12px; opacity:0.85; }
+.bar-5 { width: 7px; opacity:1; }
+
+/* ============ HEADER ============ */
+.header {
+  background: var(--navy);
+  padding: 16px 26px 13px 26px;
+  border-bottom: 1px solid rgba(147,133,101,0.3);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+}
+.header::after {
+  content:'';
+  position:absolute;
+  bottom:-2px; left:0; right:0;
+  height:2px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 60%);
+}
+.logo-wrap { display:flex; align-items:center; gap:10px; }
+.logo-text .brand-name {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 2.5px;
+  color: var(--white);
+  line-height: 1;
+}
+.logo-text .brand-sub {
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.header-right { text-align: right; }
+.report-label { font-family: var(--serif); font-style:italic; font-size:10px; color: var(--gold-light); }
+.report-date { font-family: var(--mono); font-size:8.5px; color: rgba(245,244,240,0.45); margin-top:2px; }
+.dept-line { font-size:7.5px; font-weight:600; letter-spacing:0.8px; color: var(--gold); text-transform:uppercase; margin-top:3px; }
+
+/* ============ MACRO STRIP ============ */
+.macro-hero {
+  background: rgba(0,0,0,0.22);
+  border-bottom: 1px solid rgba(147,133,101,0.18);
+  padding: 12px 26px;
+  display: flex;
+  gap: 0;
+}
+.macro-item {
+  flex:1;
+  padding: 0 14px;
+  border-right: 1px solid rgba(147,133,101,0.18);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.macro-item:first-child { padding-left:0; }
+.macro-item:last-child { border-right:none; }
+.m-label { font-size:7px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:3px; }
+.m-value { font-family:var(--mono); font-size:14px; font-weight:500; color:var(--white); line-height:1; }
+.m-delta { font-family:var(--mono); font-size:8px; margin-top:2px; }
+.down { color:#E74C3C; } .up { color:#27AE60; } .flat { color:var(--charcoal); }
+
+/* ============ SENTIMENT ============ */
+.sentiment-strip {
+  padding: 10px 26px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 1px solid rgba(147,133,101,0.12);
+}
+.sent-label { font-family:var(--serif); font-style:italic; font-size:10px; color:var(--gold-light); min-width:65px; }
+.sent-bar-wrap { flex:1; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; position:relative; overflow:hidden; }
+.sent-bar { position:absolute; left:0; top:0; bottom:0; right:0; background:linear-gradient(90deg,#27AE60,#F39C12,#E74C3C); border-radius:3px; }
+.sent-needle { position:absolute; top:-3px; width:2px; height:12px; background:var(--white); border-radius:1px; box-shadow:0 0 5px rgba(255,255,255,0.9); transform:translateX(-50%); }
+.sent-tags { display:flex; gap:10px; }
+.sent-tag { font-size:7.5px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; padding:3px 7px; border-radius:2px; }
+.bear { background:rgba(231,76,60,0.22); color:#E74C3C; border:1px solid rgba(231,76,60,0.35); }
+.neutral { background:rgba(243,156,18,0.12); color:#F39C12; border:1px solid rgba(243,156,18,0.25); }
+.bull { background:rgba(39,174,96,0.12); color:#27AE60; border:1px solid rgba(39,174,96,0.25); }
+.active-sent { font-weight:800 !important; font-size:8.5px !important; }
+
+/* ============ TWO COL ============ */
+.two-col { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:0; }
+.col-left { padding:14px 26px; border-right:1px solid rgba(147,133,101,0.12); }
+.col-right { padding:14px 20px; }
+
+.sec-head { display:flex; align-items:center; gap:8px; margin-bottom:9px; padding-bottom:5px; border-bottom:1px solid rgba(147,133,101,0.22); }
+.sec-head-bar { width:3px; height:14px; background:var(--gold); border-radius:1.5px; flex-shrink:0; }
+.sec-title { font-family:var(--serif); font-size:12.5px; font-weight:400; color:var(--white); font-style:italic; }
+.sec-num { font-family:var(--mono); font-size:8px; color:var(--gold-dim); margin-left:auto; }
+
+.event-item { display:flex; gap:9px; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.055); }
+.event-item:last-child { border-bottom:none; }
+.ev-dot { width:5px; height:5px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+.ev-dot.global { background:var(--gold); }
+.ev-dot.local { background:#5B8DD9; }
+.ev-tag { font-size:7px; font-weight:700; letter-spacing:0.9px; text-transform:uppercase; color:var(--gold-dim); margin-bottom:1px; }
+.ev-text { font-size:9.5px; color:rgba(245,244,240,0.83); line-height:1.33; }
+.ev-text strong { color:var(--white); font-weight:600; }
+.ev-impact { font-family:var(--mono); font-size:8px; margin-top:2px; }
+.ev-impact.high { color:#E74C3C; } .ev-impact.med { color:#F39C12; } .ev-impact.low { color:#27AE60; }
+
+/* ============ PAGE FOOTER ============ */
+.page-footer {
+  padding:7px 26px;
+  border-top:1px solid rgba(147,133,101,0.18);
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(0,0,0,0.18);
+}
+.footer-left { font-family:var(--serif); font-style:italic; font-size:8.5px; color:var(--gold-light); }
+.footer-right { font-family:var(--mono); font-size:7.5px; color:rgba(255,255,255,0.25); }
+.footer-disc { font-size:7px; color:rgba(255,255,255,0.2); text-align:center; flex:1; padding:0 14px; }
+
+/* ============ PAGES 2-3 LIGHT ============ */
+.page-2, .page-3 { background:var(--white); }
+
+.header-light {
+  background:var(--navy);
+  padding:11px 26px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:2px solid var(--gold);
+}
+.hl-name { font-family:var(--sans); font-weight:800; font-size:13px; letter-spacing:2px; color:var(--white); }
+.hl-sub { font-size:7px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); font-weight:300; }
+.hl-page { font-family:var(--mono); font-size:8px; color:var(--gold); letter-spacing:1px; }
+
+.p2-body { flex:1; display:flex; flex-direction:column; padding:16px 26px; gap:16px; }
+
+.sh-light { display:flex; align-items:center; gap:8px; margin-bottom:9px; }
+.sh-bar { width:3px; height:16px; background:var(--gold); border-radius:1.5px; }
+.sh-title { font-family:var(--serif); font-size:15px; font-style:italic; font-weight:400; color:var(--navy); line-height:1; }
+.sh-sub { font-size:7.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--charcoal); font-weight:600; margin-left:3px; }
+.sh-line { flex:1; height:1px; background:linear-gradient(90deg,rgba(147,133,101,0.35),transparent); margin-left:8px; }
+
+/* ============ CALENDAR ============ */
+.cal-table { width:100%; border-collapse:collapse; font-size:9.5px; }
+.cal-table th { font-size:7px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--charcoal); padding:5px 7px; border-bottom:1px solid var(--gold-dim); text-align:left; background:rgba(0,19,55,0.03); }
+.cal-table td { padding:5px 7px; border-bottom:1px solid rgba(0,0,0,0.05); vertical-align:middle; }
+.cal-table tr:hover td { background:rgba(147,133,101,0.04); }
+.cal-date { font-family:var(--mono); font-size:9px; font-weight:500; color:var(--navy); white-space:nowrap; }
+.cal-day { font-size:7.5px; color:var(--charcoal); }
+.cal-country { font-size:8px; font-weight:700; padding:2px 5px; border-radius:2px; white-space:nowrap; }
+.cc-cl { background:#E8EFFC; color:#1a3a7a; }
+.cc-us { background:#EBF5FB; color:#1a5a7a; }
+.cc-cn { background:#FDEDEC; color:#7a1a1a; }
+.cc-gl { background:#F0EBF8; color:#4a1a7a; }
+.cal-event { font-size:9.5px; line-height:1.3; }
+.cal-event strong { color:var(--navy); font-weight:700; }
+.cal-event span { color:#555; }
+.stars { font-size:10px; letter-spacing:-1px; }
+.stars.high { color:#E74C3C; } .stars.med { color:#F39C12; } .stars.low { color:var(--gold); }
+
+/* ============ RADAR ============ */
+.radar-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.radar-card { border:1px solid rgba(147,133,101,0.22); border-left:3px solid var(--gold); border-radius:3px; padding:8px 10px; background:rgba(0,19,55,0.02); }
+.radar-card.critical { border-left-color:#E74C3C; }
+.radar-card.watch { border-left-color:#F39C12; }
+.radar-card.positive { border-left-color:#27AE60; }
+.rc-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:3px; }
+.rc-name { font-size:9.5px; font-weight:700; color:var(--navy); }
+.rc-badge { font-family:var(--mono); font-size:7px; padding:1px 5px; border-radius:2px; font-weight:500; }
+.rb-crit { background:#FDEDEC; color:#C0392B; }
+.rb-watch { background:#FEF9E7; color:#B7770D; }
+.rb-pos { background:#E9F7EF; color:#1E8449; }
+.rc-value { font-family:var(--mono); font-size:11.5px; font-weight:500; color:var(--navy); margin-bottom:2px; }
+.rc-text { font-size:9px; color:#444; line-height:1.33; }
+.rc-arrow { font-size:8px; color:var(--charcoal); margin-top:3px; font-style:italic; }
+
+.pf-light { padding:7px 26px; border-top:1px solid rgba(0,0,0,0.07); display:flex; justify-content:space-between; align-items:center; }
+.pfl-brand { font-family:var(--serif); font-style:italic; font-size:8.5px; color:var(--gold); }
+.pfl-disc { font-size:7px; color:var(--charcoal); flex:1; text-align:center; padding:0 14px; }
+.pfl-page { font-family:var(--mono); font-size:7.5px; color:var(--charcoal); }
+
+/* ============ RECOMMENDATIONS ============ */
+.rec-section { display:flex; flex-direction:column; gap:10px; }
+.rec-card { border:1px solid rgba(0,19,55,0.1); border-radius:4px; overflow:hidden; box-shadow:0 2px 8px rgba(0,19,55,0.06); }
+.rec-header { background:var(--navy); padding:9px 15px; display:flex; align-items:center; justify-content:space-between; }
+.rec-num { font-family:var(--serif); font-size:18px; font-style:italic; font-weight:300; color:var(--gold); line-height:1; margin-right:9px; flex-shrink:0; }
+.rec-asset { font-family:var(--sans); font-weight:800; font-size:13px; letter-spacing:0.3px; color:var(--white); }
+.rec-sub { font-size:8.5px; font-weight:300; color:var(--gold-light); letter-spacing:0.4px; margin-top:1px; }
+.rec-action-badge { font-family:var(--sans); font-size:10px; font-weight:800; letter-spacing:1px; padding:5px 12px; border-radius:2px; flex-shrink:0; }
+.action-buy { background:#27AE60; color:white; }
+.action-wait { background:#F39C12; color:white; }
+.action-reduce { background:#E74C3C; color:white; }
+.action-hold { background:var(--taslan); color:white; }
+.action-tactical { background:#8E44AD; color:white; }
+
+.rec-body { padding:10px 15px; background:white; }
+.rec-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid rgba(0,0,0,0.06); }
+.rm-label { font-size:7px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--charcoal); margin-bottom:2px; }
+.rm-val { font-family:var(--mono); font-size:11px; font-weight:500; color:var(--navy); }
+.rm-val.green { color:var(--green); } .rm-val.red { color:var(--red); }
+
+.rec-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.rt-title { font-size:7.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:3px; }
+.rt-text { font-size:9px; color:#333; line-height:1.42; }
+.rt-text strong { color:var(--navy); font-weight:700; }
+
+.rr-bar-wrap { display:flex; align-items:center; gap:7px; margin-top:7px; }
+.rr-label { font-size:7.5px; font-weight:600; color:var(--charcoal); width:28px; }
+.rr-track { flex:1; height:5px; background:#f0f0f0; border-radius:3px; position:relative; }
+.rr-risk { position:absolute; left:0; top:0; bottom:0; background:#E74C3C; border-radius:3px; }
+.rr-reward { position:absolute; top:0; bottom:0; background:#27AE60; border-radius:3px; }
+.rr-ratio { font-family:var(--mono); font-size:9.5px; font-weight:500; color:var(--navy); white-space:nowrap; }
+
+.intl-badge {
+  display:inline-flex; align-items:center; gap:4px;
+  padding:2px 7px; border-radius:2px;
+  background:rgba(142,68,173,0.1); border:1px solid rgba(142,68,173,0.25);
+  font-size:7.5px; font-weight:700; color:#8E44AD; letter-spacing:0.5px;
+  margin-top:4px;
+}
+.local-badge {
+  display:inline-flex; align-items:center; gap:4px;
+  padding:2px 7px; border-radius:2px;
+  background:rgba(0,19,55,0.07); border:1px solid rgba(0,19,55,0.15);
+  font-size:7.5px; font-weight:700; color:var(--navy); letter-spacing:0.5px;
+  margin-top:4px;
+}
+
+/* Strong local signals note */
+.strong-local-note {
+  display:flex; align-items:center; gap:8px;
+  padding:7px 11px;
+  background:rgba(0,19,55,0.04);
+  border:1px solid rgba(147,133,101,0.25);
+  border-left:3px solid var(--gold);
+  border-radius:3px;
+  margin-bottom:9px;
+  font-size:9px; color:#333;
+}
+.strong-local-note strong { color:var(--navy); font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     PÁGINA 1 — PANORAMA + EVENTOS
+     ====================================================== -->
+<div class="page page-1">
+  <div class="gold-rule"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-wrap">
+      <div class="logo-bars">
+        <div class="bar bar-5"></div>
+        <div class="bar bar-4"></div>
+        <div class="bar bar-3"></div>
+        <div class="bar bar-2"></div>
+        <div class="bar bar-1"></div>
+      </div>
+      <div class="logo-text">
+        <div class="brand-name">LIBERTY</div>
+        <div class="brand-sub">Finance</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="report-label">Reporte Semanal de Mercados</div>
+      <div class="report-date">Semana 02 — 06 de marzo, 2026 &nbsp;·&nbsp; 🇨🇱 Chile</div>
+      <div class="dept-line">Asesoría de Inversiones e Investigación</div>
+    </div>
+  </div>
+
+  <!-- MACRO STRIP -->
+  <div class="macro-hero">
+    <div class="macro-item">
+      <div class="m-label">IPSA</div>
+      <div class="m-value">10.248</div>
+      <div class="m-delta down">▼ −7.9% (4 días)</div>
+    </div>
+    <div class="macro-item">
+      <div class="m-label">USD / CLP</div>
+      <div class="m-value">$907</div>
+      <div class="m-delta down">▼ +5.4% semanal</div>
+    </div>
+    <div class="macro-item">
+      <div class="m-label">Cobre LME</div>
+      <div class="m-value">$5.79</div>
+      <div class="m-delta down">▼ −3.5% / lb</div>
+    </div>
+    <div class="macro-item">
+      <div class="m-label">TPM BCCh</div>
+      <div class="m-value">4.50%</div>
+      <div class="m-delta flat">→ Recorte ~18 Mar</div>
+    </div>
+    <div class="macro-item">
+      <div class="m-label">Brent</div>
+      <div class="m-value">~$95</div>
+      <div class="m-delta down">▼ +18% semana</div>
+    </div>
+    <div class="macro-item">
+      <div class="m-label">Oro / GLD</div>
+      <div class="m-value">>$5.000</div>
+      <div class="m-delta up">▲ Máx. histórico</div>
+    </div>
+  </div>
+
+  <!-- SENTIMENT -->
+  <div class="sentiment-strip">
+    <div class="sent-label">Sentimiento</div>
+    <div class="sent-bar-wrap">
+      <div class="sent-bar"></div>
+      <div class="sent-needle" style="left:73%"></div>
+    </div>
+    <div class="sent-tags">
+      <div class="sent-tag bull">Alcista</div>
+      <div class="sent-tag neutral">Neutral</div>
+      <div class="sent-tag bear active-sent">⬤ Bajista</div>
+    </div>
+    <div style="font-family:var(--mono);font-size:8px;color:var(--gold);margin-left:10px;letter-spacing:1px;">RISK-OFF</div>
+  </div>
+
+  <!-- BODY 2-COL -->
+  <div class="two-col">
+    <!-- LEFT: SEMANA PASADA -->
+    <div class="col-left">
+      <div class="sec-head">
+        <div class="sec-head-bar"></div>
+        <div class="sec-title">Semana Pasada</div>
+        <div class="sec-num">24 Feb — 28 Feb</div>
+      </div>
+
+      <div class="event-item">
+        <div class="ev-dot global"></div>
+        <div class="ev-content">
+          <div class="ev-tag">🌍 Global — Geopolítica</div>
+          <div class="ev-text"><strong>Inicio operaciones militares EE.UU.–Israel vs. Irán</strong> — Primeros ataques el fin de semana 28 Feb–1 Mar. Irán amenaza cerrar el Estrecho de Ormuz. Petróleo sube +18% en 4 jornadas.</div>
+          <div class="ev-impact high">★★★ Impacto ALTO — driver dominante de la semana</div>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="ev-dot global"></div>
+        <div class="ev-content">
+          <div class="ev-tag">🇺🇸 EE.UU. — FED / Macro</div>
+          <div class="ev-text"><strong>PCE Core enero: +3.0% a/a</strong> — Dato superior a lo esperado. FED aleja recorte de tasas. DXY se fortalece a 98.56, máximo de 6 semanas. Mercados emergentes bajo presión.</div>
+          <div class="ev-impact high">★★★ Impacto ALTO — presiona CLP y mercados EM</div>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="ev-dot local"></div>
+        <div class="ev-content">
+          <div class="ev-tag">🇨🇱 Chile — Macro</div>
+          <div class="ev-text"><strong>IMACEC enero: −0.4% a/a (sorpresa negativa)</strong> — Primera contracción desde dic 2023. Desempleo 8.3% (nov–ene), máximo en 2 años. Presión sobre BCCh para acelerar recorte TPM.</div>
+          <div class="ev-impact med">★★☆ Impacto MEDIO — refuerza sesgo dovish BCCh</div>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="ev-dot local"></div>
+        <div class="ev-content">
+          <div class="ev-tag">🇨🇱 Chile — Empresa</div>
+          <div class="ev-text"><strong>SQM: Tianqi Lithium anuncia desinversión de 1.25%</strong> — Hasta 3.56M acciones clase A. Acción cae ~5.5% en 2 días. Presión adicional sobre IPSA en contexto de riesgo global.</div>
+          <div class="ev-impact med">★★☆ Impacto MEDIO — presión técnica en SQM/IPSA</div>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="ev-dot global"></div>
+        <div class="ev-content">
+          <div class="ev-tag">🌍 Global — Commodities</div>
+          <div class="ev-text"><strong>Oro supera $5.000/oz por primera vez en la historia</strong> — Refugio geopolítico máximo. Plata rompe $82/oz. DXY y oro se mueven en paralelo (correlación inusual = pánico real).</div>
+          <div class="ev-impact high">★★★ Impacto ALTO — señal de risk-off extremo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: LECTURA EDITORIAL -->
+    <div class="col-right">
+      <div class="sec-head">
+        <div class="sec-head-bar"></div>
+        <div class="sec-title">Lectura de Apertura</div>
+        <div class="sec-num">02</div>
+      </div>
+
+      <!-- Alerta -->
+      <div style="background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.28);border-left:3px solid #C0392B;border-radius:3px;padding:8px 10px;margin-bottom:9px;">
+        <div style="font-size:7.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#E74C3C;margin-bottom:3px;">🚨 ALERTA ACTIVA — Conflicto Irán</div>
+        <div style="font-size:9.5px;color:rgba(245,244,240,0.88);line-height:1.38;">Chile es <strong>importador neto de petróleo</strong>. Brent >$95 eleva inflación importada y presiona al BCCh a postergar recortes. El IPSA toca zona de soporte crítica 9.900–10.100 por primera vez desde oct 2025.</div>
+      </div>
+
+      <div style="font-family:var(--serif);font-style:italic;font-size:11.5px;color:var(--gold-light);margin-bottom:7px;">Puntos clave para esta semana</div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;">
+
+        <div style="display:flex;gap:7px;align-items:flex-start;padding:6px 8px;background:rgba(255,255,255,0.05);border-radius:3px;">
+          <div style="font-size:11px;min-width:16px;">🔴</div>
+          <div style="font-size:9.5px;color:rgba(245,244,240,0.83);line-height:1.33;"><strong style="color:white;">IPSA −13% desde ATH</strong> — Zona 9.900 es soporte clave. El valor de empresas como Banco de Chile o Colbún no ha cambiado. Fundamentos intactos vs. panic-sell.</div>
+        </div>
+
+        <div style="display:flex;gap:7px;align-items:flex-start;padding:6px 8px;background:rgba(255,255,255,0.05);border-radius:3px;">
+          <div style="font-size:11px;min-width:16px;">🟡</div>
+          <div style="font-size:9.5px;color:rgba(245,244,240,0.83);line-height:1.33;"><strong style="color:white;">CLP en $907</strong> — Roto el consenso 820–880. Nivel $930 posible si conflicto escala. Ventana táctica para quienes tienen exposición USD o necesitan cobertura.</div>
+        </div>
+
+        <div style="display:flex;gap:7px;align-items:flex-start;padding:6px 8px;background:rgba(255,255,255,0.05);border-radius:3px;">
+          <div style="font-size:11px;min-width:16px;">🟡</div>
+          <div style="font-size:9.5px;color:rgba(245,244,240,0.83);line-height:1.33;"><strong style="color:white;">Cobre $5.79/lb</strong> — Soporte en $5.60. "Dos Sesiones" China (4–11 Mar) puede generar catalizador alcista si anuncia estímulo fiscal. Target previo $6.20 sigue vigente.</div>
+        </div>
+
+        <div style="display:flex;gap:7px;align-items:flex-start;padding:6px 8px;background:rgba(255,255,255,0.05);border-radius:3px;">
+          <div style="font-size:11px;min-width:16px;">🟢</div>
+          <div style="font-size:9.5px;color:rgba(245,244,240,0.83);line-height:1.33;"><strong style="color:white;">Renta fija CLP</strong> — IMACEC negativo + desempleo 8.3% = recorte BCCh ~18 Mar prácticamente descontado. BTP y BCU en UF ofrecen mejor R:R de la semana.</div>
+        </div>
+
+        <div style="display:flex;gap:7px;align-items:flex-start;padding:6px 8px;background:rgba(255,255,255,0.05);border-radius:3px;">
+          <div style="font-size:11px;min-width:16px;">🟣</div>
+          <div style="font-size:9.5px;color:rgba(245,244,240,0.83);line-height:1.33;"><strong style="color:white;">Oro > $5.000 e internacional</strong> — Correlación DXY+oro al alza = pánico real. GLD/IAU en NYSE son el hedge geopolítico más limpio. COPX (mineras cobre) ofrece upside asimétrico vs. señal China.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <div class="footer-left">Liberty Finance · A Legacy with Future</div>
+    <div class="footer-disc">Análisis informativo. No constituye asesoría de inversión personalizada. Valores referenciales al cierre del viernes 28/02/2026.</div>
+    <div class="footer-right">1 / 3</div>
+  </div>
+</div>
+
+
+<!-- ======================================================
+     PÁGINA 2 — CALENDARIO + RADAR
+     ====================================================== -->
+<div class="page page-2">
+  <div class="gold-rule"></div>
+
+  <div class="header-light">
+    <div style="display:flex;align-items:center;gap:9px;">
+      <div class="logo-bars" style="--white:#001337;">
+        <div class="bar bar-5" style="background:#001337;opacity:1;"></div>
+        <div class="bar bar-4" style="background:#001337;opacity:0.7;"></div>
+        <div class="bar bar-3" style="background:#001337;opacity:0.5;"></div>
+        <div class="bar bar-2" style="background:#001337;opacity:0.35;"></div>
+        <div class="bar bar-1" style="background:#001337;opacity:0.2;"></div>
+      </div>
+      <div>
+        <div class="hl-name">LIBERTY</div>
+        <div class="hl-sub">Finance</div>
+      </div>
+    </div>
+    <div style="font-family:var(--serif);font-style:italic;font-size:10.5px;color:rgba(245,244,240,0.65);">Calendario Económico &amp; Radar de Mercados — 02.03.2026</div>
+    <div class="hl-page">2 / 3</div>
+  </div>
+
+  <div class="p2-body">
+
+    <!-- CALENDARIO -->
+    <div>
+      <div class="sh-light">
+        <div class="sh-bar"></div>
+        <div class="sh-title">Calendario Económico</div>
+        <div class="sh-sub">· Semana 2–6 Mar · Filtrado para Chile</div>
+        <div class="sh-line"></div>
+      </div>
+
+      <table class="cal-table">
+        <thead>
+          <tr>
+            <th style="width:68px;">Fecha</th>
+            <th style="width:58px;">País</th>
+            <th>Evento</th>
+            <th style="width:52px;text-align:center;">Impacto</th>
+            <th style="width:105px;">Relevancia Chile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="cal-date">4–11 Mar</div><div class="cal-day">Toda la semana</div></td>
+            <td><span class="cal-country cc-cn">🇨🇳 China</span></td>
+            <td class="cal-event"><strong>"Dos Sesiones" NPC / CPPCC</strong> <span>— Metas PIB 2026, 15° Plan Quinquenal, señales de estímulo fiscal e industrial</span></td>
+            <td style="text-align:center;"><span class="stars high">★★★</span></td>
+            <td style="font-size:9px;color:#444;">China = 40% cobre chileno. Estímulo → precio cobre sube → CLP mejora → IPSA rebota.</td>
+          </tr>
+          <tr>
+            <td><div class="cal-date">4 Mar</div><div class="cal-day">Miércoles</div></td>
+            <td><span class="cal-country cc-gl">🌍 Global</span></td>
+            <td class="cal-event"><strong>Evolución conflicto Irán / Estrecho Ormuz</strong> <span>— Trump: "Los ataques más importantes aún por venir". Seguimiento diario de escenarios.</span></td>
+            <td style="text-align:center;"><span class="stars high" style="font-size:12px;">🚨</span></td>
+            <td style="font-size:9px;color:#444;">Modera o amplifica TODOS los drivers locales y globales.</td>
+          </tr>
+          <tr>
+            <td><div class="cal-date">5 Mar</div><div class="cal-day">Jueves</div></td>
+            <td><span class="cal-country cc-us">🇺🇸 EE.UU.</span></td>
+            <td class="cal-event"><strong>Jobless Claims semanales</strong> <span>— Indicador de salud del mercado laboral</span></td>
+            <td style="text-align:center;"><span class="stars med">★★☆</span></td>
+            <td style="font-size:9px;color:#444;">Dato débil → expectativa FED dovish → DXY baja → CLP se aprecia.</td>
+          </tr>
+          <tr style="background:rgba(0,19,55,0.025);">
+            <td><div class="cal-date">6 Mar</div><div class="cal-day">Viernes</div></td>
+            <td><span class="cal-country cc-us">🇺🇸 EE.UU.</span></td>
+            <td class="cal-event"><strong>NFP Febrero + Tasa Desempleo</strong> <span>— Nóminas no agrícolas. Estimado: +185k. Dato clave del mes.</span></td>
+            <td style="text-align:center;"><span class="stars high">★★★</span></td>
+            <td style="font-size:9px;color:#444;">Principal driver del DXY esta semana. Mueve riesgo EM y CLP.</td>
+          </tr>
+          <tr>
+            <td><div class="cal-date">Semana</div><div class="cal-day">Continuo</div></td>
+            <td><span class="cal-country cc-cn">🇨🇳 China</span></td>
+            <td class="cal-event"><strong>Importaciones metales enero–feb</strong> <span>— Volúmenes cobre, mineral de hierro y aluminio</span></td>
+            <td style="text-align:center;"><span class="stars med">★★☆</span></td>
+            <td style="font-size:9px;color:#444;">Demanda real de cobre. Confirma o refuta rally post-"Dos Sesiones".</td>
+          </tr>
+          <tr style="background:rgba(0,19,55,0.025);">
+            <td><div class="cal-date">~17–18 Mar</div><div class="cal-day">Próx. semana</div></td>
+            <td><span class="cal-country cc-cl">🇨🇱 Chile</span></td>
+            <td class="cal-event"><strong>Reunión TPM Banco Central de Chile</strong> <span>— IMACEC −0.4% + desempleo 8.3% = alta probabilidad recorte −25pb (4.5%→4.25%)</span></td>
+            <td style="text-align:center;"><span class="stars high">★★★</span></td>
+            <td style="font-size:9px;color:#444;">Entrada en bonos BTP/BCU UF ANTES de esta fecha. Precio se moverá al anuncio.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- RADAR -->
+    <div>
+      <div class="sh-light">
+        <div class="sh-bar"></div>
+        <div class="sh-title">Radar de Mercados</div>
+        <div class="sh-sub">· Qué seguir · Por qué importa para Chile</div>
+        <div class="sh-line"></div>
+      </div>
+
+      <div class="radar-grid">
+        <div class="radar-card critical">
+          <div class="rc-head">
+            <div class="rc-name">🛢️ Petróleo Brent</div>
+            <div class="rc-badge rb-crit">CRÍTICO</div>
+          </div>
+          <div class="rc-value">~$95 / bbl</div>
+          <div class="rc-text">Chile importa casi todo su petróleo. Brent >$95 = inflación importada + presión sobre margen BCCh para recortar. Vigilar Estrecho de Ormuz cada día.</div>
+          <div class="rc-arrow">→ Si >$100: recorte BCCh en riesgo + CLP a $930+</div>
+        </div>
+
+        <div class="radar-card watch">
+          <div class="rc-head">
+            <div class="rc-name">🪨 Cobre LME/COMEX</div>
+            <div class="rc-badge rb-watch">VIGILAR</div>
+          </div>
+          <div class="rc-value">$5.79 / lb</div>
+          <div class="rc-text">Catalizador alcista: "Dos Sesiones" China. Catalizador bajista: DXY fuerte + temor recesión manufacturera. Soporte crítico en $5.60.</div>
+          <div class="rc-arrow">→ >$6.00: positivo para CLP, IPSA, SQM, COPX</div>
+        </div>
+
+        <div class="radar-card critical">
+          <div class="rc-head">
+            <div class="rc-name">💵 DXY (Índice Dólar)</div>
+            <div class="rc-badge rb-crit">CRÍTICO</div>
+          </div>
+          <div class="rc-value">98.56</div>
+          <div class="rc-text">Máximos de 6 semanas. Correlación inversa con CLP y cobre. NFP del viernes 6 Mar es el catalizador clave para la dirección semanal.</div>
+          <div class="rc-arrow">→ DXY >100: CLP $930+. DXY &lt;96: CLP regresa $870</div>
+        </div>
+
+        <div class="radar-card positive">
+          <div class="rc-head">
+            <div class="rc-name">🥇 Oro (GLD / XAU)</div>
+            <div class="rc-badge rb-pos">REFUGIO ACTIVO</div>
+          </div>
+          <div class="rc-value">>$5.000/oz</div>
+          <div class="rc-text">Primera vez en la historia sobre $5.000. Correlación paralela DXY+oro = pánico genuino. Hedge geopolítico válido mientras conflicto siga abierto.</div>
+          <div class="rc-arrow">→ GLD/IAU (NYSE): posición vigente, no incrementar</div>
+        </div>
+
+        <div class="radar-card watch">
+          <div class="rc-head">
+            <div class="rc-name">📊 VIX (Volatilidad)</div>
+            <div class="rc-badge rb-watch">VIGILAR</div>
+          </div>
+          <div class="rc-value">Elevado</div>
+          <div class="rc-text">VIX alto = flujo risk-off = salida de emergentes. Una corrección del VIX (resolución conflicto, tregua) sería la señal de entrada en acciones locales.</div>
+          <div class="rc-arrow">→ VIX &lt;20: señal de entrada en IPSA selectivo</div>
+        </div>
+
+        <div class="radar-card positive">
+          <div class="rc-head">
+            <div class="rc-name">🏦 Bonos BCCh (BTP/BCU)</div>
+            <div class="rc-badge rb-pos">OPORTUNIDAD</div>
+          </div>
+          <div class="rc-value">TPM 4.50%</div>
+          <div class="rc-text">Recorte ~18 Mar prácticamente descontado. BCU en UF protegen además contra inflación importada por petróleo. Mejor R:R de la semana en activos locales.</div>
+          <div class="rc-arrow">→ Acumular esta semana, antes del anuncio BCCh</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pf-light">
+    <div class="pfl-brand">Liberty Finance · A Legacy with Future</div>
+    <div class="pfl-disc">Análisis informativo. No constituye asesoría de inversión personalizada. Los valores indicados son referenciales al cierre del 28/02/2026.</div>
+    <div class="pfl-page">2 / 3</div>
+  </div>
+</div>
+
+
+<!-- ======================================================
+     PÁGINA 3 — TOP-4 RECOMENDACIONES
+     ====================================================== -->
+<div class="page page-3">
+  <div class="gold-rule"></div>
+
+  <div class="header-light">
+    <div style="display:flex;align-items:center;gap:9px;">
+      <div class="logo-bars">
+        <div class="bar bar-5" style="background:#001337;opacity:1;"></div>
+        <div class="bar bar-4" style="background:#001337;opacity:0.7;"></div>
+        <div class="bar bar-3" style="background:#001337;opacity:0.5;"></div>
+        <div class="bar bar-2" style="background:#001337;opacity:0.35;"></div>
+        <div class="bar bar-1" style="background:#001337;opacity:0.2;"></div>
+      </div>
+      <div>
+        <div class="hl-name">LIBERTY</div>
+        <div class="hl-sub">Finance</div>
+      </div>
+    </div>
+    <div style="font-family:var(--serif);font-style:italic;font-size:10.5px;color:rgba(245,244,240,0.65);">TOP-4 Recomendaciones · Semana 02.03.2026 · Chile</div>
+    <div class="hl-page">3 / 3</div>
+  </div>
+
+  <div class="p2-body" style="padding-top:14px;">
+
+    <!-- NOTE: 4 recs because local signals are very strong -->
+    <div class="strong-local-note">
+      <span style="font-size:13px;">📌</span>
+      <span><strong>Esta semana: 4 recomendaciones</strong> — Señales locales excepcionalmente fuertes (IPSA −13% desde ATH + recorte BCCh inminente). Mix: <strong>2 internacionales (NYSE)</strong> · <strong>2 locales (Chile)</strong></span>
+    </div>
+
+    <div class="sh-light">
+      <div class="sh-bar"></div>
+      <div class="sh-title">TOP-4 Recomendaciones de la Semana</div>
+      <div class="sh-sub">· Horizonte semanal y superior</div>
+      <div class="sh-line"></div>
+    </div>
+
+    <div class="rec-section">
+
+      <!-- REC 1: XAUUSD - INTERNACIONAL (Libertex) -->
+      <div class="rec-card">
+        <div class="rec-header">
+          <div style="display:flex;align-items:center;">
+            <div class="rec-num">01</div>
+            <div>
+              <div class="rec-asset">XAUUSD — Oro Spot CFD &nbsp;<span style="font-size:10px;opacity:0.6;font-weight:300;">(Libertex · Metal CFD)</span></div>
+              <div class="rec-sub">Oro spot vía CFD · Cobertura geopolítica directa · Disponible en Libertex con leverage hasta 1:20</div>
+            </div>
+          </div>
+          <div class="rec-action-badge action-buy">MANTENER / AÑADIR</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-metrics">
+            <div class="rm-item"><div class="rm-label">Precio ref.</div><div class="rm-val">~$2.857 USD/oz</div></div>
+            <div class="rm-item"><div class="rm-label">Target corto</div><div class="rm-val green">$2.950–3.050</div></div>
+            <div class="rm-item"><div class="rm-label">Stop loss</div><div class="rm-val red">$2.780</div></div>
+            <div class="rm-item"><div class="rm-label">Horizonte</div><div class="rm-val">4–12 semanas</div></div>
+          </div>
+          <div class="rec-grid">
+            <div>
+              <div class="rt-title">Tesis de Inversión</div>
+              <div class="rt-text">El oro en máximos históricos ($2.857/oz) con la <strong>correlación paralela DXY+oro</strong> — señal de pánico genuino en mercados. Con tensión Irán–Israel activa y sin resolución diplomática a la vista, XAUUSD es el activo con mejor ratio riesgo/retorno. Disponible directamente en <strong>Libertex como CFD sobre metal</strong>, sin necesidad de cuenta exterior. Spread ultra-bajo, ejecución inmediata.</div>
+              <div class="intl-badge">🌐 MERCADO INTERNACIONAL · Libertex CFD · USD</div>
+            </div>
+            <div>
+              <div class="rr-bar-wrap">
+                <div class="rr-label">Riesgo</div>
+                <div class="rr-track">
+                  <div class="rr-risk" style="width:20%"></div>
+                  <div class="rr-reward" style="left:20%;width:55%"></div>
+                </div>
+                <div class="rr-ratio">R:R ≈ 1:2.7</div>
+              </div>
+              <div style="margin-top:8px;padding:7px 9px;background:rgba(0,19,55,0.04);border-radius:3px;border:1px solid rgba(0,19,55,0.08);">
+                <div class="rt-title">Catalizador de salida</div>
+                <div class="rt-text">Tregua o alto al fuego Irán → toma de utilidades. Ventaja Libertex: sin swap los primeros días en formato spot CFD.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REC 2: FCX - INTERNACIONAL (Libertex) -->
+      <div class="rec-card">
+        <div class="rec-header">
+          <div style="display:flex;align-items:center;">
+            <div class="rec-num">02</div>
+            <div>
+              <div class="rec-asset">FCX — Freeport-McMoRan Inc. &nbsp;<span style="font-size:10px;opacity:0.6;font-weight:300;">(NYSE · Libertex Stock CFD)</span></div>
+              <div class="rec-sub">Mayor productora de cobre del mundo · Beta 1.75 al cobre · Catalizador NPC China · Disponible en Libertex</div>
+            </div>
+          </div>
+          <div class="rec-action-badge action-wait">ESPERAR ENTRADA</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-metrics">
+            <div class="rm-item"><div class="rm-label">Precio ref.</div><div class="rm-val">~$65–66 USD</div></div>
+            <div class="rm-item"><div class="rm-label">Zona entrada</div><div class="rm-val">$63–67</div></div>
+            <div class="rm-item"><div class="rm-label">Target</div><div class="rm-val green">$72–78</div></div>
+            <div class="rm-item"><div class="rm-label">Horizonte</div><div class="rm-val">3–8 semanas</div></div>
+          </div>
+          <div class="rec-grid">
+            <div>
+              <div class="rt-title">Tesis de Inversión</div>
+              <div class="rt-text">Freeport-McMoRan es la <strong>empresa de cobre más grande del mundo por volumen</strong> (1.1 MM ton/año) — Beta ~1.75 al precio del metal. Acaba de marcar ATH de $69.75 el 25 Feb. El catalizador de la semana es el <strong>NPC China (4–11 Mar)</strong>: si confirman estímulo fiscal en infraestructura, FCX puede subir 10–15% en días. Disponible directamente en Libertex como <strong>Stock CFD</strong> sin comisiones de conversión.</div>
+              <div class="intl-badge">🌐 MERCADO INTERNACIONAL · NYSE · Libertex CFD · USD</div>
+            </div>
+            <div>
+              <div class="rr-bar-wrap">
+                <div class="rr-label">Riesgo</div>
+                <div class="rr-track">
+                  <div class="rr-risk" style="width:22%"></div>
+                  <div class="rr-reward" style="left:22%;width:55%"></div>
+                </div>
+                <div class="rr-ratio">R:R ≈ 1:2.5</div>
+              </div>
+              <div style="margin-top:8px;padding:7px 9px;background:rgba(0,19,55,0.04);border-radius:3px;border:1px solid rgba(0,19,55,0.08);">
+                <div class="rt-title">Condición de entrada</div>
+                <div class="rt-text">Cobre LME >$4.35/lb + anuncio estímulo NPC China confirmado. Sin ambas señales: mantener cash.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REC 3: BCU/BTP - LOCAL -->
+      <div class="rec-card">
+        <div class="rec-header">
+          <div style="display:flex;align-items:center;">
+            <div class="rec-num">03</div>
+            <div>
+              <div class="rec-asset">BCU en UF / BTP — Bonos Banco Central Chile</div>
+              <div class="rec-sub">Renta fija local · Protección ante recorte TPM + inflación importada · Máxima calidad crediticia</div>
+            </div>
+          </div>
+          <div class="rec-action-badge action-buy">ACUMULAR</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-metrics">
+            <div class="rm-item"><div class="rm-label">Entrada</div><div class="rm-val">Esta semana</div></div>
+            <div class="rm-item"><div class="rm-label">Catalizador</div><div class="rm-val">~18 Mar</div></div>
+            <div class="rm-item"><div class="rm-label">Retorno esperado</div><div class="rm-val green">+3–5%</div></div>
+            <div class="rm-item"><div class="rm-label">Horizonte</div><div class="rm-val">4–8 semanas</div></div>
+          </div>
+          <div class="rec-grid">
+            <div>
+              <div class="rt-title">Tesis de Inversión</div>
+              <div class="rt-text">IMACEC enero −0.4% + desempleo 8.3% = <strong>recorte BCCh de 25pb el ~18 de marzo prácticamente garantizado</strong>. Cuando TPM baja, los bonos vigentes suben de precio. Los BCU están denominados en UF, lo que añade protección contra la inflación generada por el petróleo caro. <strong>Ventana de entrada: antes del anuncio, esta semana.</strong> Después del anuncio el mercado ya habrá descontado el movimiento.</div>
+              <div class="local-badge">🇨🇱 MERCADO LOCAL · Chile · CLP / UF</div>
+            </div>
+            <div>
+              <div class="rr-bar-wrap">
+                <div class="rr-label">Riesgo</div>
+                <div class="rr-track">
+                  <div class="rr-risk" style="width:18%"></div>
+                  <div class="rr-reward" style="left:18%;width:55%"></div>
+                </div>
+                <div class="rr-ratio">R:R ≈ 1:3</div>
+              </div>
+              <div style="margin-top:8px;padding:7px 9px;background:rgba(0,19,55,0.04);border-radius:3px;border:1px solid rgba(0,19,55,0.08);">
+                <div class="rt-title">Riesgo principal</div>
+                <div class="rt-text">Petróleo >$100 genera inflación y el BCCh pausa el recorte. Probabilidad estimada: 25%.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REC 4: BANCO DE CHILE - LOCAL -->
+      <div class="rec-card">
+        <div class="rec-header">
+          <div style="display:flex;align-items:center;">
+            <div class="rec-num">04</div>
+            <div>
+              <div class="rec-asset">Banco de Chile (CHILE.SN) — Acciones selectas IPSA</div>
+              <div class="rec-sub">Bolsa de Santiago · Señales locales fuertes · Entrada condicional · Beneficiario directo recorte TPM</div>
+            </div>
+          </div>
+          <div class="rec-action-badge action-tactical">TÁCTICA CONDICIONAL</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-metrics">
+            <div class="rm-item"><div class="rm-label">IPSA actual</div><div class="rm-val red">10.248</div></div>
+            <div class="rm-item"><div class="rm-label">Zona entrada</div><div class="rm-val">9.900–10.150</div></div>
+            <div class="rm-item"><div class="rm-label">Target semanal</div><div class="rm-val green">10.500–10.700</div></div>
+            <div class="rm-item"><div class="rm-label">Stop loss</div><div class="rm-val red">&lt; 9.800 cierre</div></div>
+          </div>
+          <div class="rec-grid">
+            <div>
+              <div class="rt-title">Tesis de Inversión</div>
+              <div class="rt-text">El IPSA acumula −13% ajustado desde ATH, pero los fundamentos de Banco de Chile no han cambiado. Es el <strong>beneficiario directo más claro del recorte TPM</strong>: cuando la tasa baja, mejora el spread de tasas (diferencia entre lo que paga a depositantes y lo que cobra a deudores). <strong>La entrada es CONDICIONAL:</strong> solo si VIX baja de 22 Y el IPSA cierra sobre 10.200 con volumen. Sin ambas condiciones, mantener cash y esperar.</div>
+              <div class="local-badge">🇨🇱 MERCADO LOCAL · Bolsa Santiago · CLP</div>
+            </div>
+            <div>
+              <div class="rr-bar-wrap">
+                <div class="rr-label">Riesgo</div>
+                <div class="rr-track">
+                  <div class="rr-risk" style="width:25%"></div>
+                  <div class="rr-reward" style="left:25%;width:50%"></div>
+                </div>
+                <div class="rr-ratio">R:R ≈ 1:2</div>
+              </div>
+              <div style="margin-top:8px;padding:7px 9px;background:rgba(142,68,173,0.06);border-radius:3px;border:1px solid rgba(142,68,173,0.15);">
+                <div class="rt-title" style="color:#8E44AD;">Condición de entrada obligatoria</div>
+                <div class="rt-text"><strong>VIX &lt; 22</strong> + IPSA cierra >10.200 con volumen. Sin ambas: no entrar.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="pf-light">
+    <div class="pfl-brand">Liberty Finance · A Legacy with Future</div>
+    <div class="pfl-disc">Reporte preparado por el Departamento de Asesoría de Inversiones e Investigación de Liberty Finance. No constituye asesoría personalizada. Invertir implica riesgos incluyendo pérdida del capital. Valores referenciales al 28/02/2026.</div>
+    <div class="pfl-page">3 / 3</div>
+  </div>
+</div>
+
+</body>
+</html>
