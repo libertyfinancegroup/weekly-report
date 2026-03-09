@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Liberty Finance — Weekly Report Paraguay · Semana 9–13 Mar 2026</title>
+<style>
+  :root{--navy:#001337;--gold:#938565;--white:#F5F4F0;--up:#4ADE80;--down:#F87171;--flat:rgba(255,255,255,0.55);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#eee;}
+  .page{width:794px;min-height:1123px;margin:0 auto 32px;background:var(--navy);position:relative;page-break-after:always;}
+  .page-white{background:var(--white);}
+  .hd{padding:18px 28px 14px;border-bottom:2px solid var(--gold);display:flex;justify-content:space-between;align-items:center;}
+  .hl{display:flex;align-items:center;gap:14px;}
+  .lb{background:var(--gold);color:var(--navy);font-weight:900;font-size:13px;padding:6px 10px;letter-spacing:1px;}
+  .rt{color:#fff;font-size:17px;font-weight:700;}
+  .rs{color:var(--gold);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
+  .hr{text-align:right;}
+  .hd2{background:var(--navy);padding:12px 28px;border-bottom:3px solid var(--gold);display:flex;justify-content:space-between;align-items:center;}
+  .ms{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.08);margin:0 28px 18px;border:1px solid rgba(148,133,101,0.3);}
+  .mc{background:rgba(0,0,50,0.5);padding:10px 8px;text-align:center;}
+  .ml{color:var(--gold);font-size:7.5px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+  .mv{color:#fff;font-size:14px;font-weight:700;font-family:monospace;}
+  .md{font-size:9px;margin-top:3px;}
+  .up{color:#4ADE80;}.down{color:#F87171;}.flat{color:rgba(255,255,255,0.55);}
+  .sb{margin:0 28px 18px;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(148,133,101,0.2);border-radius:4px;}
+  .stt{color:var(--gold);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+  .strack{height:8px;background:linear-gradient(90deg,#F87171,#FACC15,#4ADE80);border-radius:4px;position:relative;margin-bottom:6px;}
+  .sneedle{position:absolute;top:-4px;width:4px;height:16px;background:#fff;border-radius:2px;transform:translateX(-50%);left:60%;}
+  .sl{display:flex;justify-content:space-between;color:rgba(255,255,255,0.6);font-size:8px;}
+  .sbadge-g{display:inline-block;background:rgba(74,222,128,0.2);border:1px solid #4ADE80;color:#4ADE80;font-size:9px;padding:2px 8px;border-radius:2px;margin-top:4px;}
+  .sec{margin:0 28px 16px;}
+  .sectl{color:var(--gold);font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid rgba(148,133,101,0.3);}
+  .pg{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+  .pc{background:rgba(255,255,255,0.05);border:1px solid rgba(148,133,101,0.2);padding:8px;border-radius:3px;text-align:center;}
+  .pn{color:var(--gold);font-size:7.5px;text-transform:uppercase;}
+  .pv{color:#fff;font-size:12px;font-weight:700;font-family:monospace;margin:3px 0;}
+  .pp{font-size:9px;font-weight:600;}
+  .tc{display:flex;gap:16px;margin:0 28px 16px;}
+  .cl{flex:55;}.cr{flex:45;}
+  .ni{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;}
+  .nd{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+  .dg2{background:#60A5FA;}.dl{background:var(--gold);}.de{background:#4ADE80;}.dr{background:#F87171;}
+  .nt{font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+  .nx{color:rgba(255,255,255,0.88);font-size:9.5px;line-height:1.45;}
+  .ni2{color:rgba(255,255,255,0.55);font-size:8.5px;margin-top:2px;font-style:italic;}
+  .at{width:100%;border-collapse:collapse;font-size:8.5px;}
+  .at th{color:var(--gold);font-size:7.5px;letter-spacing:1px;text-align:left;padding:4px 6px;border-bottom:1px solid rgba(148,133,101,0.3);}
+  .at td{color:rgba(255,255,255,0.85);padding:5px 6px;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .ih{color:#F87171;font-weight:700;}.im{color:#FACC15;}.il{color:#4ADE80;}
+  .pf{position:absolute;bottom:0;left:0;right:0;padding:8px 28px;border-top:1px solid rgba(148,133,101,0.2);display:flex;justify-content:space-between;}
+  .ft{color:rgba(255,255,255,0.35);font-size:7.5px;}.fp{color:var(--gold);font-size:8px;}
+  .astrip{margin:18px 28px;background:rgba(0,19,55,0.06);border:1px solid rgba(0,19,55,0.15);border-radius:4px;padding:12px 16px;}
+  .ab-g{display:inline-block;background:#4ADE80;color:#000;font-size:8px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:2px;margin-bottom:10px;}
+  .ag{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+  .ac{background:var(--navy);border-radius:3px;padding:10px;text-align:center;}
+  .al{color:var(--gold);font-size:7.5px;letter-spacing:1px;text-transform:uppercase;}
+  .av{color:#fff;font-size:14px;font-weight:700;font-family:monospace;margin:4px 0;}
+  .ax2{font-size:8.5px;}.an{color:rgba(255,255,255,0.65);font-size:7.5px;margin-top:3px;}
+  .rg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 28px 16px;}
+  .rc{border:1px solid rgba(0,19,55,0.15);border-radius:4px;padding:12px;background:#fff;}
+  .rl{color:var(--gold);font-size:7.5px;letter-spacing:1px;text-transform:uppercase;}
+  .rn{color:var(--navy);font-size:10.5px;font-weight:700;margin:3px 0;}
+  .rv{color:var(--navy);font-size:18px;font-weight:900;font-family:monospace;}
+  .rv2{font-size:9px;font-weight:600;margin:2px 0 4px;}
+  .rd{color:#555;font-size:8.5px;line-height:1.4;}
+  .sig{display:inline-block;font-size:7.5px;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:2px;margin-top:6px;}
+  .sa{background:#4ADE80;color:#000;}.se{background:#FACC15;color:#000;}.sm{background:#60A5FA;color:#fff;}.sv{background:#F87171;color:#fff;}.snn{background:#999;color:#fff;}
+  .sc2{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 28px 18px;}
+  .sca{border-radius:4px;padding:14px;}
+  .sb2{background:var(--navy);border:1px solid var(--gold);}
+  .sb3{background:#052505;border:1px solid #4ADE80;}
+  .sb4{background:#2d0505;border:1px solid #F87171;}
+  .sl2{font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+  .sb2 .sl2{color:var(--gold);}.sb3 .sl2{color:#4ADE80;}.sb4 .sl2{color:#F87171;}
+  .sp2{font-size:28px;font-weight:900;font-family:monospace;margin-bottom:6px;}
+  .sb2 .sp2{color:#fff;}.sb3 .sp2{color:#4ADE80;}.sb4 .sp2{color:#F87171;}
+  .sd{font-size:8.5px;line-height:1.5;color:rgba(255,255,255,0.75);}
+  .nst{margin:16px 28px;background:#052510;border:1px solid #4ADE80;border-radius:3px;padding:9px 14px;color:#4ADE80;font-size:9px;}
+  .rec-g{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 28px 14px;}
+  .rca{border-radius:4px;overflow:hidden;}
+  .rh{background:var(--navy);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;}
+  .rnum{color:var(--gold);font-size:8px;font-weight:700;}
+  .rnam{color:#fff;font-size:11px;font-weight:700;}
+  .rex{color:rgba(255,255,255,0.55);font-size:8px;}
+  .ract{font-size:8px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:2px;}
+  .buy{background:#4ADE80;color:#000;}.hld{background:#60A5FA;color:#fff;}.wait{background:#FACC15;color:#000;}.sel{background:#F87171;color:#fff;}
+  .rb{background:#fff;padding:12px 14px;border:1px solid #ddd;border-top:none;}
+  .rmg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px;}
+  .rm{text-align:center;}.rml{color:var(--gold);font-size:7px;letter-spacing:1px;text-transform:uppercase;}
+  .rmv{color:var(--navy);font-size:11px;font-weight:700;font-family:monospace;margin-top:2px;}
+  .r2c{display:grid;grid-template-columns:55% 45%;gap:10px;}
+  .rte{font-size:8.5px;color:#333;line-height:1.45;}
+  .rbdg{display:inline-block;font-size:7px;font-weight:700;padding:2px 6px;border-radius:2px;margin-bottom:4px;}
+  .bi{background:var(--navy);color:var(--gold);}.bl{background:var(--gold);color:var(--navy);}
+  .rb2{background:#eee;height:6px;border-radius:3px;margin:8px 0 4px;}
+  .rb3{background:#4ADE80;height:6px;border-radius:3px;}
+  .rl2{font-size:7.5px;color:#555;}
+  .rk{background:#FEF3C7;border:1px solid #FACC15;border-radius:3px;padding:5px 8px;font-size:8px;color:#92400E;margin-top:6px;}
+</style>
+</head>
+<body>
+
+<!-- PÁGINA 1 -->
+<div class="page">
+  <div class="hd">
+    <div class="hl"><div class="lb">LF</div><div><div class="rt">📆 Weekly Report — 🇵🇾 Paraguay</div><div class="rs">Semana 9–13 Mar 2026 · Dep. Asesoría de Inversiones & Research</div></div></div>
+    <div class="hr"><div style="color:rgba(255,255,255,0.85);font-size:10px;">Lunes 9 de Marzo, 2026</div><div style="color:var(--gold);font-size:8.5px;letter-spacing:1px;text-transform:uppercase;">Liberty Finance · LATAM</div></div>
+  </div>
+
+  <div class="ms">
+    <div class="mc"><div class="ml">USD/PYG</div><div class="mv">~6,443</div><div class="md up">▼ guaraní fuerte</div></div>
+    <div class="mc"><div class="ml">PIB 2025</div><div class="mv">6.0%</div><div class="md up">▲ superó proyect.</div></div>
+    <div class="mc"><div class="ml">PIB 2026e</div><div class="mv">4.2%</div><div class="md up">▲ BCP proyección</div></div>
+    <div class="mc"><div class="ml">Tasa BCP</div><div class="mv">6.50%</div><div class="md flat">→ recorte gradual</div></div>
+    <div class="mc"><div class="ml">Bono 2038</div><div class="mv">8.50%</div><div class="md up">▲ histórico</div></div>
+    <div class="mc"><div class="ml">XAUUSD</div><div class="mv">$5,090</div><div class="md down">▼ corrección</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sb">
+      <div class="stt">Sentimiento del Mercado · Paraguay</div>
+      <div class="strack"><div class="sneedle"></div></div>
+      <div class="sl"><span>Bajista</span><span>Neutro</span><span>Alcista</span></div>
+      <div style="margin-top:6px;">
+        <span class="sbadge-g">✅ ALCISTA-MODERADO</span>
+        <span style="color:rgba(255,255,255,0.65);font-size:8.5px;margin-left:10px;">Bono soberano histórico · PIB 6% en 2025 · Inmune al shock WTI · Guaraní fuerte</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sectl">📋 Semana Pasada — Cierres 6 Mar 2026</div>
+    <div class="pg">
+      <div class="pc"><div class="pn">USD/PYG</div><div class="pv">6,443</div><div class="pp up">▼ −1.47%</div></div>
+      <div class="pc"><div class="pn">Bono 2038 PYG</div><div class="pv">8.50%</div><div class="pp up">▲ demanda 1.5x</div></div>
+      <div class="pc"><div class="pn">Spread 2055 USD</div><div class="pv">131 bps</div><div class="pp up">▼ −78 vs 2025</div></div>
+      <div class="pc"><div class="pn">XAUUSD</div><div class="pv">$5,090</div><div class="pp down">▼ −0.7%</div></div>
+      <div class="pc"><div class="pn">Soja CME</div><div class="pv">Estable</div><div class="pp flat">→ campaña</div></div>
+    </div>
+  </div>
+
+  <div class="tc">
+    <div class="cl">
+      <div class="sectl">🌍 Contexto & Noticias Clave</div>
+      <div class="ni">
+        <div class="nd de"></div>
+        <div><div class="nt">🏆 HITO SOBERANO — 24 Feb 2026</div>
+        <div class="nx">Paraguay colocó PYG 6.5 billones (~USD 1,000M) a 12 años al 8.50% — mayor emisión en moneda local de su historia. Demanda 1.5x en guaraníes. Tramo USD ($300M) con spread solo 131 bps sobre Treasuries, vs 209 bps en 2025 (−78 bps). El mercado internacional valida el grado de inversión.</div>
+        <div class="ni2">→ Señal histórica de confianza: el mundo compra deuda paraguaya con demanda 6.3x en USD</div></div>
+      </div>
+      <div class="ni">
+        <div class="nd de"></div>
+        <div><div class="nt">📊 PIB 2025: 6.0% — Líder Regional</div>
+        <div class="nx">BCP confirmó cierre de 2025 con 6.0% de crecimiento, superando proyecciones. Para 2026 se anticipa 4.2%, nuevamente entre las más altas de la región. Inflación 2025: 3.6%, cerca de la nueva meta de 3.5%.</div>
+        <div class="ni2">→ Paraguay volvería a ser una de las economías de mayor crecimiento regional en 2026</div></div>
+      </div>
+      <div class="ni">
+        <div class="nd dl"></div>
+        <div><div class="nt">🌐 Impacto Irán — Canal Financiero</div>
+        <div class="nx">Canal energético: impacto NEUTRO (Paraguay no depende de petróleo; Itaipú provee ~90% de electricidad). Canal financiero: reversión de flujos EM → puede endurecer condiciones de financiamiento futuro si el conflicto persiste.</div>
+        <div class="ni2">→ Paraguay en mejor posición relativa que Chile, Ecuador y Perú ante shock energético</div></div>
+      </div>
+      <div class="ni">
+        <div class="nd dl"></div>
+        <div><div class="nt">🇵🇾 BCP — Política Monetaria</div>
+        <div class="nx">Tasa BCP en ciclo de recortes gradual desde niveles de 8.50%. Meta inflación reducida del 4% al 3.5%. Liquidez bancaria en mínimos históricos. Si inflación se desancla → posible pausa. LCR obliga a bancos a captar más fondeo.</div>
+        <div class="ni2">→ Tasas en guaraníes elevadas = bonos PYG atractivos antes de que bajen</div></div>
+      </div>
+      <div class="ni">
+        <div class="nd de"></div>
+        <div><div class="nt">🌾 Agro — Soja y Ganadería</div>
+        <div class="nx">Paraguay = 4to exportador mundial de soja. Campaña 2025/26 en marcha. Ganadería: 4.7M cabezas, exportaciones sólidas. Impacto Irán: levemente positivo para proteínas, aunque demanda de energía puede desplazar algunos flujos.</div>
+        <div class="ni2">→ Agro diversifica el riesgo frente a dependencias energéticas de otros países de la región</div></div>
+      </div>
+    </div>
+    <div class="cr">
+      <div class="sectl">🗓️ Agenda Económica — Semana 9–13 Mar</div>
+      <table class="at">
+        <tr><th>Fecha</th><th>Evento</th><th>Imp.</th></tr>
+        <tr><td>Lun 9</td><td>Apertura EM — reversión flujos</td><td class="im">🟡 MED.</td></tr>
+        <tr><td>Mar 10</td><td>CPI EE.UU. Feb (señal BCP)</td><td class="im">🟡 MED.</td></tr>
+        <tr><td>Mié 11</td><td>BCP: datos liquidez bancaria</td><td class="im">🟡 MED.</td></tr>
+        <tr><td>Jue 12</td><td>Datos exportaciones agro</td><td class="il">🟢 BAJO</td></tr>
+        <tr><td>Vie 13</td><td>USD/PYG cierre de semana</td><td class="im">🟡 MED.</td></tr>
+        <tr><td>Próx.</td><td>Comité política monetaria BCP</td><td class="im">🟡 MED.</td></tr>
+      </table>
+      <div style="margin-top:12px;padding:10px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.3);border-radius:3px;">
+        <div class="sectl" style="color:#4ADE80;border-color:rgba(74,222,128,0.3);">✅ Ventaja Estructural Paraguay</div>
+        <div style="color:rgba(255,255,255,0.85);font-size:8.5px;line-height:1.8;font-family:monospace;">
+          WTI actual:  $90.9 (crisis global)<br>
+          Paraguay:    <span style="color:#4ADE80;">Itaipú 🔋</span><br>
+          Impacto FX:  0% directo<br>
+          Spread 2055: 131 bps (↓78)<br>
+          <span style="color:#4ADE80;">PIB 2025: 6.0% ✅</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><div class="ft">⚠️ Análisis informativo. Inversiones implican riesgos. Liberty Finance — Dep. Research</div><div class="fp">1 / 3</div></div>
+</div>
+
+<!-- PÁGINA 2 -->
+<div class="page page-white">
+  <div class="hd2">
+    <div class="hl"><div class="lb">LF</div><div><div class="rt">Weekly Report — 🇵🇾 Paraguay</div><div class="rs">Market Radar & Escenarios · 9–13 Mar 2026</div></div></div>
+    <div class="hr"><div style="color:rgba(255,255,255,0.8);font-size:10px;">Lunes 9 Marzo, 2026</div></div>
+  </div>
+
+  <div class="astrip">
+    <div><span class="ab-g">✅ Apertura Positiva</span><span style="color:#333;font-size:9px;margin-left:8px;">Guaraní fuerte · Bono 2038 en acumulación · PIB 6% confirmado</span></div>
+    <div class="ag">
+      <div class="ac"><div class="al">USD/PYG</div><div class="av">~6,450</div><div class="ax2 up">▼ guaraní estable</div><div class="an">Rango 6,400–6,600</div></div>
+      <div class="ac"><div class="al">Bono 2038 PYG</div><div class="av">8.50%</div><div class="ax2 up">▲ acumulación</div><div class="an">Rendimiento real ~5%</div></div>
+      <div class="ac"><div class="al">XAUUSD</div><div class="av">$5,090</div><div class="ax2 flat">→ consolidando</div><div class="an">Rango $5,050–$5,150</div></div>
+      <div class="ac"><div class="al">Soja CME</div><div class="av">Estable</div><div class="ax2 flat">→ campaña 25/26</div><div class="an">Monitorear demanda China</div></div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-bottom:8px;"><div class="sectl" style="color:var(--navy);">📊 Market Radar — Instrumentos Clave</div></div>
+  <div class="rg">
+    <div class="rc"><div class="rl">Oro / Refugio</div><div class="rn">XAUUSD Gold CFD</div><div class="rv">$5,090</div><div class="rv2 down">▼ −0.7% semana</div><div class="rd">Primera corrección en 5 semanas. Para cliente paraguayo: refugio geopolítico sin riesgo FX significativo dado que guaraní sigue fuerte. Rango $5,050–$5,150. Target $5,300.</div><span class="sig sa">ACUMULAR</span></div>
+    <div class="rc"><div class="rl">Deuda Soberana PYG</div><div class="rn">Bono Paraguay 2038</div><div class="rv">8.50%</div><div class="rv2 up">▲ históricamente bajo spread</div><div class="rd">El mayor hito soberano de Paraguay en guaraníes. Rendimiento real ~5% con meta inflación 3.5%. Si BCP continúa recortes → precio del bono sube. Grado de inversión validado internacionalmente.</div><span class="sig sa">ACUMULAR</span></div>
+    <div class="rc"><div class="rl">Commodities / Agro</div><div class="rn">Soja CME</div><div class="rv">Estable</div><div class="rv2 flat">→ demanda sostenida</div><div class="rd">Paraguay = 4to exportador mundial de soja. Campaña 2025/26 en marcha. WTI alto puede elevar costos de transporte pero demanda global de proteínas se mantiene. No hay ETF directo Paraguay en Libertex.</div><span class="sig snn">MONITOREAR</span></div>
+    <div class="rc"><div class="rl">Energía / Global</div><div class="rn">WTI Oil CFD</div><div class="rv">$90.9</div><div class="rv2 down">▲ +40% mes</div><div class="rd">Paraguay usa Itaipú → INMUNE al shock directo de precios de petróleo. Sin embargo, WTI extendido puede ofrecer corto táctico. Impacto financiero indirecto vía endurecimiento condiciones EM.</div><span class="sig se">TÁCTICO AGRES.</span></div>
+    <div class="rc"><div class="rl">Mining / Global</div><div class="rn">FCX Freeport</div><div class="rv">~$58</div><div class="rv2 down">▼ DXY presiona</div><div class="rd">Paraguay diversifica hacia minería regional. FCX como proxy. Esperar NPC Beijing + DXY &lt; 103. Entrada $55–57 con stop $52. R:R 1:2.6 potencial.</div><span class="sig se">ESPERAR</span></div>
+    <div class="rc"><div class="rl">FX / Local</div><div class="rn">USD/PYG Guaraní</div><div class="rv">6,443</div><div class="rv2 up">▼ guaraní fuerte</div><div class="rd">Guaraní apreciado +20.76% vs hace 1 año. Bono en PYG evita riesgo FX. Si conflicto Irán se prolonga → DXY sube → PYG puede depreciar levemente. Rango esperado 6,400–6,600.</div><span class="sig sm">MANTENER</span></div>
+  </div>
+
+  <div class="sec" style="margin-bottom:8px;"><div class="sectl" style="color:var(--navy);">🔭 Escenarios — Semana 9–13 Marzo</div></div>
+  <div class="sc2">
+    <div class="sca sb2"><div class="sl2">📊 Base</div><div class="sp2">60%</div><div class="sd">USD/PYG en zona 6,400–6,600. BCP continúa recortes gradual. PIB 2026 se confirma 4.2%. Agro sólido. Bonos PYG apreciados.</div></div>
+    <div class="sca sb3"><div class="sl2">🚀 Alcista</div><div class="sp2">25%</div><div class="sd">Conflicto se modera → flujos EM regresan → PYG aprecia a 6,200. BCP acelera recortes. Bonos 2038 suben precio. Paraguay supera 4.5% PIB 2026.</div></div>
+    <div class="sca sb4"><div class="sl2">⚠️ Bajista</div><div class="sp2">15%</div><div class="sd">Escalada global → DXY sube → PYG deprecia a 6,700. BCP pausa recortes. Financiamiento externo se encarece. Bonos en USD presionados.</div></div>
+  </div>
+
+  <div class="pf" style="border-color:rgba(0,19,55,0.15);"><div class="ft" style="color:#888;">⚠️ Análisis informativo. No asesoría personalizada.</div><div class="fp" style="color:var(--navy);">2 / 3</div></div>
+</div>
+
+<!-- PÁGINA 3 -->
+<div class="page page-white">
+  <div class="hd2">
+    <div class="hl"><div class="lb">LF</div><div><div class="rt">Weekly Report — 🇵🇾 Paraguay</div><div class="rs">TOP-4 Recomendaciones & FOMO · 9–13 Mar 2026</div></div></div>
+    <div class="hr"><div style="color:rgba(255,255,255,0.8);font-size:10px;">Lunes 9 Marzo, 2026</div></div>
+  </div>
+
+  <div class="nst">✅ Mix semana: 2 ACUMULAR (oro + Bono Paraguay 2038 PYG) · 1 ESPERAR (FCX) · 1 NEUTRAL (WTI — solo agresivo).
+  Paraguay en posición favorable vs resto de la región. Ventaja energética única esta semana.</div>
+
+  <div class="rec-g">
+    <div class="rca">
+      <div class="rh"><div><div class="rnum">REC 01</div><div class="rnam">XAUUSD Gold</div><div class="rex">Libertex · Metal CFD</div></div><span class="ract buy">ACUMULAR</span></div>
+      <div class="rb">
+        <div class="rmg"><div class="rm"><div class="rml">Precio Ref.</div><div class="rmv">$5,090</div></div><div class="rm"><div class="rml">Target</div><div class="rmv">$5,300</div></div><div class="rm"><div class="rml">Stop</div><div class="rmv">$4,900</div></div><div class="rm"><div class="rml">Horizonte</div><div class="rmv">4–8 sem.</div></div></div>
+        <div class="r2c">
+          <div><span class="rbdg bi">🌐 INTL</span><div class="rte">Primera corrección en 5 semanas = ventana táctica. Paraguay tiene guaraní fuerte → inversión en oro sin pérdida por FX. Conflicto Irán + demanda bancos centrales mantiene tendencia estructural.</div></div>
+          <div><div class="rl2">R:R: 1:1.1</div><div class="rb2"><div class="rb3" style="width:52%"></div></div><div class="rl2">Riesgo: Moderado</div><div class="rk">⚠️ Stop $4,900. CPI EEUU martes puede generar volatilidad intraday.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rca">
+      <div class="rh"><div><div class="rnum">REC 02</div><div class="rnam">Bono Paraguay 2038</div><div class="rex">MEF · Soberano PYG · 12A</div></div><span class="ract buy">ACUMULAR</span></div>
+      <div class="rb">
+        <div class="rmg"><div class="rm"><div class="rml">Yield</div><div class="rmv">8.50%PYG</div></div><div class="rm"><div class="rml">Meta inflac.</div><div class="rmv">3.50%</div></div><div class="rm"><div class="rml">Rend. Real</div><div class="rmv">~5.0%</div></div><div class="rm"><div class="rml">Horizonte</div><div class="rmv">12–18 m</div></div></div>
+        <div class="r2c">
+          <div><span class="rbdg bl">🇵🇾 LOCAL</span><div class="rte">La mayor emisión soberana en guaraníes de la historia de Paraguay. Validación del grado de inversión. Rendimiento real ~5% sobre inflación meta. Si BCP sigue recortando tasas → precio del bono sube adicionalmente.</div></div>
+          <div><div class="rl2">Rend. real: ~5.0% PYG</div><div class="rb2"><div class="rb3" style="width:82%;background:#60A5FA"></div></div><div class="rl2">Riesgo: Bajo-Moderado</div><div class="rk">⚠️ Si BCP pausa ciclo recortes o DXY sube agresivamente → revisar posición.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rca">
+      <div class="rh"><div><div class="rnum">REC 03</div><div class="rnam">FCX Freeport</div><div class="rex">NYSE · Copper Mining</div></div><span class="ract wait">ESPERAR</span></div>
+      <div class="rb">
+        <div class="rmg"><div class="rm"><div class="rml">Nivel Actual</div><div class="rmv">~$58</div></div><div class="rm"><div class="rml">Entrada</div><div class="rmv">$55–57</div></div><div class="rm"><div class="rml">Target</div><div class="rmv">$70</div></div><div class="rm"><div class="rml">Horizonte</div><div class="rmv">8–12 sem.</div></div></div>
+        <div class="r2c">
+          <div><span class="rbdg bi">🌐 INTL</span><div class="rte">Proxy cobre/commodities globales. DXY fuerte presiona tácticamente. Esperar NPC Beijing (objetivo PIB China +5%) + DXY &lt; 103. Fundamentos largo plazo: electrificación, IA, EVs. Stop $52.</div></div>
+          <div><div class="rl2">R:R potencial: 1:2.6</div><div class="rb2"><div class="rb3" style="width:72%;background:#FACC15"></div></div><div class="rl2">Riesgo: Medio</div><div class="rk">⚠️ No entrar hasta señal NPC China o DXY ceda < 103.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rca">
+      <div class="rh"><div><div class="rnum">REC 04</div><div class="rnam">USOIL WTI CFD</div><div class="rex">Libertex · Energy CFD</div></div><span class="ract sel">TÁCTICO / NEUTRAL</span></div>
+      <div class="rb">
+        <div class="rmg"><div class="rm"><div class="rml">Precio Ref.</div><div class="rmv">$90.9</div></div><div class="rm"><div class="rml">Target corto</div><div class="rmv">$78–80</div></div><div class="rm"><div class="rml">Stop</div><div class="rmv">$95.5</div></div><div class="rm"><div class="rml">Horizonte</div><div class="rmv">2–4 sem.</div></div></div>
+        <div class="r2c">
+          <div><span class="rbdg bi">🌐 INTL</span><div class="rte">Paraguay no usa petróleo (Itaipú). WTI solo impacta indirectamente (transporte, fertilizantes). Oportunidad de corto táctico si hay señal de tregua o Kuwait reactiva producción. Solo perfil agresivo con stop definido.</div></div>
+          <div><div class="rl2">R:R si corto: 1:2.4</div><div class="rb2"><div class="rb3" style="width:68%;background:#F87171"></div></div><div class="rl2">Riesgo: ALTO</div><div class="rk">⚠️ Si WTI supera $95.5 → cierre inmediato. Solo perfil agresivo.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:0 28px;background:rgba(0,80,0,0.05);border-left:3px solid #4ADE80;padding:12px 16px;border-radius:0 4px 4px 0;">
+    <div style="color:var(--navy);font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">🔥 FOMO DE LA SEMANA — Paraguay</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:8.5px;color:#333;line-height:1.5;">
+      <div>① <b>Bono 2038 al 8.50% PYG:</b> rendimiento real ~5% sobre meta inflación 3.5%. El mayor hito soberano en guaraníes. Grado de inversión validado con demanda 6.3x en USD.</div>
+      <div>② <b>PIB 6.0%:</b> la economía de más rápido crecimiento de la región cerró 2025 superando expectativas. 4.2% proyectado para 2026 según BCP.</div>
+      <div>③ <b>Inmune al WTI $90.9:</b> mientras Chile siente presión en CLP, Ecuador juega con subsidios y Perú tiene crisis energética, Paraguay opera con Itaipú. Ventaja competitiva única esta semana.</div>
+      <div>④ <b>Spread soberano −78 bps:</b> en 2025 emitió a 209 bps sobre Treasuries; en feb. 2026 solo 131 bps. El mercado global está reconociendo la calidad de Paraguay.</div>
+      <div style="grid-column:1/-1;">⑤ <b>Oro en corrección técnica:</b> primera baja semanal en 5 semanas. Para cliente paraguayo con guaraní fuerte y sin exposición al WTI, el oro es el activo perfecto de diversificación geopolítica en este momento.</div>
+    </div>
+  </div>
+
+  <div class="pf" style="border-color:rgba(0,19,55,0.15);"><div class="ft" style="color:#888;">⚠️ Análisis informativo. No asesoría personalizada. Liberty Finance · legal@libertyfinancegroup.com</div><div class="fp" style="color:var(--navy);">3 / 3</div></div>
+</div>
+
+</body>
+</html>

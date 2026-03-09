@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — Weekly Report Chile · Semana 9–13 Mar 2026</title>
+<style>
+  :root {
+    --navy: #001337; --gold: #938565; --white: #F5F4F0;
+    --up: #4ADE80; --down: #F87171; --flat: rgba(255,255,255,0.55);
+    --accent: #60A5FA;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background:#eee; color:#111; }
+
+  /* ══ PAGE ══ */
+  .page { width:794px; min-height:1123px; margin:0 auto 32px; background:var(--navy); position:relative; page-break-after:always; }
+  .page-white { background:var(--white); }
+
+  /* ══ HEADER ══ */
+  .header { padding:18px 28px 14px; border-bottom:2px solid var(--gold); display:flex; justify-content:space-between; align-items:center; }
+  .header-left { display:flex; align-items:center; gap:14px; }
+  .logo-box { background:var(--gold); color:var(--navy); font-weight:900; font-size:13px; padding:6px 10px; letter-spacing:1px; }
+  .report-title { color:#fff; font-size:17px; font-weight:700; }
+  .report-sub { color:var(--gold); font-size:9px; letter-spacing:1.5px; text-transform:uppercase; margin-top:2px; }
+  .header-right { text-align:right; }
+  .header-date { color:rgba(255,255,255,0.85); font-size:10px; }
+  .header-dept { color:var(--gold); font-size:8.5px; letter-spacing:1px; text-transform:uppercase; }
+
+  /* header white version */
+  .header-light { background:var(--navy); padding:12px 28px; border-bottom:3px solid var(--gold); display:flex; justify-content:space-between; align-items:center; }
+  .header-light .report-title { font-size:14px; }
+
+  /* ══ MACRO STRIP ══ */
+  .macro-strip { display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:rgba(255,255,255,0.08); margin:0 28px 18px; border:1px solid rgba(148,133,101,0.3); }
+  .macro-cell { background:rgba(0,0,50,0.5); padding:10px 8px; text-align:center; }
+  .macro-label { color:var(--gold); font-size:7.5px; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; }
+  .macro-value { color:#fff; font-size:14px; font-weight:700; font-family:monospace; }
+  .macro-delta { font-size:9px; margin-top:3px; }
+  .up { color:var(--up); } .down { color:var(--down); } .flat { color:var(--flat); }
+
+  /* ══ SENTIMENT ══ */
+  .sentiment-bar { margin:0 28px 18px; padding:12px 16px; background:rgba(255,255,255,0.05); border:1px solid rgba(148,133,101,0.2); border-radius:4px; }
+  .sentiment-title { color:var(--gold); font-size:8px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px; }
+  .sentiment-track { height:8px; background:linear-gradient(90deg,#F87171,#FACC15,#4ADE80); border-radius:4px; position:relative; margin-bottom:6px; }
+  .sentiment-needle { position:absolute; top:-4px; width:4px; height:16px; background:#fff; border-radius:2px; transform:translateX(-50%); left:28%; }
+  .sentiment-labels { display:flex; justify-content:space-between; color:rgba(255,255,255,0.6); font-size:8px; }
+  .sentiment-badge { display:inline-block; background:rgba(248,113,113,0.2); border:1px solid #F87171; color:#F87171; font-size:9px; padding:2px 8px; border-radius:2px; margin-top:4px; }
+
+  /* ══ SEMANA PASADA ══ */
+  .section-title { color:var(--gold); font-size:8px; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; padding-bottom:4px; border-bottom:1px solid rgba(148,133,101,0.3); }
+  .section-block { margin:0 28px 16px; }
+  .prev-week-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  .prev-cell { background:rgba(255,255,255,0.05); border:1px solid rgba(148,133,101,0.2); padding:8px; border-radius:3px; text-align:center; }
+  .prev-name { color:var(--gold); font-size:7.5px; letter-spacing:0.5px; text-transform:uppercase; }
+  .prev-val { color:#fff; font-size:12px; font-weight:700; font-family:monospace; margin:3px 0; }
+  .prev-chg { font-size:9px; font-weight:600; }
+
+  /* ══ TWO COLUMNS ══ */
+  .two-col { display:flex; gap:16px; margin:0 28px 16px; }
+  .col-left { flex:55; }
+  .col-right { flex:45; }
+
+  /* ══ NEWS ══ */
+  .news-item { display:flex; gap:10px; margin-bottom:10px; align-items:flex-start; }
+  .news-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:3px; }
+  .dot-global { background:#60A5FA; }
+  .dot-local { background:var(--gold); }
+  .dot-eco { background:var(--up); }
+  .dot-risk { background:var(--down); }
+  .news-tag { font-size:7px; letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:2px; }
+  .news-text { color:rgba(255,255,255,0.88); font-size:9.5px; line-height:1.45; }
+  .news-impact { color:rgba(255,255,255,0.55); font-size:8.5px; margin-top:2px; font-style:italic; }
+
+  /* ══ AGENDA TABLE ══ */
+  .agenda-table { width:100%; border-collapse:collapse; font-size:8.5px; }
+  .agenda-table th { color:var(--gold); font-size:7.5px; letter-spacing:1px; text-align:left; padding:4px 6px; border-bottom:1px solid rgba(148,133,101,0.3); }
+  .agenda-table td { color:rgba(255,255,255,0.85); padding:5px 6px; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .impact-high { color:#F87171; font-weight:700; }
+  .impact-med { color:#FACC15; }
+  .impact-low { color:#4ADE80; }
+
+  /* ══ FOOTER ══ */
+  .page-footer { position:absolute; bottom:0; left:0; right:0; padding:8px 28px; border-top:1px solid rgba(148,133,101,0.2); display:flex; justify-content:space-between; align-items:center; }
+  .footer-text { color:rgba(255,255,255,0.35); font-size:7.5px; }
+  .footer-page { color:var(--gold); font-size:8px; }
+
+  /* ══ PAGE 2 — white ══ */
+  .page-white .header-light .report-title { color:#fff; }
+  .apertura-strip { margin:18px 28px; background:rgba(0,19,55,0.06); border:1px solid rgba(0,19,55,0.15); border-radius:4px; padding:12px 16px; }
+  .apertura-badge { display:inline-block; background:#F87171; color:#fff; font-size:8px; font-weight:700; letter-spacing:1px; padding:3px 10px; border-radius:2px; margin-bottom:10px; text-transform:uppercase; }
+  .apertura-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .apertura-card { background:var(--navy); border-radius:3px; padding:10px; text-align:center; }
+  .ap-label { color:var(--gold); font-size:7.5px; letter-spacing:1px; text-transform:uppercase; }
+  .ap-val { color:#fff; font-size:14px; font-weight:700; font-family:monospace; margin:4px 0; }
+  .ap-chg { font-size:8.5px; }
+  .ap-note { color:rgba(255,255,255,0.65); font-size:7.5px; margin-top:3px; }
+
+  /* ══ RADAR ══ */
+  .radar-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:0 28px 16px; }
+  .radar-card { border:1px solid rgba(0,19,55,0.15); border-radius:4px; padding:12px; background:#fff; }
+  .radar-label { color:var(--gold); font-size:7.5px; letter-spacing:1px; text-transform:uppercase; }
+  .radar-name { color:var(--navy); font-size:10.5px; font-weight:700; margin:3px 0; }
+  .radar-val { color:var(--navy); font-size:18px; font-weight:900; font-family:monospace; }
+  .radar-var { font-size:9px; font-weight:600; margin:2px 0 4px; }
+  .radar-desc { color:#555; font-size:8.5px; line-height:1.4; }
+  .signal { display:inline-block; font-size:7.5px; font-weight:700; letter-spacing:1px; padding:2px 7px; border-radius:2px; margin-top:6px; text-transform:uppercase; }
+  .sig-acumular { background:#4ADE80; color:#000; }
+  .sig-esperar { background:#FACC15; color:#000; }
+  .sig-mantener { background:#60A5FA; color:#fff; }
+  .sig-vigilar { background:#F87171; color:#fff; }
+  .sig-neutral { background:#999; color:#fff; }
+
+  /* ══ SCENARIOS ══ */
+  .scenarios { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:0 28px 18px; }
+  .scenario-card { border-radius:4px; padding:14px; }
+  .sc-base { background:var(--navy); border:1px solid var(--gold); }
+  .sc-bull { background:#052505; border:1px solid #4ADE80; }
+  .sc-bear { background:#2d0505; border:1px solid #F87171; }
+  .sc-label { font-size:8px; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .sc-base .sc-label { color:var(--gold); }
+  .sc-bull .sc-label { color:#4ADE80; }
+  .sc-bear .sc-label { color:#F87171; }
+  .sc-prob { font-size:28px; font-weight:900; font-family:monospace; margin-bottom:6px; }
+  .sc-base .sc-prob { color:#fff; }
+  .sc-bull .sc-prob { color:#4ADE80; }
+  .sc-bear .sc-prob { color:#F87171; }
+  .sc-desc { font-size:8.5px; line-height:1.5; color:rgba(255,255,255,0.75); }
+
+  /* ══ PAGE 3 ══ */
+  .note-strip { margin:16px 28px; background:#052510; border:1px solid #4ADE80; border-radius:3px; padding:9px 14px; color:#4ADE80; font-size:9px; }
+  .recs-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:0 28px 14px; }
+  .rec-card { border-radius:4px; overflow:hidden; }
+  .rec-header { background:var(--navy); padding:10px 14px; display:flex; justify-content:space-between; align-items:center; }
+  .rec-num { color:var(--gold); font-size:8px; font-weight:700; }
+  .rec-name { color:#fff; font-size:11px; font-weight:700; }
+  .rec-exch { color:rgba(255,255,255,0.55); font-size:8px; }
+  .rec-action { font-size:8px; font-weight:700; letter-spacing:1px; padding:3px 8px; border-radius:2px; }
+  .act-buy { background:var(--up); color:#000; }
+  .act-hold { background:#60A5FA; color:#fff; }
+  .act-wait { background:#FACC15; color:#000; }
+  .act-sell { background:var(--down); color:#fff; }
+  .rec-body { background:#fff; padding:12px 14px; border:1px solid #ddd; border-top:none; }
+  .rec-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:10px; }
+  .rec-metric { text-align:center; }
+  .rm-label { color:var(--gold); font-size:7px; letter-spacing:1px; text-transform:uppercase; }
+  .rm-val { color:var(--navy); font-size:11px; font-weight:700; font-family:monospace; margin-top:2px; }
+  .rec-two-col { display:grid; grid-template-columns:55% 45%; gap:10px; }
+  .rec-tesis { font-size:8.5px; color:#333; line-height:1.45; }
+  .rec-badge { display:inline-block; font-size:7px; font-weight:700; padding:2px 6px; border-radius:2px; margin-bottom:4px; }
+  .badge-intl { background:var(--navy); color:var(--gold); }
+  .badge-local { background:var(--gold); color:var(--navy); }
+  .rr-bar-bg { background:#eee; height:6px; border-radius:3px; margin:8px 0 4px; }
+  .rr-bar { background:var(--up); height:6px; border-radius:3px; }
+  .rr-label { font-size:7.5px; color:#555; }
+  .risk-box { background:#FEF3C7; border:1px solid #FACC15; border-radius:3px; padding:5px 8px; font-size:8px; color:#92400E; margin-top:6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     PÁGINA 1 — NAVY
+══════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="logo-box">LF</div>
+      <div>
+        <div class="report-title">📆 Weekly Report — 🇨🇱 Chile</div>
+        <div class="report-sub">Semana 9–13 Mar 2026 · Dep. Asesoría de Inversiones & Research</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-date">Lunes 9 de Marzo, 2026</div>
+      <div class="header-dept">Liberty Finance · LATAM</div>
+    </div>
+  </div>
+
+  <!-- MACRO STRIP -->
+  <div class="macro-strip">
+    <div class="macro-cell">
+      <div class="macro-label">USD/CLP</div>
+      <div class="macro-value">~945</div>
+      <div class="macro-delta down">▲ +5.24% sem.</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">IPSA</div>
+      <div class="macro-value">10,249</div>
+      <div class="macro-delta down">▼ −4.57% sem.</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">Cobre</div>
+      <div class="macro-value">$4.27</div>
+      <div class="macro-delta down">▼ −1.0% DXY</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">TPM BCCh</div>
+      <div class="macro-value">5.00%</div>
+      <div class="macro-delta flat">→ Reunión 18 Mar</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">XAUUSD</div>
+      <div class="macro-value">$5,090</div>
+      <div class="macro-delta down">▼ −1ª perd. en 5 sem.</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">WTI</div>
+      <div class="macro-value">$90.9</div>
+      <div class="macro-delta down">▲ +40% vs pre-guerra</div>
+    </div>
+  </div>
+
+  <!-- SENTIMENT -->
+  <div class="section-block">
+    <div class="sentiment-bar">
+      <div class="sentiment-title">Sentimiento del Mercado · Chile</div>
+      <div class="sentiment-track"><div class="sentiment-needle"></div></div>
+      <div class="sentiment-labels"><span>Bajista</span><span>Neutro</span><span>Alcista</span></div>
+      <div style="margin-top:6px;">
+        <span class="sentiment-badge">⚠️ BAJISTA-MODERADO</span>
+        <span style="color:rgba(255,255,255,0.65); font-size:8.5px; margin-left:10px;">Presión EM por conflicto Irán · CLP débil · IPSA retrocede desde ATH</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA PASADA -->
+  <div class="section-block">
+    <div class="section-title">📋 Semana Pasada — Cierres 6 Mar 2026</div>
+    <div class="prev-week-grid">
+      <div class="prev-cell">
+        <div class="prev-name">IPSA</div>
+        <div class="prev-val">10,249</div>
+        <div class="prev-chg down">▼ −4.57%</div>
+      </div>
+      <div class="prev-cell">
+        <div class="prev-name">USD/CLP</div>
+        <div class="prev-val">~945</div>
+        <div class="prev-chg down">▲ +5.24%</div>
+      </div>
+      <div class="prev-cell">
+        <div class="prev-name">Cobre LME</div>
+        <div class="prev-val">$4.27</div>
+        <div class="prev-chg down">▼ −1.0%</div>
+      </div>
+      <div class="prev-cell">
+        <div class="prev-name">XAUUSD</div>
+        <div class="prev-val">$5,090</div>
+        <div class="prev-chg down">▼ −0.7% sem.</div>
+      </div>
+      <div class="prev-cell">
+        <div class="prev-name">SQM-B</div>
+        <div class="prev-val">+2.8%</div>
+        <div class="prev-chg flat">→ viernes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO COLUMNS -->
+  <div class="two-col">
+    <div class="col-left">
+      <div class="section-title">🌍 Contexto & Noticias Clave</div>
+
+      <div class="news-item">
+        <div class="news-dot dot-risk"></div>
+        <div>
+          <div class="news-tag">⚠️ Geopolítico</div>
+          <div class="news-text">Guerra EEUU-Irán sin señales de tregua. Qatar advierte que disrupciones energéticas podrían durar meses. WTI tocó $92 — máximo desde 2022.</div>
+          <div class="news-impact">→ Presión sobre CLP vía DXY fuerte; flujos salen de EM hacia activos refugio</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-dot dot-local"></div>
+        <div>
+          <div class="news-tag">🇨🇱 Local — BCCh</div>
+          <div class="news-text">Reunión TPM programada para el 18 de marzo. Mercado espera pausa en 5.00% dado contexto inflacionario global por shock de petróleo.</div>
+          <div class="news-impact">→ BCU 10A sigue siendo atractivo como cobertura inflación ante posible alza IPC</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-dot dot-global"></div>
+        <div>
+          <div class="news-tag">🌐 EEUU — Fed</div>
+          <div class="news-text">Expectativas de recorte de tasa se postergan a septiembre (antes julio). NFP débil la semana pasada. Fed en modo "higher-for-longer" por shock energético.</div>
+          <div class="news-impact">→ DXY fuerte = CLP bajo presión; afecta multilatinas endeudadas en USD</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-dot dot-eco"></div>
+        <div>
+          <div class="news-tag">🇨🇱 Minería — Cobre</div>
+          <div class="news-text">IPSA retrocedió −4.57% en la semana desde ATH 11,721 de enero. Cobre cede ~1% por apreciación del dólar a nivel global, aunque fundamentos de largo plazo siguen sólidos.</div>
+          <div class="news-impact">→ FCX sigue en espera; COCHILCO sin cambio en inventarios</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-dot dot-local"></div>
+        <div>
+          <div class="news-tag">🇨🇱 Acciones — IPSA</div>
+          <div class="news-text">A pesar de la presión semanal, CHILE.SN +1.57%, CMPC +1.89% el viernes. LTM −1.50% por impacto en aviación comercial. HITES +3.86% (dato puntual).</div>
+          <div class="news-impact">→ Selectividad esencial: bancarios y papeleras muestran resiliencia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-right">
+      <div class="section-title">🗓️ Agenda Económica — Semana 9–13 Mar</div>
+      <table class="agenda-table">
+        <tr><th>Fecha</th><th>Evento</th><th>Impacto</th></tr>
+        <tr>
+          <td>Lun 9</td>
+          <td>Apertura mercados post-NFP</td>
+          <td class="impact-high">🔴 ALTO</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>IPC EE.UU. Feb 2026 (CPI)</td>
+          <td class="impact-high">🔴 ALTO</td>
+        </tr>
+        <tr>
+          <td>Mié 11</td>
+          <td>IMACEC Chile (dato ene)</td>
+          <td class="impact-med">🟡 MEDIO</td>
+        </tr>
+        <tr>
+          <td>Jue 12</td>
+          <td>PPI EE.UU. + Jobless Claims</td>
+          <td class="impact-med">🟡 MEDIO</td>
+        </tr>
+        <tr>
+          <td>Vie 13</td>
+          <td>GDP EEUU 2da estimación Q4 2025</td>
+          <td class="impact-med">🟡 MEDIO</td>
+        </tr>
+        <tr>
+          <td>Mar 18</td>
+          <td>Reunión BCCh — Decisión TPM</td>
+          <td class="impact-high">🔴 ALTO</td>
+        </tr>
+      </table>
+
+      <div style="margin-top:14px; padding:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(148,133,101,0.2); border-radius:3px;">
+        <div class="section-title" style="margin-bottom:6px;">📌 Niveles Clave IPSA</div>
+        <div style="color:rgba(255,255,255,0.8); font-size:8.5px; line-height:1.6;">
+          🔴 Resistencia: <span style="font-family:monospace; color:#fff;">11,000</span> pts<br>
+          🟡 Soporte 1: <span style="font-family:monospace; color:#fff;">10,200</span> pts<br>
+          🟢 Soporte 2: <span style="font-family:monospace; color:#fff;">9,900</span> pts<br>
+          <span style="color:var(--gold); margin-top:4px; display:block;">ATH Ene 2026: 11,721</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-text">⚠️ Análisis informativo. Inversiones implican riesgos. No asesoría personalizada. Liberty Finance — Dep. Research</div>
+    <div class="footer-page">1 / 3</div>
+  </div>
+</div><!-- /page 1 -->
+
+
+<!-- ══════════════════════════════════════════════════
+     PÁGINA 2 — WHITE
+══════════════════════════════════════════════════ -->
+<div class="page page-white">
+
+  <div class="header-light">
+    <div class="header-left">
+      <div class="logo-box">LF</div>
+      <div>
+        <div class="report-title">Weekly Report — 🇨🇱 Chile</div>
+        <div class="report-sub">Market Radar & Escenarios · Semana 9–13 Mar 2026</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-date" style="color:rgba(255,255,255,0.8);">Lunes 9 de Marzo, 2026</div>
+    </div>
+  </div>
+
+  <!-- APERTURA -->
+  <div class="apertura-strip">
+    <div>
+      <span class="apertura-badge">⚠️ Apertura en Alerta</span>
+      <span style="color:#333; font-size:9px; margin-left:8px;">Presión EM · DXY fuerte · IPSA bajo resistencia 11,000</span>
+    </div>
+    <div class="apertura-grid">
+      <div class="apertura-card">
+        <div class="ap-label">IPSA Est.</div>
+        <div class="ap-val">~10,200</div>
+        <div class="ap-chg down">▼ Apertura débil</div>
+        <div class="ap-note">Gap down por EM selloff</div>
+      </div>
+      <div class="apertura-card">
+        <div class="ap-label">USD/CLP</div>
+        <div class="ap-val">~948</div>
+        <div class="ap-chg down">▲ DXY sigue fuerte</div>
+        <div class="ap-note">Zona de presión 940-960</div>
+      </div>
+      <div class="apertura-card">
+        <div class="ap-label">Cobre LME</div>
+        <div class="ap-val">$4.25</div>
+        <div class="ap-chg down">▼ Presión DXY</div>
+        <div class="ap-note">Soporte clave $4.20</div>
+      </div>
+      <div class="apertura-card">
+        <div class="ap-label">XAUUSD</div>
+        <div class="ap-val">$5,090</div>
+        <div class="ap-chg flat">→ Consolidación</div>
+        <div class="ap-note">Rango $5,050-$5,150</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKET RADAR -->
+  <div class="section-block" style="margin-bottom:8px;">
+    <div class="section-title" style="color:var(--navy);">📊 Market Radar — Instrumentos Clave</div>
+  </div>
+  <div class="radar-grid">
+    <div class="radar-card">
+      <div class="radar-label">Oro / Metal</div>
+      <div class="radar-name">XAUUSD Gold CFD</div>
+      <div class="radar-val" style="color:var(--navy);">$5,090</div>
+      <div class="radar-var down">▼ −0.7% semana · −0.2% hoy</div>
+      <div class="radar-desc">Primera pérdida semanal en 5 semanas. Rango $5,050–$5,150. Conflicto Irán mantiene demanda de refugio. Corrección técnica saludable.</div>
+      <span class="signal sig-acumular">ACUMULAR</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Cobre / Mining</div>
+      <div class="radar-name">FCX Freeport-McMoRan</div>
+      <div class="radar-val" style="color:var(--navy);">~$58</div>
+      <div class="radar-var down">▼ Bajo presión DXY</div>
+      <div class="radar-desc">Esperar señal China PMI antes de agregar. DXY fuerte presiona commodities. Chequear NPC Beijing esta semana para catalizador demanda.</div>
+      <span class="signal sig-esperar">ESPERAR NPC</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Renta Fija / Chile</div>
+      <div class="radar-name">BCU 10 Años UF</div>
+      <div class="radar-val" style="color:var(--navy);">2.85%</div>
+      <div class="radar-var up">▲ Atractivo vs inflación</div>
+      <div class="radar-desc">Con WTI $90.9 y shock energético global, IPC Chile puede repuntar. BCU en UF es cobertura directa. Reunión BCCh Mar 18 clave.</div>
+      <span class="signal sig-acumular">ACUMULAR</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Acción Local</div>
+      <div class="radar-name">CHILE.SN Banco de Chile</div>
+      <div class="radar-val" style="color:var(--navy);">$174.7</div>
+      <div class="radar-var up">▲ +1.57% viernes</div>
+      <div class="radar-desc">Bancario resiliente en contexto de presión. Beneficia de TPM alta (5%). Mayor VIX global &lt; 22 = mejor ventana de entrada táctica.</div>
+      <span class="signal sig-mantener">MANTENER</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Litio / Commodities</div>
+      <div class="radar-name">SQM-B</div>
+      <div class="radar-val" style="color:var(--navy);">~$42k</div>
+      <div class="radar-var up">▲ +2.8% viernes</div>
+      <div class="radar-desc">Rally en litio sostuvo SQM semana pasada. Vigilar precio litio carbonato en China (CNY/t). Soporte técnico en torno a $38.000.</div>
+      <span class="signal sig-vigilar">VIGILAR</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Global / Macro</div>
+      <div class="radar-name">DXY Dollar Index</div>
+      <div class="radar-val" style="color:var(--navy);">~104.5</div>
+      <div class="radar-var down">▲ +1.6% semana</div>
+      <div class="radar-desc">Dólar fuerte = presión sobre CLP y EM. Reversal del DXY sería señal positiva para acciones chilenas. Clave: CPI martes 10.</div>
+      <span class="signal sig-vigilar">VIGILAR</span>
+    </div>
+  </div>
+
+  <!-- ESCENARIOS -->
+  <div class="section-block" style="margin-bottom:8px;">
+    <div class="section-title" style="color:var(--navy);">🔭 Escenarios — Semana 9–13 Marzo</div>
+  </div>
+  <div class="scenarios">
+    <div class="scenario-card sc-base">
+      <div class="sc-label">📊 Base</div>
+      <div class="sc-prob">55%</div>
+      <div class="sc-desc">IPSA consolida entre 10,000–10,500. CLP presionado en zona 940–960. Cobre sigue a DXY. BCCh pausa en 18-Mar. IPC EEUU confirma "higher-for-longer".</div>
+    </div>
+    <div class="scenario-card sc-bull">
+      <div class="sc-label">🚀 Alcista</div>
+      <div class="sc-prob">25%</div>
+      <div class="sc-desc">Señales de tregua en conflicto Irán → DXY cede → cobre rebota → IPSA retoma camino a 11,000. CLP aprecia a 900–920. SQM y FCX lideran rally.</div>
+    </div>
+    <div class="scenario-card sc-bear">
+      <div class="sc-label">⚠️ Bajista</div>
+      <div class="sc-prob">20%</div>
+      <div class="sc-desc">WTI supera $100 → inflación global se desancla → Fed pausa cortes indefinidamente → salida masiva de EM → IPSA rompe soporte 10,000. CLP a 980+.</div>
+    </div>
+  </div>
+
+  <div class="page-footer" style="border-color:rgba(0,19,55,0.15);">
+    <div class="footer-text" style="color:#888;">⚠️ Análisis informativo. Inversiones implican riesgos. No asesoría personalizada.</div>
+    <div class="footer-page" style="color:var(--navy);">2 / 3</div>
+  </div>
+</div><!-- /page 2 -->
+
+
+<!-- ══════════════════════════════════════════════════
+     PÁGINA 3 — WHITE
+══════════════════════════════════════════════════ -->
+<div class="page page-white">
+
+  <div class="header-light">
+    <div class="header-left">
+      <div class="logo-box">LF</div>
+      <div>
+        <div class="report-title">Weekly Report — 🇨🇱 Chile</div>
+        <div class="report-sub">TOP-4 Recomendaciones & FOMO · Semana 9–13 Mar 2026</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-date" style="color:rgba(255,255,255,0.8);">Lunes 9 de Marzo, 2026</div>
+    </div>
+  </div>
+
+  <div class="note-strip">
+    ✅ Mix de recomendaciones esta semana: 2 ACUMULAR (oro + renta fija UF) · 1 MANTENER (CHILE.SN) · 1 ESPERAR (FCX).
+    Foco en protección vs inflación y selectividad ante volatilidad EM.
+  </div>
+
+  <div class="recs-grid">
+    <!-- REC 1 -->
+    <div class="rec-card">
+      <div class="rec-header">
+        <div><div class="rec-num">REC 01</div><div class="rec-name">XAUUSD Gold</div><div class="rec-exch">Libertex · Metal CFD</div></div>
+        <span class="rec-action act-buy">ACUMULAR</span>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rec-metric"><div class="rm-label">Precio Ref.</div><div class="rm-val">$5,090</div></div>
+          <div class="rec-metric"><div class="rm-label">Target</div><div class="rm-val">$5,300</div></div>
+          <div class="rec-metric"><div class="rm-label">Stop</div><div class="rm-val">$4,900</div></div>
+          <div class="rec-metric"><div class="rm-label">Horizonte</div><div class="rm-val">4–8 sem.</div></div>
+        </div>
+        <div class="rec-two-col">
+          <div>
+            <span class="rec-badge badge-intl">🌐 INTL</span>
+            <div class="rec-tesis">Corrección técnica saludable tras 5 semanas al alza. Conflicto Irán + "higher-for-longer" Fed = demanda estructural de refugio. Bancos centrales aumentan reservas. Objetivo $5,300 en escenario base.</div>
+          </div>
+          <div>
+            <div class="rr-label">Risk/Reward: 1:1.1</div>
+            <div class="rr-bar-bg"><div class="rr-bar" style="width:52%"></div></div>
+            <div class="rr-label">Riesgo: Moderado</div>
+            <div class="risk-box">⚠️ Stop en $4,900. Si IPC baja sorpresivamente, oro puede ceder a $4,950.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 2 -->
+    <div class="rec-card">
+      <div class="rec-header">
+        <div><div class="rec-num">REC 02</div><div class="rec-name">FCX Freeport</div><div class="rec-exch">NYSE · Copper Mining</div></div>
+        <span class="rec-action act-wait">ESPERAR</span>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rec-metric"><div class="rm-label">Precio Ref.</div><div class="rm-val">~$58</div></div>
+          <div class="rec-metric"><div class="rm-label">Entrada</div><div class="rm-val">$55–57</div></div>
+          <div class="rec-metric"><div class="rm-label">Target</div><div class="rm-val">$70</div></div>
+          <div class="rec-metric"><div class="rm-label">Horizonte</div><div class="rm-val">8–12 sem.</div></div>
+        </div>
+        <div class="rec-two-col">
+          <div>
+            <span class="rec-badge badge-intl">🌐 INTL</span>
+            <div class="rec-tesis">DXY fuerte presiona cobre en el corto plazo. Esperar señal NPC Beijing esta semana (objetivo PIB China +5%) y/o DXY &lt; 103 para confirmar entrada. Fundamentos largos: cableado eléctrico IA + EVs.</div>
+          </div>
+          <div>
+            <div class="rr-label">R:R potencial: 1:2.6</div>
+            <div class="rr-bar-bg"><div class="rr-bar" style="width:72%"></div></div>
+            <div class="rr-label">Riesgo: Medio</div>
+            <div class="risk-box">⚠️ No entrar hasta que cobre supere $4.35/lb o NPC confirme estímulos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 3 -->
+    <div class="rec-card">
+      <div class="rec-header">
+        <div><div class="rec-num">REC 03</div><div class="rec-name">BCU 10A en UF</div><div class="rec-exch">BCCh · Renta Fija Local</div></div>
+        <span class="rec-action act-buy">ACUMULAR</span>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rec-metric"><div class="rm-label">Tasa Ref.</div><div class="rm-val">2.85%</div></div>
+          <div class="rec-metric"><div class="rm-label">Target</div><div class="rm-val">2.60%</div></div>
+          <div class="rec-metric"><div class="rm-label">Stop</div><div class="rm-val">3.10%</div></div>
+          <div class="rec-metric"><div class="rm-label">Horizonte</div><div class="rm-val">6–12 m</div></div>
+        </div>
+        <div class="rec-two-col">
+          <div>
+            <span class="rec-badge badge-local">🇨🇱 LOCAL</span>
+            <div class="rec-tesis">WTI $90.9 → IPC Chile puede repuntar 0.3-0.5pp. BCU en UF protege contra esa inflación. TPM 5.00% da rentabilidad real positiva. Instrumento ideal para perfil conservador-moderado.</div>
+          </div>
+          <div>
+            <div class="rr-label">Rendimiento real: ~2.8% UF</div>
+            <div class="rr-bar-bg"><div class="rr-bar" style="width:80%;background:#60A5FA"></div></div>
+            <div class="rr-label">Riesgo: Bajo</div>
+            <div class="risk-box">⚠️ Si BCCh baja TPM agresivamente post-18 Mar, tasas caen y precio sube.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 4 -->
+    <div class="rec-card">
+      <div class="rec-header">
+        <div><div class="rec-num">REC 04</div><div class="rec-name">CHILE.SN</div><div class="rec-exch">Bolsa Santiago · Bancario</div></div>
+        <span class="rec-action act-hold">MANTENER</span>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rec-metric"><div class="rm-label">Precio Ref.</div><div class="rm-val">$174.7</div></div>
+          <div class="rec-metric"><div class="rm-label">Target</div><div class="rm-val">$190</div></div>
+          <div class="rec-metric"><div class="rm-label">Stop</div><div class="rm-val">$162</div></div>
+          <div class="rec-metric"><div class="rm-label">Horizonte</div><div class="rm-val">6–10 sem.</div></div>
+        </div>
+        <div class="rec-two-col">
+          <div>
+            <span class="rec-badge badge-local">🇨🇱 LOCAL</span>
+            <div class="rec-tesis">Bancario más resiliente del IPSA en contexto de presión. TPM 5.00% sostiene margen financiero. +1.57% viernes muestra que hay demanda selectiva. Entrada táctica si VIX global &lt; 22.</div>
+          </div>
+          <div>
+            <div class="rr-label">R:R: 1:1.2</div>
+            <div class="rr-bar-bg"><div class="rr-bar" style="width:55%;background:#60A5FA"></div></div>
+            <div class="rr-label">Riesgo: Medio</div>
+            <div class="risk-box">⚠️ Riesgo si IPSA rompe soporte 10,000 → revisar posición.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOMO -->
+  <div style="margin:0 28px; background:rgba(0,19,55,0.06); border-left:3px solid var(--gold); padding:12px 16px; border-radius:0 4px 4px 0;">
+    <div style="color:var(--navy); font-size:8.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px;">🔥 FOMO DE LA SEMANA — ¿Por qué actuar ahora?</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:8.5px; color:#333; line-height:1.5;">
+      <div>① <b>Oro ya corrigió:</b> Primera baja semanal en 5 semanas = ventana de acumulación. Si WTI se mantiene &gt;$85, oro puede retomar camino a $5,300.</div>
+      <div>② <b>BCU en UF:</b> Cada punto de inflación adicional por shock petróleo = mayor retorno real de este bono. El mercado aún no ha repreciado el riesgo IPC.</div>
+      <div>③ <b>IPSA bajó 8%:</b> Desde ATH 11,721 de enero, el índice cedió 8.15%. Históricamente, correcciones de 8-10% en IPSA son zonas de acumulación selectiva.</div>
+      <div>④ <b>BCCh el 18:</b> Si pausa + lenguaje dovish → rebote en acciones locales. Solo 9 días. Posicionarse antes puede capturar ese movimiento.</div>
+      <div style="grid-column:1/-1;">⑤ <b>Ventana pre-CPI:</b> IPC EEUU sale el martes 10. Si dato viene frío → DXY cede → CLP se aprecia → IPSA rebota. Posicionados antes del dato = mejor precio.</div>
+    </div>
+  </div>
+
+  <div class="page-footer" style="border-color:rgba(0,19,55,0.15);">
+    <div class="footer-text" style="color:#888;">⚠️ Análisis informativo. No asesoría personalizada. Liberty Finance — Dep. Asesoría de Inversiones & Research · legal@libertyfinancegroup.com</div>
+    <div class="footer-page" style="color:var(--navy);">3 / 3</div>
+  </div>
+</div><!-- /page 3 -->
+
+</body>
+</html>
