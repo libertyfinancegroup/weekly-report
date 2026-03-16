@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — Weekly Report Perú · Semana 16–20 Mar 2026</title>
+<style>
+  :root{--navy:#001337;--gold:#938565;--white:#F5F4F0;--up:#4ADE80;--down:#F87171;--flat:rgba(255,255,255,0.55);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#eee;color:#111;}
+  .page{width:794px;min-height:1123px;margin:0 auto 32px;background:var(--navy);position:relative;page-break-after:always;}
+  .page-white{background:var(--white);}
+  .header{padding:18px 28px 14px;border-bottom:2px solid var(--gold);display:flex;justify-content:space-between;align-items:center;}
+  .header-left{display:flex;align-items:center;gap:14px;}
+  .logo-box{background:var(--gold);color:var(--navy);font-weight:900;font-size:13px;padding:6px 10px;letter-spacing:1px;}
+  .report-title{color:#fff;font-size:17px;font-weight:700;}
+  .report-sub{color:var(--gold);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
+  .header-right{text-align:right;}
+  .header-date{color:rgba(255,255,255,0.85);font-size:10px;}
+  .header-dept{color:var(--gold);font-size:8.5px;letter-spacing:1px;text-transform:uppercase;}
+  .header-light{background:var(--navy);padding:12px 28px;border-bottom:3px solid var(--gold);display:flex;justify-content:space-between;align-items:center;}
+  .macro-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.08);margin:0 28px 18px;border:1px solid rgba(148,133,101,0.3);}
+  .macro-cell{background:rgba(0,0,50,0.5);padding:10px 8px;text-align:center;}
+  .macro-label{color:var(--gold);font-size:7.5px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+  .macro-value{color:#fff;font-size:14px;font-weight:700;font-family:monospace;}
+  .macro-delta{font-size:9px;margin-top:3px;}
+  .up{color:var(--up);}.down{color:var(--down);}.flat{color:var(--flat);}
+  .sentiment-bar{margin:0 28px 18px;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(148,133,101,0.2);border-radius:4px;}
+  .sentiment-title{color:var(--gold);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+  .sentiment-track{height:8px;background:linear-gradient(90deg,#F87171,#FACC15,#4ADE80);border-radius:4px;position:relative;margin-bottom:6px;}
+  .sentiment-needle{position:absolute;top:-4px;width:4px;height:16px;background:#fff;border-radius:2px;transform:translateX(-50%);left:42%;}
+  .sentiment-labels{display:flex;justify-content:space-between;color:rgba(255,255,255,0.6);font-size:8px;}
+  .sentiment-badge{display:inline-block;background:rgba(250,204,21,0.2);border:1px solid #FACC15;color:#FACC15;font-size:9px;padding:2px 8px;border-radius:2px;margin-top:4px;}
+  .section-title{color:var(--gold);font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid rgba(148,133,101,0.3);}
+  .section-block{margin:0 28px 16px;}
+  .prev-week-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+  .prev-cell{background:rgba(255,255,255,0.05);border:1px solid rgba(148,133,101,0.2);padding:8px;border-radius:3px;text-align:center;}
+  .prev-name{color:var(--gold);font-size:7.5px;letter-spacing:0.5px;text-transform:uppercase;}
+  .prev-val{color:#fff;font-size:12px;font-weight:700;font-family:monospace;margin:3px 0;}
+  .prev-chg{font-size:9px;font-weight:600;}
+  .two-col{display:flex;gap:16px;margin:0 28px 16px;}
+  .col-left{flex:55;}.col-right{flex:45;}
+  .news-item{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;}
+  .news-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+  .dot-global{background:#60A5FA;}.dot-local{background:var(--gold);}.dot-eco{background:var(--up);}.dot-risk{background:var(--down);}
+  .news-tag{font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+  .news-text{color:rgba(255,255,255,0.88);font-size:9.5px;line-height:1.45;}
+  .news-impact{color:rgba(255,255,255,0.55);font-size:8.5px;margin-top:2px;font-style:italic;}
+  .agenda-table{width:100%;border-collapse:collapse;font-size:8.5px;}
+  .agenda-table th{color:var(--gold);font-size:7.5px;letter-spacing:1px;text-align:left;padding:4px 6px;border-bottom:1px solid rgba(148,133,101,0.3);}
+  .agenda-table td{color:rgba(255,255,255,0.85);padding:5px 6px;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .impact-high{color:#F87171;font-weight:700;}.impact-med{color:#FACC15;}.impact-low{color:#4ADE80;}
+  .page-footer{position:absolute;bottom:0;left:0;right:0;padding:8px 28px;border-top:1px solid rgba(148,133,101,0.2);display:flex;justify-content:space-between;align-items:center;}
+  .footer-text{color:rgba(255,255,255,0.35);font-size:7.5px;}
+  .footer-page{color:var(--gold);font-size:8px;}
+  .apertura-strip{margin:18px 28px;background:rgba(0,19,55,0.06);border:1px solid rgba(0,19,55,0.15);border-radius:4px;padding:12px 16px;}
+  .apertura-badge-yellow{display:inline-block;background:#FACC15;color:#000;font-size:8px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:2px;margin-bottom:10px;text-transform:uppercase;}
+  .apertura-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+  .apertura-card{background:var(--navy);border-radius:3px;padding:10px;text-align:center;}
+  .ap-label{color:var(--gold);font-size:7.5px;letter-spacing:1px;text-transform:uppercase;}
+  .ap-val{color:#fff;font-size:14px;font-weight:700;font-family:monospace;margin:4px 0;}
+  .ap-chg{font-size:8.5px;}
+  .ap-note{color:rgba(255,255,255,0.65);font-size:7.5px;margin-top:3px;}
+  .radar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 28px 16px;}
+  .radar-card{border:1px solid rgba(0,19,55,0.15);border-radius:4px;padding:12px;background:#fff;}
+  .radar-label{color:var(--gold);font-size:7.5px;letter-spacing:1px;text-transform:uppercase;}
+  .radar-name{color:var(--navy);font-size:10.5px;font-weight:700;margin:3px 0;}
+  .radar-val{color:var(--navy);font-size:18px;font-weight:900;font-family:monospace;}
+  .radar-var{font-size:9px;font-weight:600;margin:2px 0 4px;}
+  .radar-desc{color:#555;font-size:8.5px;line-height:1.4;}
+  .signal{display:inline-block;font-size:7.5px;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:2px;margin-top:6px;text-transform:uppercase;}
+  .sig-acumular{background:#4ADE80;color:#000;}.sig-esperar{background:#FACC15;color:#000;}.sig-mantener{background:#60A5FA;color:#fff;}.sig-vigilar{background:#F87171;color:#fff;}.sig-neutral{background:#999;color:#fff;}.sig-entrada{background:#818cf8;color:#fff;}
+  .scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 28px 18px;}
+  .scenario-card{border-radius:4px;padding:14px;}
+  .sc-base{background:var(--navy);border:1px solid var(--gold);}
+  .sc-bull{background:#052505;border:1px solid #4ADE80;}
+  .sc-bear{background:#2d0505;border:1px solid #F87171;}
+  .sc-label{font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+  .sc-base .sc-label{color:var(--gold);}.sc-bull .sc-label{color:#4ADE80;}.sc-bear .sc-label{color:#F87171;}
+  .sc-prob{font-size:28px;font-weight:900;font-family:monospace;margin-bottom:6px;}
+  .sc-base .sc-prob{color:#fff;}.sc-bull .sc-prob{color:#4ADE80;}.sc-bear .sc-prob{color:#F87171;}
+  .sc-desc{font-size:8.5px;line-height:1.5;color:rgba(255,255,255,0.75);}
+  .note-strip{margin:16px 28px;background:#052510;border:1px solid #4ADE80;border-radius:3px;padding:9px 14px;color:#4ADE80;font-size:9px;}
+  .recs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 28px 14px;}
+  .rec-card{border-radius:4px;overflow:hidden;}
+  .rec-header{background:var(--navy);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;}
+  .rec-num{color:var(--gold);font-size:8px;font-weight:700;}
+  .rec-name{color:#fff;font-size:11px;font-weight:700;}
+  .rec-exch{color:rgba(255,255,255,0.55);font-size:8px;}
+  .rec-action{font-size:8px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:2px;}
+  .act-buy{background:var(--up);color:#000;}.act-hold{background:#60A5FA;color:#fff;}.act-wait{background:#FACC15;color:#000;}.act-entrada{background:#818cf8;color:#fff;}
+  .rec-body{background:#fff;padding:12px 14px;border:1px solid #ddd;border-top:none;}
+  .rec-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px;}
+  .rec-metric{text-align:center;}
+  .rm-label{color:var(--gold);font-size:7px;letter-spacing:1px;text-transform:uppercase;}
+  .rm-val{color:var(--navy);font-size:11px;font-weight:700;font-family:monospace;margin-top:2px;}
+  .rec-two-col{display:grid;grid-template-columns:55% 45%;gap:10px;}
+  .rec-tesis{font-size:8.5px;color:#333;line-height:1.45;}
+  .rec-badge{display:inline-block;font-size:7px;font-weight:700;padding:2px 6px;border-radius:2px;margin-bottom:4px;}
+  .badge-intl{background:var(--navy);color:var(--gold);}.badge-local{background:var(--gold);color:var(--navy);}
+  .rr-bar-bg{background:#eee;height:6px;border-radius:3px;margin:8px 0 4px;}
+  .rr-bar{background:var(--up);height:6px;border-radius:3px;}
+  .rr-label{font-size:7.5px;color:#555;}
+  .risk-box{background:#FEF3C7;border:1px solid #FACC15;border-radius:3px;padding:5px 8px;font-size:8px;color:#92400E;margin-top:6px;}
+  .fomo-box{margin:0 28px 16px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.3);border-radius:4px;padding:12px 16px;}
+  .fomo-title{color:#F87171;font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .fomo-item{color:rgba(255,255,255,0.85);font-size:9px;line-height:1.5;margin-bottom:4px;}
+  .elec-box{margin:0 28px 14px;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.4);border-radius:4px;padding:10px 16px;display:flex;gap:20px;align-items:center;}
+  .elec-count{font-size:32px;font-weight:900;color:#F87171;font-family:monospace;}
+  .elec-text{color:rgba(255,255,255,0.85);font-size:9px;line-height:1.5;}
+</style>
+</head>
+<body>
+
+<!-- PÁGINA 1 -->
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <div class="logo-box">LF</div>
+      <div>
+        <div class="report-title">📆 Weekly Report — 🇵🇪 Perú</div>
+        <div class="report-sub">Semana 16–20 Mar 2026 · Dep. Asesoría de Inversiones & Research</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-date">Lunes 16 de Marzo, 2026</div>
+      <div class="header-dept">Liberty Finance · LATAM</div>
+    </div>
+  </div>
+
+  <div class="macro-strip">
+    <div class="macro-cell">
+      <div class="macro-label">USD/PEN</div>
+      <div class="macro-value">~S/3.45</div>
+      <div class="macro-delta up">▲ estabilizado post-Camisea</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">Gas Camisea</div>
+      <div class="macro-value">✅ OK</div>
+      <div class="macro-delta up">▲ normalizado 14-Mar</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">Tasa BCRP</div>
+      <div class="macro-value">4.25%</div>
+      <div class="macro-delta flat">→ pausa prevista</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">Elecciones</div>
+      <div class="macro-value">27 días</div>
+      <div class="macro-delta down">⚠️ 12 de Abril</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">XAUUSD</div>
+      <div class="macro-value">$5,019</div>
+      <div class="macro-delta flat">→ consolidación</div>
+    </div>
+    <div class="macro-cell">
+      <div class="macro-label">Cobre LME</div>
+      <div class="macro-value">$4.27</div>
+      <div class="macro-delta flat">→ sostenido</div>
+    </div>
+  </div>
+
+  <div class="sentiment-bar">
+    <div class="sentiment-title">Sentimiento del Mercado · Perú</div>
+    <div class="sentiment-track"><div class="sentiment-needle"></div></div>
+    <div class="sentiment-labels"><span>Bajista</span><span>Neutro</span><span>Alcista</span></div>
+    <div class="sentiment-badge">🔄 RECUPERACIÓN / ALERTA ELECTORAL — Camisea resuelto · 27 días para elecciones</div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-title">📋 Semana Pasada — Cierres 13 Mar 2026</div>
+    <div class="prev-week-grid">
+      <div class="prev-cell">
+        <div class="prev-name">USD/PEN</div>
+        <div class="prev-val">~S/3.45</div>
+        <div class="prev-chg up">▼ estabilizó</div>
+      </div>
+      <div class="prev-cell">
+        <div class="prev-name">Camisea</div>
+        <div class="prev-val">✅ 100%</div>
+        <div class="prev-chg up">▲ 14-Mar</div>
+      </div>
+      <div class="prev-cell">
+        <div class="prev-name">XAUUSD</div>
+        <div class="prev-val">$5,019</div>
+        <div class="prev-chg down">▼ corr. ATH</div>
+      </div>
+      <div class="prev-cell">
+        <div class="prev-name">Cobre LME</div>
+        <div class="prev-val">$4.27</div>
+        <div class="prev-chg flat">→ −1.0%</div>
+      </div>
+      <div class="prev-cell">
+        <div class="prev-name">BVL Lima</div>
+        <div class="prev-val">Volátil</div>
+        <div class="prev-chg down">▼ EM + elec.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-left">
+      <div class="section-title">🌍 Contexto & Noticias Clave</div>
+      <div class="news-item">
+        <div class="news-dot dot-eco"></div>
+        <div>
+          <div class="news-tag">✅ Camisea — Normalizado</div>
+          <div class="news-text">Ducto TGP reparado el 13-Mar, un día antes del plazo. Sistema GNV 100% normalizado el sábado 14. Cálidda inició reconexión de grandes industrias. GLP aún en proceso (plantas al 20% capacidad al 14-Mar).</div>
+          <div class="news-impact">→ PBI marzo caerá ~1.1% por impacto directo e indirecto del corte de 14 días</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-dot dot-risk"></div>
+        <div>
+          <div class="news-tag">🗳️ Elecciones 12 Abril — 27 días</div>
+          <div class="news-text">36 candidatos presidenciales. BBVA: "12 partidos con propuestas mayormente populistas". Foro empresarial Capechi: candidatos deberán explicar propuestas sobre inversión minera. CEO Credicorp advirtió sobre volatilidad electoral desde hace un año.</div>
+          <div class="news-impact">→ Históricamente pre-electoral en Perú = descuentos en BVL que se recuperan post-resultado</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-dot dot-local"></div>
+        <div>
+          <div class="news-tag">⚡ Infraestructura — Segundo ducto</div>
+          <div class="news-text">Crisis Camisea revivió debate urgente: Perú necesita un segundo ducto desde Camisea. Ex-viceministro Arturo Vásquez: "la vulnerabilidad estructural quedó expuesta". Petroperú: deuda $5,350M + 4 años pérdidas. Privatización en debate electoral.</div>
+          <div class="news-impact">→ Propuestas sobre Petroperú y energía serán clave en campaña</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-dot dot-global"></div>
+        <div>
+          <div class="news-tag">🌐 Fed + DXY · PEN</div>
+          <div class="news-text">Fed se reúne 17-18-Mar. Pausa 96% probable. PEN se estabilizó post-Camisea. BCRP puede intervenir comprando PEN si tipo de cambio supera S/3.55. Cobre $4.27 soporte fundamental para el sol.</div>
+          <div class="news-impact">→ PEN proyectado S/3.25-3.35 al cierre 2026 según SURA (si se resuelve Camisea)</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-dot dot-eco"></div>
+        <div>
+          <div class="news-tag">🥇 Minería — Oportunidad Contraria</div>
+          <div class="news-text">Perú: 3er prod. oro mundial, 2do de cobre. XAUUSD $5,019 y cobre $4.27 en niveles históricamente elevados. BVL mineras bajo presión táctica = ventana de entrada selectiva. BAP/Credicorp en pullback electoral.</div>
+          <div class="news-impact">→ BAP en $155-162 = zona táctica de entrada histórica</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-right">
+      <div class="section-title">🗓️ Agenda Económica</div>
+      <table class="agenda-table">
+        <tr><th>Fecha</th><th>Evento</th><th>Imp.</th></tr>
+        <tr><td>Lun 16</td><td>Apertura · Camisea normalizado</td><td class="impact-med">🟡 MED</td></tr>
+        <tr><td>Mar 17</td><td>Fed Meeting Día 1</td><td class="impact-high">🔴 ALTO</td></tr>
+        <tr><td>Mié 18</td><td>Fed decisión · dirección PEN</td><td class="impact-high">🔴 ALTO</td></tr>
+        <tr><td>Jue 19</td><td>BCRP: tipo de cambio diario</td><td class="impact-med">🟡 MED</td></tr>
+        <tr><td>Vie 20</td><td>IPC Lima provisional marzo</td><td class="impact-high">🔴 ALTO</td></tr>
+        <tr><td>12 Abr</td><td>⚠️ Elecciones Generales Perú</td><td class="impact-high">🔴 CRÍTICO</td></tr>
+      </table>
+
+      <div style="margin-top:14px;">
+        <div class="section-title">⚠️ Alerta Post-Camisea</div>
+        <table class="agenda-table">
+          <tr><td style="color:#4ADE80;">✅ Gas natural</td><td>100% normal</td></tr>
+          <tr><td style="color:#FACC15;">⚠️ GLP</td><td>Plantas al 20%</td></tr>
+          <tr><td style="color:#F87171;">🔴 PBI marzo</td><td>−1.1% estimado</td></tr>
+          <tr><td style="color:#F87171;">🔴 Inflación mar.</td><td>Saldrá rango 1-3%</td></tr>
+          <tr><td style="color:#FACC15;">⚠️ Elecciones</td><td>27 días</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-text">⚠️ Análisis informativo. Inversiones implican riesgos. No asesoría personalizada. Liberty Finance — Dep. Research</div>
+    <div class="footer-page">1 / 3</div>
+  </div>
+</div>
+
+<!-- PÁGINA 2 -->
+<div class="page page-white">
+  <div class="header-light">
+    <div class="header-left">
+      <div class="logo-box">LF</div>
+      <div>
+        <div class="report-title" style="font-size:14px;">Weekly Report — 🇵🇪 Perú</div>
+        <div class="report-sub">Market Radar & Escenarios · Semana 16–20 Mar 2026</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-date" style="color:rgba(255,255,255,0.85);">Lunes 16 de Marzo, 2026</div>
+    </div>
+  </div>
+
+  <div class="apertura-strip">
+    <div class="apertura-badge-yellow">🔄 Apertura Recuperación — Camisea resuelto · Pre-electoral 27 días · BCRP alerta</div>
+    <div class="apertura-grid">
+      <div class="apertura-card">
+        <div class="ap-label">USD/PEN</div>
+        <div class="ap-val">~S/3.45</div>
+        <div class="ap-chg up">▼ estabilizado</div>
+        <div class="ap-note">Soporte BCRP S/3.55</div>
+      </div>
+      <div class="apertura-card">
+        <div class="ap-label">BVL Lima</div>
+        <div class="ap-val">Volátil</div>
+        <div class="ap-chg flat">→ recuperación gradual</div>
+        <div class="ap-note">Pre-electoral = presión</div>
+      </div>
+      <div class="apertura-card">
+        <div class="ap-label">XAUUSD</div>
+        <div class="ap-val">$5,019</div>
+        <div class="ap-chg flat">→ zona acumulación</div>
+        <div class="ap-note">Perú 3er prod. oro</div>
+      </div>
+      <div class="apertura-card">
+        <div class="ap-label">Cobre LME</div>
+        <div class="ap-val">$4.27</div>
+        <div class="ap-chg flat">→ soporte $4.20</div>
+        <div class="ap-note">Perú 2do prod. cobre</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="radar-grid">
+    <div class="radar-card">
+      <div class="radar-label">Oro / Refugio</div>
+      <div class="radar-name">XAUUSD Gold CFD</div>
+      <div class="radar-val">$5,019</div>
+      <div class="radar-var down">▼ −7.7% vs ATH $5,418</div>
+      <div class="radar-desc">Corrección completada. Para cliente peruano: Perú es 3er productor de oro mundial = alineamiento natural. Cobertura pre-electoral perfecta. Conflicto Irán sostiene demanda estructural.</div>
+      <span class="signal sig-acumular">ACUMULAR</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Financiero / Perú</div>
+      <div class="radar-name">BAP — Credicorp</div>
+      <div class="radar-val">~$165</div>
+      <div class="radar-var down">▼ pullback electoral</div>
+      <div class="radar-desc">Mejor banco de Perú. Pullback por Camisea + elecciones = descuento temporal. Fundamentos sólidos: ROE >15%, diversificado. Zona táctica $155-162. Post-resultado electoral = rebote.</div>
+      <span class="signal sig-entrada">ENTRADA TÁCT.</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Minería / Global</div>
+      <div class="radar-name">FCX Freeport</div>
+      <div class="radar-val">~$58</div>
+      <div class="radar-var flat">→ esperar señal</div>
+      <div class="radar-desc">Perú 2do productor mundial de cobre. FCX como proxy internacional. DXY aún fuerte. Esperar: DXY baje de 103 o señal positiva NPC China. Fundamentos largo plazo sólidos.</div>
+      <span class="signal sig-esperar">ESPERAR</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Renta Fija / Local</div>
+      <div class="radar-name">Bono Soberano PEN 10A</div>
+      <div class="radar-val">~6.80%</div>
+      <div class="radar-var up">▲ tasa atractiva</div>
+      <div class="radar-desc">Tasas altas por presión inflacionaria Camisea. BCRP en pausa. Si inflación marzo sorprende al alza → tasas suben más = precio cae = mejor entrada. Post-elecciones → reversión.</div>
+      <span class="signal sig-acumular">ACUMULAR</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Minería / Local</div>
+      <div class="radar-name">BVL Mineras</div>
+      <div class="radar-val">Presión</div>
+      <div class="radar-var down">▼ EM + electoral</div>
+      <div class="radar-desc">Oro $5,019 y cobre $4.27 en niveles históricamente elevados. BVL mineras bajo presión táctica = ventana selectiva. Buenaventura (BVN) como opción. Horizonte post-electoral.</div>
+      <span class="signal sig-vigilar">VIGILAR</span>
+    </div>
+    <div class="radar-card">
+      <div class="radar-label">Macro / FX</div>
+      <div class="radar-name">USD/PEN Sol Peruano</div>
+      <div class="radar-val">~S/3.45</div>
+      <div class="radar-var up">▼ estabilizó</div>
+      <div class="radar-desc">PEN estabilizado post-Camisea. BCRP interviene si supera S/3.55. Fed el 18-Mar puede renovar presión. Proyección SURA: S/3.25-3.35 al cierre 2026 si situación se normaliza.</div>
+      <span class="signal sig-vigilar">VIGILAR FED</span>
+    </div>
+  </div>
+
+  <div class="scenarios">
+    <div class="scenario-card sc-base">
+      <div class="sc-label">📊 Base</div>
+      <div class="sc-prob">50%</div>
+      <div class="sc-desc">Camisea normalizado ✅. PEN S/3.40-3.50. IPC marzo ligeramente sobre 3%. Elecciones generan volatilidad contenida. BAP rebota gradualmente. BVL recupera post-electoral.</div>
+    </div>
+    <div class="scenario-card sc-bull">
+      <div class="sc-label">📈 Alcista</div>
+      <div class="sc-prob">25%</div>
+      <div class="sc-desc">Resultado electoral pro-mercado + Fed neutral/dovish → PEN aprecia S/3.30. BVL mineras lideran rebote. BAP a $175. Cobre rebota $4.40+. Inversión minera se reactiva.</div>
+    </div>
+    <div class="scenario-card sc-bear">
+      <div class="sc-label">📉 Bajista</div>
+      <div class="sc-prob">25%</div>
+      <div class="sc-desc">Candidato populista lidera encuestas + GLP no normaliza → inflación >3.5% → BCRP sube tasa → PEN a S/3.60+. BVL cae. Credicorp bajo presión. Inversión paralizada pre-electoral.</div>
+    </div>
+  </div>
+
+  <div class="page-footer" style="border-top:1px solid rgba(0,19,55,0.15);">
+    <div class="footer-text" style="color:#999;">⚠️ Análisis informativo. Inversiones implican riesgos. No asesoría personalizada.</div>
+    <div class="footer-page" style="color:var(--navy);">2 / 3</div>
+  </div>
+</div>
+
+<!-- PÁGINA 3 -->
+<div class="page page-white">
+  <div class="header-light">
+    <div class="header-left">
+      <div class="logo-box">LF</div>
+      <div>
+        <div class="report-title" style="font-size:14px;">Weekly Report — 🇵🇪 Perú</div>
+        <div class="report-sub">TOP-4 Recomendaciones & FOMO · Semana 16–20 Mar 2026</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-date" style="color:rgba(255,255,255,0.85);">Lunes 16 de Marzo, 2026</div>
+    </div>
+  </div>
+
+  <div class="note-strip">✅ Mix esta semana: 3 Libertex (XAUUSD · BAP · FCX) + 1 local (Bono Soberano PEN). Foco pre-electoral: activos defensivos + entrada táctica en BAP al descuento. Elecciones 12-Abr = 27 días.</div>
+
+  <div class="recs-grid">
+    <div class="rec-card">
+      <div class="rec-header">
+        <div>
+          <div class="rec-num">REC 01</div>
+          <div class="rec-name">XAUUSD Gold CFD</div>
+          <div class="rec-exch">Libertex · Metal CFD</div>
+        </div>
+        <div class="rec-action act-buy">ACUMULAR</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rec-metric"><div class="rm-label">Precio Ref.</div><div class="rm-val">$5,019</div></div>
+          <div class="rec-metric"><div class="rm-label">Target</div><div class="rm-val">$5,300</div></div>
+          <div class="rec-metric"><div class="rm-label">Stop</div><div class="rm-val">$4,850</div></div>
+          <div class="rec-metric"><div class="rm-label">Horizonte</div><div class="rm-val">4–8 sem.</div></div>
+        </div>
+        <div class="rec-two-col">
+          <div>
+            <span class="rec-badge badge-intl">🌐 INTL · Libertex</span>
+            <div class="rec-tesis">Corrección −7.7% desde ATH completada. Perú es 3er productor de oro mundial = alineamiento natural cliente-activo. Cobertura ideal pre-electoral: si resultados sorprenden negativamente, oro sube.</div>
+          </div>
+          <div>
+            <div class="rr-label">R:R ≈ 1:2.0</div>
+            <div class="rr-bar-bg"><div class="rr-bar" style="width:67%"></div></div>
+            <div class="rr-label">Riesgo: Moderado</div>
+            <div class="risk-box">⚠️ Stop $4,850. Si tregua Irán confirmada → reducir exposición. Pre-electoral = mantener cobertura.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rec-card">
+      <div class="rec-header">
+        <div>
+          <div class="rec-num">REC 02</div>
+          <div class="rec-name">BAP — Credicorp Ltd</div>
+          <div class="rec-exch">Libertex · Stock CFD</div>
+        </div>
+        <div class="rec-action act-entrada">ENTRADA TÁC.</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rec-metric"><div class="rm-label">Nivel Act.</div><div class="rm-val">~$165</div></div>
+          <div class="rec-metric"><div class="rm-label">Entrada</div><div class="rm-val">$155–162</div></div>
+          <div class="rec-metric"><div class="rm-label">Target</div><div class="rm-val">$185–190</div></div>
+          <div class="rec-metric"><div class="rm-label">Horizonte</div><div class="rm-val">8–16 sem.</div></div>
+        </div>
+        <div class="rec-two-col">
+          <div>
+            <span class="rec-badge badge-intl">🌐 INTL · Libertex</span>
+            <div class="rec-tesis">Mejor banco de Perú en pullback doble: Camisea + pre-electoral. ROE >15%, presencia Bolivia-Chile-Colombia. Camisea resuelto = riesgo sistémico reducido. Históricamente, pre-electoral en Perú = descuentos que se recuperan post-voto.</div>
+          </div>
+          <div>
+            <div class="rr-label">R:R ≈ 1:2.7</div>
+            <div class="rr-bar-bg"><div class="rr-bar" style="width:73%"></div></div>
+            <div class="rr-label">Riesgo: Medio-Alto</div>
+            <div class="risk-box">⚠️ Stop $148. Riesgo: candidato populista gana primera vuelta → presión adicional. Entrada escalonada recomendada.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rec-card">
+      <div class="rec-header">
+        <div>
+          <div class="rec-num">REC 03</div>
+          <div class="rec-name">FCX Freeport-McMoRan</div>
+          <div class="rec-exch">Libertex · Stock CFD</div>
+        </div>
+        <div class="rec-action act-wait">ESPERAR</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rec-metric"><div class="rm-label">Nivel Act.</div><div class="rm-val">~$58</div></div>
+          <div class="rec-metric"><div class="rm-label">Entrada</div><div class="rm-val">$55–57</div></div>
+          <div class="rec-metric"><div class="rm-label">Target</div><div class="rm-val">$70–75</div></div>
+          <div class="rec-metric"><div class="rm-label">Horizonte</div><div class="rm-val">8–12 sem.</div></div>
+        </div>
+        <div class="rec-two-col">
+          <div>
+            <span class="rec-badge badge-intl">🌐 INTL · Libertex</span>
+            <div class="rec-tesis">Perú es 2do productor de cobre mundial. FCX como proxy internacional del metal. DXY fuerte = presión. Condición: DXY baje de 103 o señal NPC China (estímulo = demand cobre). Stop $52.</div>
+          </div>
+          <div>
+            <div class="rr-label">R:R potencial ≈ 1:2.6</div>
+            <div class="rr-bar-bg"><div class="rr-bar" style="width:72%"></div></div>
+            <div class="rr-label">Riesgo: Medio</div>
+            <div class="risk-box">⚠️ No entrar hasta señal. Pre-electoral peruano = mantener liquidez táctica.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rec-card">
+      <div class="rec-header">
+        <div>
+          <div class="rec-num">REC 04</div>
+          <div class="rec-name">Bono Soberano PEN 10A</div>
+          <div class="rec-exch">BCRP · Renta Fija Local</div>
+        </div>
+        <div class="rec-action act-buy">ACUMULAR</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-metrics">
+          <div class="rec-metric"><div class="rm-label">Tasa Ref.</div><div class="rm-val">~6.80%</div></div>
+          <div class="rec-metric"><div class="rm-label">Target</div><div class="rm-val">6.20%</div></div>
+          <div class="rec-metric"><div class="rm-label">Stop</div><div class="rm-val">7.50%</div></div>
+          <div class="rec-metric"><div class="rm-label">Horizonte</div><div class="rm-val">6–12 m.</div></div>
+        </div>
+        <div class="rec-two-col">
+          <div>
+            <span class="rec-badge badge-local">🇵🇪 LOCAL</span>
+            <div class="rec-tesis">Tasas altas por presión inflacionaria Camisea (IPC sale rango en marzo). Post-elecciones → inflación cede → BCRP puede bajar tasa → precio del bono sube. Entrada en zona de máxima presión = mejor retorno potencial.</div>
+          </div>
+          <div>
+            <div class="rr-label">R:R ≈ 1:2.0</div>
+            <div class="rr-bar-bg"><div class="rr-bar" style="width:62%"></div></div>
+            <div class="rr-label">Riesgo: Medio</div>
+            <div class="risk-box">⚠️ Riesgo: candidato populista gana y promete mayor gasto → BCRP no puede bajar tasa → bonos bajo presión.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fomo-box">
+    <div class="fomo-title">🔥 FOMO — ¿Por qué actuar esta semana?</div>
+    <div class="fomo-item">1. 🏦 BAP/Credicorp en pullback doble: Camisea resuelto + pre-electoral = descuento temporal en el mejor banco de Perú. Post-resultado electoral → rebote histórico</div>
+    <div class="fomo-item">2. 🥇 XAUUSD en corrección: −7.7% desde ATH. Para cliente peruano: cobertura pre-electoral perfecta. Perú 3er prod. oro = alineamiento natural con el activo</div>
+    <div class="fomo-item">3. ⏰ 27 días para elecciones: la incertidumbre electoral históricamente crea las mejores entradas de largo plazo en activos peruanos de calidad</div>
+    <div class="fomo-item">4. 📊 Bono PEN 10A al 6.80%: tasas en zona de máxima presión (Camisea + elecciones). Post-normalización → caída de tasas = apreciación del bono. Entrar ahora = capturar la reversión</div>
+    <div class="fomo-item">5. 💡 Cobre $4.27 + Perú 2do productor: FCX en espera, pero el momento de entrar se acerca. DXY bajando de 103 = señal de entrada. Pre-posicionarse en el análisis ahora</div>
+  </div>
+
+  <div style="margin:0 28px;text-align:center;font-size:8px;color:#888;border-top:1px solid #ddd;padding-top:8px;">
+    📄 Reporte completo: https://libertyfinancegroup.github.io/weekly-report/informeper160326 &nbsp;·&nbsp; ⚠️ Análisis informativo. No constituye asesoría personalizada. Invertir implica riesgos. Liberty Finance · A Legacy with Future
+  </div>
+
+  <div class="page-footer" style="border-top:1px solid rgba(0,19,55,0.15);">
+    <div class="footer-text" style="color:#999;">⚠️ Análisis informativo. Inversiones implican riesgos. No asesoría personalizada.</div>
+    <div class="footer-page" style="color:var(--navy);">3 / 3</div>
+  </div>
+</div>
+
+</body>
+</html>
