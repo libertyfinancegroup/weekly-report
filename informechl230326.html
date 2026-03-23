@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance · Informe Semanal Chile · 23 Mar 2026</title>
+<style>
+:root {
+  --navy:#001337; --taslan:#264567; --gold:#938565; --lgold:#C4B58A;
+  --charc:#888; --black:#131313; --white:#fff; --cream:#F5F4F0;
+  --border:#D8D4CC; --green:#2e7d52; --red:#9b3a29; --amber:#9e7c20;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Calibri,sans-serif;background:var(--cream);color:var(--black);font-size:13px;line-height:1.55}
+header{background:var(--navy);padding:0;display:grid;grid-template-columns:1fr auto;border-bottom:2px solid var(--gold)}
+.hl{padding:16px 28px;border-right:1px solid rgba(255,255,255,0.1)}
+.hr{padding:16px 28px;text-align:right;display:flex;flex-direction:column;justify-content:center}
+.bn{font-size:15px;font-weight:700;color:var(--white);letter-spacing:2px}
+.bs{font-size:9px;color:var(--lgold);letter-spacing:2px;margin-top:2px}
+.dt{font-size:11px;color:var(--white);font-weight:600}
+.ds{font-size:9px;color:var(--charc);margin-top:2px}
+.ticker-bar{background:var(--taslan);padding:8px 28px;display:flex;gap:32px;border-bottom:1px solid var(--gold);flex-wrap:wrap}
+.tk{display:flex;flex-direction:column}
+.tl{font-size:8px;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:1px}
+.tv{font-size:12px;font-weight:700;color:var(--white)}
+.chgr{color:#f08080;font-size:10px} .chgg{color:#7ecba1;font-size:10px} .chgn{color:var(--lgold);font-size:10px}
+.alert-bar{background:#7d1a1a;padding:10px 28px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #a03030}
+.alert-bar span{color:#ffd6d6;font-size:12px;font-weight:600}
+.revision-box{background:var(--navy);margin:20px 28px;padding:18px 22px;border-left:3px solid var(--lgold)}
+.revision-box h3{color:var(--lgold);font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.rev-card{background:rgba(255,255,255,0.06);padding:10px 12px}
+.rev-label{font-size:9px;color:var(--charc);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.rev-val{font-size:14px;font-weight:700;font-family:Georgia,serif}
+.rev-nota{font-size:10px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.5}
+.hit{color:#7ecba1} .miss{color:#f08080} .neutral{color:var(--lgold)}
+.page{display:grid;grid-template-columns:1fr 300px;gap:0}
+.main{padding:18px 24px 18px 28px;border-right:1px solid var(--border)}
+.side{padding:18px 24px 18px 18px;background:var(--white)}
+.sh{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:10px;margin-top:18px}
+.sh:first-child{margin-top:0}
+.vision{background:var(--navy);padding:14px 16px;margin-bottom:14px;border-left:3px solid var(--gold)}
+.vision h3{font-size:10px;color:var(--lgold);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+.vision p{font-size:12px;color:rgba(255,255,255,0.82);line-height:1.65;margin-bottom:6px}
+.vision p:last-child{margin-bottom:0}
+.vis-tag{display:inline-block;background:var(--taslan);color:var(--lgold);font-size:8px;font-weight:700;padding:1px 5px;border-radius:2px;text-transform:uppercase;letter-spacing:0.5px;margin-right:3px}
+.pos-table{width:100%;border-collapse:collapse;margin-bottom:12px}
+.pos-table th{font-size:9px;text-transform:uppercase;letter-spacing:0.8px;color:var(--charc);padding:5px 6px;border-bottom:2px solid var(--navy);text-align:left}
+.pos-table td{padding:7px 6px;border-bottom:1px solid var(--border);font-size:11px;vertical-align:middle}
+.pos-table tr:last-child td{border-bottom:none}
+.tag{display:inline-block;font-size:8px;font-weight:700;padding:2px 6px;border-radius:2px;text-transform:uppercase}
+.tag-i{background:rgba(38,69,103,0.12);color:var(--taslan)}
+.tag-l{background:rgba(147,133,101,0.12);color:var(--gold)}
+.pw{font-weight:700;font-size:13px;color:var(--navy)}
+.ow{color:var(--green);font-size:8px;font-weight:700;text-transform:uppercase}
+.uw{color:var(--red);font-size:8px;font-weight:700;text-transform:uppercase}
+.ne{color:var(--charc);font-size:8px}
+.bar-wrap{margin-bottom:12px}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.bar-lbl{width:120px;font-size:10px;color:#333;flex-shrink:0}
+.bar-out{flex:1;background:var(--border);height:9px;border-radius:1px}
+.bar-in{height:9px;border-radius:1px}
+.bar-val{width:38px;text-align:right;font-size:10px;font-weight:700;color:var(--navy)}
+.attr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.attr-card{padding:10px;border-top:2px solid var(--border)}
+.attr-card h4{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--navy);margin-bottom:5px}
+.attr-card p{font-size:11px;color:#444;line-height:1.6}
+.scen-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.scen{padding:10px}
+.scen.bull{background:#EAF4EE;border-top:2px solid var(--green)}
+.scen.base{background:#EEF2F8;border-top:2px solid var(--taslan)}
+.scen.bear{background:#F9EFEC;border-top:2px solid var(--red)}
+.scen-lbl{font-size:8px;font-weight:700;text-transform:uppercase;color:#666}
+.scen-prob{font-size:8px;color:#888;float:right}
+.scen-ret{font-size:18px;font-weight:700;font-family:Georgia,serif;margin:5px 0 3px}
+.scen.bull .scen-ret{color:var(--green)} .scen.base .scen-ret{color:var(--taslan)} .scen.bear .scen-ret{color:var(--red)}
+.scen p{font-size:10px;color:#555;line-height:1.5}
+.kpi-box{background:var(--navy);padding:14px;margin-bottom:10px}
+.kpi-lbl{font-size:8px;text-transform:uppercase;letter-spacing:0.8px;color:var(--lgold);margin-bottom:4px}
+.kpi-val{font-size:26px;font-weight:700;font-family:Georgia,serif;color:var(--white)}
+.kpi-sub{font-size:8px;color:var(--charc);margin-top:2px}
+.risk-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border)}
+.risk-row:last-child{border-bottom:none}
+.risk-name{font-size:10px;color:#333}
+.rp{font-size:8px;font-weight:700;padding:2px 7px;border-radius:8px;text-transform:uppercase}
+.ra{background:#f9efec;color:var(--red)} .rm{background:#fef9ec;color:var(--amber)} .rb{background:#eaf4ee;color:var(--green)}
+.cat-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.cat-lbl{width:100px;font-size:9px;color:#555;flex-shrink:0}
+.cat-bw{flex:1;background:var(--border);height:7px;border-radius:1px}
+.cat-bf{height:7px;border-radius:1px}
+.cat-pct{width:32px;font-size:9px;font-weight:700;text-align:right;color:var(--navy)}
+.outlook{background:var(--cream);padding:12px;border-left:2px solid var(--gold);margin-top:10px}
+.outlook h4{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--navy);margin-bottom:5px}
+.outlook p{font-size:10px;color:#444;line-height:1.6}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.metric{background:var(--cream);padding:10px}
+.m-lbl{font-size:8px;text-transform:uppercase;letter-spacing:0.5px;color:var(--charc);margin-bottom:3px}
+.m-val{font-size:20px;font-weight:700;font-family:Georgia,serif;color:var(--navy)}
+.m-sub{font-size:8px;color:var(--charc);margin-top:1px}
+footer{background:var(--navy);padding:10px 28px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--gold)}
+.f-disc{font-size:8px;color:rgba(255,255,255,0.4);max-width:760px;line-height:1.5}
+.f-brand{font-size:9px;color:var(--lgold);text-align:right;flex-shrink:0}
+.divider{border:none;border-top:1px solid var(--border);margin:12px 0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hl">
+    <div class="bn">LIBERTY FINANCE</div>
+    <div class="bs">Private Wealth Management · Chile</div>
+  </div>
+  <div class="hr">
+    <div class="dt">Informe Semanal · 23–27 Marzo 2026</div>
+    <div class="ds">Semana 12 · Dep. Research &amp; Inversiones · Uso interno</div>
+  </div>
+</header>
+
+<div class="alert-bar">
+  <span>⚠️ ALERTA: XAUUSD registra caída semanal de −10.5% — la mayor desde 1983. Stop activado en $4,850. Reposicionamiento requerido.</span>
+</div>
+
+<div class="ticker-bar">
+  <div class="tk"><span class="tl">XAUUSD</span><span class="tv">$4,297 <span class="chgr">▼−14.3% sem.</span></span></div>
+  <div class="tk"><span class="tl">USD/CLP</span><span class="tv">928 <span class="chgr">▲+0.98% sem.</span></span></div>
+  <div class="tk"><span class="tl">IPSA</span><span class="tv">10,277 <span class="chgr">▼−1.81% sem.</span></span></div>
+  <div class="tk"><span class="tl">BCCh TPM</span><span class="tv">4.50% <span class="chgn">IPoM esta semana</span></span></div>
+  <div class="tk"><span class="tl">Cobre LME</span><span class="tv">$4.18 <span class="chgr">▼−0.9% sem.</span></span></div>
+  <div class="tk"><span class="tl">WTI (hoy)</span><span class="tv">$92 <span class="chgg">▼Diálogo EEUU-Irán</span></span></div>
+  <div class="tk"><span class="tl">DXY</span><span class="tv">104.5 <span class="chgr">▲ hawkish Fed</span></span></div>
+</div>
+
+<!-- REVISION SEMANA ANTERIOR -->
+<div class="revision-box">
+  <h3>📋 Revisión de Pronósticos · Semana 16–20 Marzo</h3>
+  <div class="rev-grid">
+    <div class="rev-card">
+      <div class="rev-label">XAUUSD · Mantener $5,019</div>
+      <div class="rev-val miss">STOP ACTIVADO</div>
+      <div class="rev-nota">Precio cayó a $4,476. Stop en $4,850 activado el mié 18-Mar. Trigger: FOMC hawkish — Fed revisa PCE al alza a 2.7% y elimina recortes 2026 del dot plot. Drawdown desde entrada: −14.3%. Pérdida controlada por gestión de riesgo activa.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-label">USD/CLP · Largo táctico ~919</div>
+      <div class="rev-val hit">CORRECTO</div>
+      <div class="rev-nota">Peso se depreció a 928 (+1.0%). El mercado comenzó a pricear posible alza de tasas del BCCh ante inflación por petróleo. Dirección correcta, objetivo 960–980 aún vigente en escenario base de conflicto prolongado.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-label">FCX · Esperar señal (sin entrada)</div>
+      <div class="rev-val hit">CORRECTO</div>
+      <div class="rev-nota">No se activó. DXY se mantuvo sobre 104. SQM-B cayó −4.5% el viernes con el sell-off global. Decisión de esperar fue acertada. Capital preservado en DAP UF generando +7.8% anual.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-label">BCU UF · Acumular</div>
+      <div class="rev-val neutral">VIGILAR</div>
+      <div class="rev-nota">Posición preservó capital. Pero la subida del WTI y posible alza BCCh introduce incertidumbre sobre la trayectoria de tasas. IPoM del 24-Mar es clave. Si BCCh sube tasas, el precio del bono se comprime a corto plazo.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-label">SQM ADR · Esperar señal</div>
+      <div class="rev-val hit">CORRECTO</div>
+      <div class="rev-nota">SQM-B −4.5% el viernes. SQM ADR bajo presión. No se activó la posición. Correcto. Litio sigue afectado por el sell-off global de commodities y el fortalecimiento del DXY.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-label">DAP UF · Ancla defensiva</div>
+      <div class="rev-val hit">CORRECTO</div>
+      <div class="rev-nota">El bloque defensivo cumplió su función: protegió capital durante la caída de oro. El 30% en renta fija local amortiguó el impacto del portafolio táctico. Lección: la diversificación local es esencial en entornos de volatilidad global.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+<!-- MAIN -->
+<div class="main">
+
+<div class="sh">Visión de Mercado · Semana 23–27 Marzo 2026</div>
+<div class="vision">
+  <h3>Cambio de Régimen: de Inflación-Refugio a Inflación-Restrictiva</h3>
+  <p><span class="vis-tag">Fed FOMC</span> La reunión del 17–18 marzo marcó un giro hawkish relevante: la Fed mantuvo la tasa en 3.50–3.75% (esperado), pero revisó el PCE subyacente 2026 al alza a 2.7% desde 2.5%, elevó la tasa neutral de largo plazo a 3.1% y un miembro propone alza en 2027. El mercado ahora pricear cero recortes en 2026 — reversión total del escenario de relajación monetaria que sostenía el oro.</p>
+  <p><span class="vis-tag">Oro</span> La caída de −10.5% esta semana (la mayor desde 1983) no fue un flash crash: fue una repricing estructural. El oro subió durante 2025–2026 por dos pilares: (1) expectativa de recortes Fed y (2) demanda de refugio geopolítico. El pilar (1) acaba de colapsar. El pilar (2) se debilita: Trump y la nueva dirección iraní iniciaron "conversaciones productivas" el 23-Mar, con Trump ordenando pausa de 5 días en ataques. WTI cayó inmediatamente de $112 a $92.</p>
+  <p><span class="vis-tag">Chile</span> El IPoM del BCCh del 24-Mar es el evento local más importante de la semana. Los swap rates subieron abruptamente el viernes ante el escenario de inflación por petróleo. El mercado ya no descuenta solo pausa — empieza a pricear probabilidad de alza de tasas. Esto impacta directamente al BCU (precio a la baja en el corto plazo) y al CLP (mayor atractivo de UF si BCCh sube).</p>
+</div>
+
+<div class="sh">Posicionamiento · Semana 23–27 Marzo 2026</div>
+<table class="pos-table">
+  <thead>
+    <tr><th>#</th><th>Instrumento</th><th>Clase</th><th>Peso</th><th>vs Neutral</th><th>Acción</th><th>Stop / Referencia</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>01</td><td><strong>XAUUSD</strong> — Oro</td>
+      <td><span class="tag tag-i">Internacional</span></td>
+      <td class="pw">0%</td><td><span class="uw">UW −25%</span></td>
+      <td style="color:var(--red);font-weight:700">STOP ACTIVADO → CERRADO</td>
+      <td>Stop: $4,850 activado mié 18-Mar</td>
+    </tr>
+    <tr>
+      <td>02</td><td><strong>USD/CLP</strong> Largo táctico</td>
+      <td><span class="tag tag-i">Internacional</span></td>
+      <td class="pw">20%</td><td><span class="ow">OW +5%</span></td>
+      <td style="color:var(--amber);font-weight:600">MANTENER con cautela</td>
+      <td>Stop: 895 · Revisión: IPoM 24-Mar</td>
+    </tr>
+    <tr>
+      <td>03</td><td><strong>FCX</strong> Freeport</td>
+      <td><span class="tag tag-i">Internacional</span></td>
+      <td class="pw">0%</td><td><span class="ne">NO ACTIVO</span></td>
+      <td style="color:var(--charc)">ESPERAR — DXY &gt; 103</td>
+      <td>Capital en DAP UF</td>
+    </tr>
+    <tr>
+      <td>04</td><td><strong>SQM ADR</strong></td>
+      <td><span class="tag tag-i">Internacional</span></td>
+      <td class="pw">0%</td><td><span class="ne">NO ACTIVO</span></td>
+      <td style="color:var(--charc)">ESPERAR — condiciones adversas</td>
+      <td>Capital en DAP UF</td>
+    </tr>
+    <tr>
+      <td>05</td><td><strong>BCU en UF</strong> 10A</td>
+      <td><span class="tag tag-l">Local · CMF</span></td>
+      <td class="pw">20%</td><td><span class="ow">OW</span></td>
+      <td style="color:var(--amber);font-weight:600">MANTENER → VIGILAR IPoM</td>
+      <td>Si BCCh sube tasas: revisar peso</td>
+    </tr>
+    <tr>
+      <td>06</td><td><strong>DAP en UF</strong> 180d</td>
+      <td><span class="tag tag-l">Local · CMF</span></td>
+      <td class="pw">60%</td><td><span class="ow">OW +45%</span></td>
+      <td style="color:var(--green);font-weight:600">AUMENTAR — posición defensiva</td>
+      <td>Refugio táctica; tasa real +5.8%</td>
+    </tr>
+  </tbody>
+</table>
+<p style="font-size:9px;color:var(--charc);margin-bottom:12px">Posicionamiento revisado post-FOMC hawkish. Capital liberado del stop XAUUSD reasignado a DAP UF como posición defensiva mientras se redefine el régimen macro. Peso XAUUSD 0% hasta que el nuevo piso estructural de oro se confirme (zona $4,200–4,300).</p>
+
+<div class="sh">Asignación por Clase de Activo</div>
+<div class="bar-wrap">
+  <div class="bar-row"><span class="bar-lbl">DAP UF (defensivo)</span><div class="bar-out"><div class="bar-in" style="width:60%;background:var(--gold)"></div></div><span class="bar-val">60%</span></div>
+  <div class="bar-row"><span class="bar-lbl">BCU UF (renta fija)</span><div class="bar-out"><div class="bar-in" style="width:20%;background:var(--taslan)"></div></div><span class="bar-val">20%</span></div>
+  <div class="bar-row"><span class="bar-lbl">Cobertura FX (USD/CLP)</span><div class="bar-out"><div class="bar-in" style="width:20%;background:#9ba8b5"></div></div><span class="bar-val">20%</span></div>
+  <div class="bar-row"><span class="bar-lbl">Renta Variable / Oro</span><div class="bar-out"><div class="bar-in" style="width:0%;background:var(--red)"></div></div><span class="bar-val">0%</span></div>
+</div>
+<p style="font-size:9px;color:var(--charc);margin-bottom:12px">Posición más defensiva de las últimas 8 semanas. Nivel de cash equivalente (DAP UF) al 60%. Estrategia: preservar capital durante repricing macro, reentrar cuando se confirme nuevo régimen.</p>
+
+<div class="sh">Comentario del Gestor · Atribución por Posición</div>
+<div class="attr-grid">
+  <div class="attr-card">
+    <h4>XAUUSD · Stop activado correctamente</h4>
+    <p>La caída del −14.3% desde entrada ($5,019 → $4,297) demuestra la importancia del stop en $4,850. La pérdida controlada fue de −5.1% sobre el capital asignado. Sin stop, la pérdida habría sido −14.3%. La gestión de riesgo funcionó como diseñada. Ahora: no reentrar en oro hasta que el mercado muestre señales de re-acumulación institucional o que la Fed vuelva a señalizar recortes.</p>
+  </div>
+  <div class="attr-card">
+    <h4>USD/CLP · Posición activa, revisión IPoM</h4>
+    <p>El largo USD/CLP fue correcto esta semana: el peso se depreció de 919 a 928 (+1.0%). El riesgo ahora es que el IPoM del BCCh sorprenda con alza de tasas, lo que apreciaría el CLP. Mantenemos la posición con stop ajustado a 895. Si el BCCh sube tasas, cerrar el 50% de la posición USD/CLP inmediatamente.</p>
+  </div>
+  <div class="attr-card">
+    <h4>FCX + SQM · Decisión de no entrar validada</h4>
+    <p>SQM-B cayó −4.5% el viernes, FCX bajo presión junto con todos los commodities. La decisión de mantener capital en DAP UF hasta señal confirmada fue correcta. El costo de oportunidad de no entrar fue cero; el costo de haber entrado habría sido significativo. Este patrón refuerza el protocolo de entrada condicional.</p>
+  </div>
+  <div class="attr-card">
+    <h4>BCU UF · Posición defensiva bajo presión</h4>
+    <p>El BCU preservó capital durante la tormenta de esta semana. Sin embargo, el riesgo para la semana entrante es material: si el IPoM del BCCh del 24-Mar muestra sesgo hawkish, los bonos de largo plazo sufrirán apreciación negativa en precio. Reducir duración: considerar rotar parcialmente de BCU 10A a BTP más corto plazo (3–5 años) o mantener en DAP UF.</p>
+  </div>
+</div>
+
+<div class="sh">Análisis de Escenarios · Semana 23–27 Marzo</div>
+<div class="scen-grid">
+  <div class="scen bull">
+    <div class="scen-lbl">Alcista <span class="scen-prob">20%</span></div>
+    <div class="scen-ret">+2–4%</div>
+    <p>BCCh IPoM neutral-dovish. Ceasefire Irán confirmado → WTI cae a $80 → inflación expectativas bajan → Fed vuelve a señalizar recorte. XAUUSD rebota a $4,600. CLP aprecia a 910. IPSA rebote a 10,600.</p>
+  </div>
+  <div class="scen base">
+    <div class="scen-lbl">Base <span class="scen-prob">50%</span></div>
+    <div class="scen-ret">0 a −2%</div>
+    <p>BCCh IPoM hawkish moderado. WTI oscila $90–$100 post-diálogo. Oro consolida $4,200–4,400. USD/CLP rango 920–940. Portafolio defensivo en DAP UF genera +0.15% semanal. Capital preservado.</p>
+  </div>
+  <div class="scen bear">
+    <div class="scen-lbl">Bajista <span class="scen-prob">30%</span></div>
+    <div class="scen-ret">−3 a −5%</div>
+    <p>Diálogo EEUU-Irán fracasa. WTI vuelve a $112+. BCCh sube tasas. Oro cae a $4,000. CLP se deprecia a 950+. IPSA under 10,000. DAP UF y BCU son únicos activos con retorno positivo.</p>
+  </div>
+</div>
+
+</div><!-- main -->
+
+<!-- SIDE -->
+<div class="side">
+
+<div class="sh">Métricas de Portafolio</div>
+<div class="metrics">
+  <div class="metric"><div class="m-lbl">Retorno Semana</div><div class="m-val" style="color:var(--red)">−4.8%</div><div class="m-sub">impacto stop XAUUSD</div></div>
+  <div class="metric"><div class="m-lbl">Retorno YTD</div><div class="m-val" style="color:var(--amber)">+2.1%</div><div class="m-sub">desde inicio posiciones</div></div>
+  <div class="metric"><div class="m-lbl">Max Drawdown</div><div class="m-val">−5.1%</div><div class="m-sub">controlado por stop</div></div>
+  <div class="metric"><div class="m-lbl">Cash equiv.</div><div class="m-val" style="color:var(--green)">60%</div><div class="m-sub">DAP UF defensivo</div></div>
+</div>
+
+<div class="kpi-box">
+  <div class="kpi-lbl">Benchmark Táctico</div>
+  <div class="kpi-val">+2.25%</div>
+  <div class="kpi-sub">DAP en UF 360 días · Banco de Chile · semestral</div>
+</div>
+<div class="kpi-box" style="margin-top:6px;background:var(--taslan)">
+  <div class="kpi-lbl">Active Return acumulado</div>
+  <div class="kpi-val">−0.15pp</div>
+  <div class="kpi-sub">vs benchmark — stop activado esta semana</div>
+</div>
+
+<div class="sh" style="margin-top:14px">Exposición por Divisa</div>
+<div class="cat-row"><span class="cat-lbl">UF / CLP (local)</span><div class="cat-bw"><div class="cat-bf" style="width:80%;background:var(--gold)"></div></div><span class="cat-pct">80%</span></div>
+<div class="cat-row"><span class="cat-lbl">USD (FX táctica)</span><div class="cat-bw"><div class="cat-bf" style="width:20%;background:var(--taslan)"></div></div><span class="cat-pct">20%</span></div>
+
+<div class="sh" style="margin-top:14px">Monitor de Riesgos · Semana</div>
+<div class="risk-row"><span class="risk-name">BCCh IPoM hawkish (24-Mar)</span><span class="rp ra">Alto</span></div>
+<div class="risk-row"><span class="risk-name">Fracaso diálogo EEUU-Irán</span><span class="rp ra">Alto</span></div>
+<div class="risk-row"><span class="risk-name">WTI rebote sobre $105</span><span class="rp rm">Medio</span></div>
+<div class="risk-row"><span class="risk-name">XAUUSD quiebra $4,000</span><span class="rp rm">Medio</span></div>
+<div class="risk-row"><span class="risk-name">SQM / IPSA sell-off ext.</span><span class="rp rm">Medio</span></div>
+<div class="risk-row"><span class="risk-name">Riesgo DAP UF</span><span class="rp rb">Bajo</span></div>
+
+<div class="outlook">
+  <h4>Catalizadores Semana 23–27 Mar</h4>
+  <p><strong>24 Mar:</strong> BCCh IPoM — sesgo hawkish → ajustar BCU y USD/CLP<br>
+  <strong>23–28 Mar:</strong> Diálogo EEUU-Irán — cada titular mueve WTI ±5%<br>
+  <strong>XAUUSD:</strong> Soporte clave $4,200–4,300. Quiebre = exposición a $3,800<br>
+  <strong>DXY:</strong> Si baja de 103 → señal de reentrada gradual en FCX<br>
+  <strong>SQM-B:</strong> No activar hasta que rebote por encima de $47</p>
+</div>
+
+</div><!-- side -->
+</div><!-- page -->
+
+<footer>
+  <div class="f-disc">Elaborado por Dep. Research Liberty Finance. Uso interno exclusivo. No constituye asesoría financiera personalizada ni oferta de valores bajo Ley 20.712 (LUF) / CMF. Retornos son estimaciones — no garantizan resultados futuros. Los instrumentos internacionales implican riesgo de pérdida total. Stop losses y métricas de riesgo son referenciales, no garantizados en condiciones de mercado extremas. 23 de marzo de 2026.</div>
+  <div class="f-brand">LIBERTY FINANCE<br><span style="font-size:7px;color:var(--charc)">A Legacy with Future · Chile · Mar 2026</span></div>
+</footer>
+</body>
+</html>
