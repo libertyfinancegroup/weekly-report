@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — Weekly Report Paraguay · 30 Mar 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Barlow:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#001337;--navy2:#00193f;--navy3:#002050;
+  --gold:#938565;--gold2:#b3a993;--gold3:#c4b89a;--gold-d:#7a6c52;
+  --w:#f0ede6;--w90:rgba(240,237,230,0.9);--w60:rgba(240,237,230,0.6);--w35:rgba(240,237,230,0.35);
+  --ink:#1c1c2e;--ink2:#383850;--ink3:#64648a;
+  --bg:#eae7e0;--bg2:#f4f2ed;
+  --card:#ffffff;--card-bg:#f8f6f2;
+  --bdr:rgba(0,0,0,0.09);--bdr2:rgba(0,0,0,0.15);
+  --green:#1a6b3c;--green2:#1f9b52;--green-bg:#e8f5ee;
+  --red:#a02020;--red2:#c93030;--red-bg:#faeaea;
+  --amber:#8a5a18;--amber2:#c47820;--amber-bg:#fdf3e3;
+  --blue:#1a4080;--blue2:#2a68c4;--blue-bg:#e8f0fa;
+  --page-w:780px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#1a1e2e}
+body{font-family:'Barlow',sans-serif;background:#1a1e2e;min-height:100vh;padding:28px 16px 56px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--page-w);margin:0 auto;box-shadow:0 12px 80px rgba(0,0,0,0.8)}
+
+/* ── DARK HEADER ── */
+.ph{background:var(--navy2);border-bottom:2px solid rgba(147,133,101,0.35);padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+.ph-brand{display:flex;align-items:center;gap:14px}
+.ph-logo{display:flex;flex-direction:column}
+.ph-l1{font-size:22px;font-weight:700;color:var(--w);letter-spacing:0.1em;line-height:1}
+.ph-l2{font-size:8px;font-weight:400;color:var(--gold3);letter-spacing:0.35em;text-transform:uppercase;margin-top:2px}
+.ph-vsep{width:1px;height:40px;background:rgba(147,133,101,0.3)}
+.ph-meta{flex:1;padding-left:0}
+.ph-t{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--w90)}
+.ph-s{font-size:10px;color:var(--gold3);margin-top:2px;letter-spacing:0.04em}
+.ph-d{font-size:9px;color:var(--w35);text-transform:uppercase;letter-spacing:0.08em;margin-top:1px}
+.ph-right{text-align:right;flex-shrink:0}
+.ph-sent-badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:2px;background:rgba(196,120,32,0.2);border:1px solid rgba(196,120,32,0.45);color:#e8a840;letter-spacing:0.04em;display:inline-block;margin-bottom:4px}
+.ph-pg{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--w35);letter-spacing:0.08em}
+
+/* ── DARK TICKER ── */
+.ticker{background:var(--navy3);border-bottom:1px solid rgba(147,133,101,0.18);padding:0 28px;display:flex;overflow-x:auto;scrollbar-width:none}
+.ticker::-webkit-scrollbar{display:none}
+.tk{padding:10px 20px 10px 0;margin-right:20px;border-right:1px solid rgba(147,133,101,0.15);white-space:nowrap;flex-shrink:0}
+.tk:last-child{border-right:none;margin-right:0}
+.tk-l{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(196,184,154,0.55);display:block;margin-bottom:2px}
+.tk-v{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;color:#fff}
+.tk-c{font-size:10px;font-weight:500;margin-left:4px}
+.up{color:#34c97a}.dn{color:#e05555}.fl{color:rgba(255,255,255,0.38)}.ac{color:var(--gold3)}
+
+/* ── LIGHT BODY ── */
+.body{background:var(--bg);padding:24px 28px 32px}
+
+/* ── SENTIMENT BAR ── */
+.sentinel{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:12px 18px;display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.sent-l{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);white-space:nowrap}
+.sent-bar{flex:1;height:6px;background:linear-gradient(to right,var(--red2) 0%,#d4a020 35%,rgba(100,100,100,0.15) 50%,#1f9b52 100%);border-radius:3px;position:relative}
+.sent-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:13px;height:13px;border:3px solid var(--card);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.25)}
+.sent-tags{display:flex;gap:7px;flex-shrink:0}
+.sent-tag{font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:2px;letter-spacing:0.04em}
+.st-bajista{background:var(--red-bg);border:1px solid rgba(168,40,40,0.25);color:var(--red)}
+.st-neutro{background:var(--card-bg);border:1px solid var(--bdr2);color:var(--ink3);font-weight:600}
+.st-riskoff{background:var(--card-bg);border:1px solid var(--bdr);color:var(--ink3)}
+
+/* ── SECTION TITLE ── */
+.st{display:flex;align-items:center;gap:12px;margin-bottom:15px;margin-top:26px}
+.st:first-of-type{margin-top:0}
+.st-bar{width:4px;height:22px;background:var(--gold-d);border-radius:2px;flex-shrink:0}
+.st-text{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;font-weight:500;color:var(--ink)}
+.st-sub{font-size:9.5px;font-family:'Barlow',sans-serif;font-style:normal;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3)}
+.st-line{flex:1;height:1px;background:var(--bdr2)}
+
+/* ── GRIDS ── */
+.g6040{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:20px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+
+/* ── WHITE CARD BASE ── */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+
+/* ── PERFORMANCE TABLE ── */
+.ptbl{width:100%;border-collapse:collapse}
+.ptbl th{padding:8px 12px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);background:var(--card-bg);border-bottom:1px solid var(--bdr)}
+.ptbl td{padding:10px 12px;border-bottom:1px solid var(--bdr);font-size:12.5px;color:var(--ink2)}
+.ptbl td:first-child{font-weight:600;color:var(--ink)}
+.ptbl tbody tr:last-child td{border-bottom:none}
+.ptbl tbody tr:hover{background:var(--card-bg)}
+.t-up{color:var(--green);font-weight:600}.t-dn{color:var(--red);font-weight:600}.t-fl{color:var(--ink3)}
+
+/* ── TECH LEVELS ── */
+.lv-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid var(--bdr)}
+.lv-row:last-child{border-bottom:none}
+.lv-k{font-size:12px;color:var(--ink2)}
+.lv-v{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+.lv-v.r{color:var(--red)}.lv-v.g{color:var(--green)}.lv-v.c{color:var(--gold-d)}
+
+/* ── NEWS CARDS ── */
+.nc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:14px 17px}
+.nc.hi{border-left:4px solid var(--amber2)}.nc.pos{border-left:4px solid var(--green2)}
+.nc.neg{border-left:4px solid var(--red2)}.nc.neu{border-left:4px solid var(--blue2)}
+.nc-stars{font-size:11.5px;margin-bottom:4px;color:var(--amber2);letter-spacing:1px}
+.nc-tag{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.nc-title{font-size:13px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:8px}
+.nc-body{font-size:12px;color:var(--ink2);line-height:1.6}
+.nc-arrow{font-size:11.5px;color:var(--gold-d);margin-top:8px;font-style:italic;font-weight:500}
+
+/* ── SCENARIOS ── */
+.sc-box{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:16px 17px}
+.sc-box.b{border-top:3px solid var(--blue2)}.sc-box.bu{border-top:3px solid var(--green2)}.sc-box.be{border-top:3px solid var(--red2)}
+.sc-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.sc-prob{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;line-height:1;margin-bottom:8px}
+.sc-box.b .sc-prob{color:var(--blue)}.sc-box.bu .sc-prob{color:var(--green)}.sc-box.be .sc-prob{color:var(--red)}
+.sc-txt{font-size:12px;line-height:1.6;color:var(--ink2)}
+
+/* ── GESTOR COMMENT ── */
+.cg{background:var(--card);border:1px solid var(--bdr);border-left:4px solid var(--gold-d);border-radius:3px;padding:17px 22px;margin-bottom:0}
+.cg-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.cg-lbl::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.cg-text{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--ink);line-height:1.75;font-weight:500}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--bdr2);margin:28px 0 0}
+.section-block{padding:24px 28px 0;background:var(--bg)}
+
+/* ── RADAR CARDS ── */
+.rc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+.rc.ow{border-top:3px solid var(--green2)}.rc.wt{border-top:3px solid var(--amber2)}
+.rc.nt{border-top:3px solid var(--bdr2)}.rc.ac{border-top:3px solid var(--gold-d)}
+.rc-head{padding:14px 17px 12px;border-bottom:1px solid var(--bdr);background:var(--card-bg)}
+.rc-cat{font-size:9.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.rc-name{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:5px;line-height:1.2}
+.rc-price{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--ink);line-height:1}
+.rc-chg{font-size:11.5px;font-weight:600;margin-top:4px}
+.rc-chg.up{color:var(--green)}.rc-chg.dn{color:var(--red)}.rc-chg.fl{color:var(--ink3)}.rc-chg.ac{color:var(--gold-d)}
+.rc-body{padding:13px 17px 15px}
+.rc-bmk{font-size:10.5px;color:var(--ink3);margin-bottom:9px;padding-bottom:8px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.rc-text{font-size:12.5px;color:var(--ink2);line-height:1.65;margin-bottom:9px}
+.rc-arrow{font-size:11.5px;color:var(--gold-d);font-style:italic;font-weight:500}
+.badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-top:9px}
+.badge.ac{background:var(--green-bg);color:var(--green);border:1px solid rgba(26,107,60,0.2)}
+.badge.wt{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.2)}
+.badge.nt{background:var(--card-bg);color:var(--ink3);border:1px solid var(--bdr)}
+.btag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 7px;border-radius:2px}
+.btag.intl{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(26,64,128,0.15)}
+.btag.local{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.15)}
+
+/* ── CATALYST LIST ── */
+.ci-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ci{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:12px 16px;display:flex;gap:13px}
+.ci-n{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--gold-d);min-width:20px;flex-shrink:0;padding-top:1px}
+.ci-t{font-size:13px;color:var(--ink2);line-height:1.55}
+.ci-t strong{color:var(--ink);font-weight:700}
+
+/* ── POSITION CARDS ── */
+.pc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+.pc-head{padding:11px 15px 10px;border-bottom:1px solid var(--bdr);background:var(--card-bg);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.pc-n{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--gold-d);flex-shrink:0;padding-top:2px}
+.pc-info{flex:1}
+.pc-asset{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:2px}
+.pc-cat{font-size:10px;color:var(--ink3)}
+.pc-badges{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+.pc-met{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--bdr)}
+.pm{padding:7px 9px;border-right:1px solid var(--bdr)}.pm:last-child{border-right:none}
+.pm-l{font-size:7.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.pm-v{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);font-weight:700}
+.pm-v.g{color:var(--green)}.pm-v.r{color:var(--red)}.pm-v.a{color:var(--amber)}.pm-v.c{color:var(--gold-d)}
+.pc-body{padding:11px 15px 13px}
+.pc-bmk{font-size:11px;color:var(--ink3);margin-bottom:7px;padding-bottom:7px;border-bottom:1px dashed var(--bdr);font-style:italic}
+.pc-text{font-size:12.5px;color:var(--ink2);line-height:1.55}
+.pc-text strong{color:var(--ink);font-weight:700}
+.pc-note{margin-top:8px;padding-top:7px;border-top:1px dashed var(--bdr);font-size:10.5px;color:var(--ink3);line-height:1.5}
+
+/* ── AGENDA TABLE ── */
+.atbl-card{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden;margin-bottom:0}
+.atbl{width:100%;border-collapse:collapse}
+.atbl th{padding:8px 13px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);background:var(--card-bg);border-bottom:1px solid var(--bdr)}
+.atbl td{padding:10px 13px;border-bottom:1px solid var(--bdr);font-size:13px;vertical-align:middle;color:var(--ink2)}
+.atbl td:first-child{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-d);font-weight:700;white-space:nowrap}
+.atbl tbody tr:last-child td{border-bottom:none}
+.atbl tbody tr:hover{background:var(--card-bg)}
+.kw{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:2px;margin-left:5px;background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.2)}
+.kw.bin{background:var(--red-bg);color:var(--red);border:1px solid rgba(168,40,40,0.2)}
+.imp{display:inline-block;width:8px;height:8px;border-radius:50%;vertical-align:middle;margin-right:5px}
+.imp.hi{background:var(--red2)}.imp.md{background:var(--amber2)}.imp.lo{background:var(--green2)}
+
+/* ── DARK FOOTER ── */
+.footer{background:var(--navy2);border-top:1px solid rgba(147,133,101,0.2);padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.footer-disc{font-size:10px;color:rgba(196,184,154,0.45);line-height:1.5;flex:1}
+.footer-next{font-size:11px;color:var(--gold2);font-weight:500;text-align:right;flex-shrink:0}
+
+/* ── SECTION SEPARATOR ── */
+.sec-sep{height:1px;background:var(--bg2);margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="ph">
+  <div class="ph-brand">
+    <div class="ph-logo"><div class="ph-l1">LIBERTY</div><div class="ph-l2">Finance</div></div>
+    <div class="ph-vsep" style="margin:0 16px"></div>
+    <div style="flex:1">
+      <div class="ph-t">Reporte Semanal de Mercados &mdash; &#127477;&#127486; Paraguay</div>
+      <div class="ph-s">Semana 30 Mar &ndash; 4 Abr 2026 &middot; Dep. Research &amp; Estrategia</div>
+      <div class="ph-d">Asesor&iacute;a de Inversiones e Investigaci&oacute;n</div>
+    </div>
+  </div>
+  <div class="ph-right"><div class="ph-sent-badge" style="background:rgba(31,155,82,0.2);border-color:rgba(31,155,82,0.45);color:#2ea865">&#10003; Alcista — Inmune</div></div>
+</div>
+
+<div class="ticker">
+  <div class="tk"><span class="tk-l">USD/PYG</span><span class="tk-v">~6,510</span><span class="tk-c ac">&#10230; m&aacute;s estable LATAM</span></div>
+  <div class="tk"><span class="tk-l">Eurobono PYG 2038</span><span class="tk-v">8.50%</span><span class="tk-c ac">real +5.4%</span></div>
+  <div class="tk"><span class="tk-l">Eurobono USD 2033</span><span class="tk-v">6.80%</span><span class="tk-c ac">OW &middot; spread ajust.</span></div>
+  <div class="tk"><span class="tk-l">PIB 2025</span><span class="tk-v">6.0%</span><span class="tk-c ac">l&iacute;der LATAM</span></div>
+  <div class="tk"><span class="tk-l">Brent</span><span class="tk-v">$113</span><span class="tk-c ac">&#10003; impacto ~0%</span></div>
+  <div class="tk"><span class="tk-l">BCP TPM</span><span class="tk-v">4.25%</span><span class="tk-c ac">&#10230; estable</span></div>
+</div>
+
+<div class="body">
+  <div class="sentinel">
+    <span class="sent-l">Sentimiento</span>
+    <div class="sent-bar"><div class="sent-dot" style="left:80%;background:#1f9b52"></div></div>
+    <div class="sent-tags">
+      <span class="sent-tag st-bajista">Bajista</span>
+      <span class="sent-tag st-neutro">Neutral</span>
+      <span class="sent-tag" style="background:rgba(31,122,77,0.15);border:1px solid rgba(31,155,82,0.35);color:#1a6b3c;font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:2px">&#9679; Alcista (Inmune)</span>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Performance</span><span class="st-sub">&middot; Cierre 27 Mar 2026</span><div class="st-line"></div></div>
+  <div class="g6040">
+    <div class="card">
+      <table class="ptbl">
+        <thead><tr><th>Instrumento</th><th>Nivel</th><th>Var. Semana</th><th>vs Benchmark</th></tr></thead>
+        <tbody>
+          <tr><td>USD/PYG</td><td class="t-fl">~6,510</td><td class="t-up">&rarr; estable</td><td class="t-up">M&aacute;s estable LATAM</td></tr>
+          <tr><td>Eurobono PYG 2038</td><td class="t-fl">8.50% YTM</td><td class="t-up">&rarr; sin cambio</td><td class="t-up">Real yield +5.4%</td></tr>
+          <tr><td>Eurobono USD 2033</td><td class="t-fl">6.80% YTM</td><td class="t-up">&rarr; estable</td><td class="t-up">Spread ajustado</td></tr>
+          <tr><td>SOYBEAN</td><td class="t-fl">upgrade OW</td><td class="t-up">Brent beneficia</td><td class="t-up">Exportaciones alza</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="lv-row"><span class="lv-k">PIB 2025 confirmado</span><span class="lv-v g">6.0% &mdash; l&iacute;der LATAM</span></div>
+      <div class="lv-row"><span class="lv-k">D&eacute;ficit fiscal 2025</span><span class="lv-v g">&lt;2% PIB</span></div>
+      <div class="lv-row"><span class="lv-k">Itaip&uacute; matriz energ.&eacute;t.</span><span class="lv-v g">70%+ &rarr; Brent &asymp;0%</span></div>
+      <div class="lv-row"><span class="lv-k">Eurobono PYG 2038 tasa real</span><span class="lv-v g">+5.4% &mdash; l&iacute;der regi&oacute;n</span></div>
+      <div class="lv-row"><span class="lv-k">Eurobono PYG soporte</span><span class="lv-v g">YTM 8.20%</span></div>
+      <div class="lv-row"><span class="lv-k">XAUUSD soporte</span><span class="lv-v g">$4,373 (F38.2%)</span></div>
+      <div class="lv-row"><span class="lv-k">SOYBEAN soporte t&eacute;cnico</span><span class="lv-v c">$9.80&ndash;10.00/bu</span></div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Noticias de la Semana</span><span class="st-sub">&middot; Filtrado para Paraguay</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="nc pos">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">Paraguay &middot; Macro</div>
+      <div class="nc-title">Paraguay inmune al Brent $113 &mdash; Itaip&uacute; cubre 70%+ de la energ&iacute;a</div>
+      <div class="nc-body">Mientras el resto de LATAM sufre inflaci&oacute;n energ&eacute;tica por Brent $113, Paraguay genera su electricidad en Itaip&uacute; (hidroel&eacute;ctrica). Costo energ&eacute;tico casi nulo. Ventaja competitiva estructural.</div>
+      <div class="nc-arrow">&rarr; &Uacute;nico mercado LATAM sin impacto directo del Hormuz</div>
+    </div>
+    <div class="nc pos">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">Paraguay &middot; PIB</div>
+      <div class="nc-title">PIB 2025 confirmado en 6.0% &mdash; l&iacute;der absoluto de Am&eacute;rica Latina</div>
+      <div class="nc-body">Paraguay crece 2x el promedio LATAM. D&eacute;ficit fiscal &lt;2% PIB. Deuda/PIB en m&iacute;nimos de 5 a&ntilde;os. Guaraní es la moneda m&aacute;s estable de la regi&oacute;n. Agro y energ&iacute;a como motores.</div>
+      <div class="nc-arrow">&rarr; Mejor risk/reward soberano de LATAM seg&uacute;n consenso de analistas</div>
+    </div>
+    <div class="nc hi">
+      <div class="nc-stars">&#9733;&#9733;&#9734;</div>
+      <div class="nc-tag">Paraguay &middot; Renta Fija</div>
+      <div class="nc-title">Eurobono PYG 2038 al 8.50% &mdash; real yield +5.4% lidera LATAM</div>
+      <div class="nc-body">Emitido en guaraní con cobertura cambiaria incluida. Tasa real +5.4% = mejor en la regi&oacute;n. Respaldado por crecimiento 6% y d&eacute;ficit fiscal controlado. Sin exposici&oacute;n directa a crisis Hormuz.</div>
+      <div class="nc-arrow">&rarr; Combinaci&oacute;n &uacute;nica: alto rendimiento + bajo riesgo relativo</div>
+    </div>
+    <div class="nc hi">
+      <div class="nc-stars">&#9733;&#9733;&#9734;</div>
+      <div class="nc-tag">Global &middot; Soja</div>
+      <div class="nc-title">Soja upgrade a OW &mdash; Brent alto beneficia insumos competitivos Paraguay</div>
+      <div class="nc-body">Paraguay es el 4&ordm; exportador mundial de soja. Brent alto = costos de transporte suben globalmente = Paraguay con Itaip&uacute; tiene ventaja de costo sobre competidores. Exportaciones proyectan alza 8&ndash;12%.</div>
+      <div class="nc-arrow">&rarr; SOYBEAN upgrade a OW &middot; exposici&oacute;n directa v&iacute;a Libertex</div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Escenarios</span><span class="st-sub">&middot; Semana 30 Mar &ndash; 4 Abr</span><div class="st-line"></div></div>
+  <div class="g3">
+    <div class="sc-box b"><div class="sc-lbl">Escenario Base</div><div class="sc-prob">60%</div><div class="sc-txt">NFP neutro. DXY lateral 99&ndash;101. Eurobono PYG 2038 carry 8.50% sostenido. Soja lateral. XAUUSD $4,373&ndash;4,600. Paraguay inmune a volatilidad externa.</div></div>
+    <div class="sc-box bu"><div class="sc-lbl">Alcista</div><div class="sc-prob">28%</div><div class="sc-txt">NFP d&eacute;bil &rarr; DXY cae &rarr; EM rally &rarr; spreads PYG comprimen &rarr; Eurobono 2038 sube precio 4&ndash;6%. Soja sube con d&oacute;lar d&eacute;bil. XAUUSD $4,695+.</div></div>
+    <div class="sc-box be"><div class="sc-lbl">Bajista</div><div class="sc-prob">12%</div><div class="sc-txt">Powell muy hawkish + DXY 103+. Flujos EM salida general. Eurobono PYG bajo presi&oacute;n precio (aunque fundamentales Paraguay intactos). Solo riesgo es externo.</div></div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Lectura de Apertura</span><span class="st-sub">&middot; 30 Mar 2026</span><div class="st-line"></div></div>
+  <div class="cg">
+    <div class="cg-lbl">Comentario del Gestor</div>
+    <div class="cg-text">&ldquo;Paraguay es esta semana la historia m&aacute;s clara de la regi&oacute;n: PIB 6%, d&eacute;ficit &lt;2%, guaraní estable, y CERO impacto del Hormuz gracias a Itaip&uacute;. Mientras Chile, Per&uacute; y Ecuador lidian con inflaci&oacute;n energ&eacute;tica, Paraguay opera en una burbuja de estabilidad macro. El Eurobono PYG 2038 al 8.50% con real yield +5.4% es el mejor riesgo/retorno soberano de Am&eacute;rica Latina hoy. La &uacute;nica vulnerabilidad de Paraguay es externa: si DXY sube mucho, los spreads EM se comprimen. Pero incluso en ese escenario, el carry del 8.50% protege el retorno.&rdquo;</div>
+  </div>
+</div>
+
+<div style="background:var(--navy2);padding:10px 28px;border-top:1px solid rgba(147,133,101,0.2);border-bottom:1px solid rgba(147,133,101,0.2)">
+  <span style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold3)">&#8212; Radar de Activos &mdash; Posicionamiento HNWI Paraguay</span>
+</div>
+
+<div class="body">
+  <div class="st" style="margin-top:0"><div class="st-bar"></div><span class="st-text">Radar de Mercados</span><span class="st-sub">&middot; Qu&eacute; seguir &middot; Por qu&eacute; importa para Paraguay</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="rc ow">
+      <div class="rc-head">
+        <div class="rc-cat">Local &middot; Renta Fija Soberana PYG</div>
+        <div class="rc-name">Eurobono PYG 2038</div>
+        <div class="rc-price">8.50% YTM</div>
+        <div class="rc-chg ac">real yield +5.4% &middot; l&iacute;der LATAM</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag local">LOCAL</span> OW &middot; mejor R:R soberano regi&oacute;n</div>
+        <div class="rc-text">Emitido en guaraní con cobertura cambiaria. Real yield +5.4% = mejor en LATAM. Respaldado por PIB 6% y d&eacute;ficit &lt;2% PIB. Sin exposici&oacute;n al ciclo energ&eacute;tico (Itaip&uacute;). Carry compensa riesgo EM global.</div>
+        <div class="rc-arrow">&rarr; NFP d&eacute;bil + DXY cae = apreciaci&oacute;n de precio adicional</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+    <div class="rc ow">
+      <div class="rc-head">
+        <div class="rc-cat">Local &middot; Renta Fija Soberana USD</div>
+        <div class="rc-name">Eurobono USD 2033</div>
+        <div class="rc-price">6.80% YTM</div>
+        <div class="rc-chg ac">spread ajustado &middot; comprensi&oacute;n posible</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag local">LOCAL</span> OW &middot; exposici&oacute;n USD soberana PYG</div>
+        <div class="rc-text">Denominado en USD: protege contra depreci&oacute;n PYG. Respaldado por los mismos fundamentales macro s&oacute;lidos. Spread sobre UST10Y es atractivo dada la solidez fiscal. Complementario al PYG 2038.</div>
+        <div class="rc-arrow">&rarr; Diversificaci&oacute;n USD dentro de cartera Paraguay</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+    <div class="rc ow">
+      <div class="rc-head">
+        <div class="rc-cat">Internacional &middot; Metal Precioso</div>
+        <div class="rc-name">XAUUSD &mdash; Oro CFD</div>
+        <div class="rc-price">$4,490</div>
+        <div class="rc-chg dn">&minus;2.8% sem &middot; &minus;20% vs ATH $5,595</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">INTL (Libertex)</span> OW &middot; hedge geopol&iacute;tico global</div>
+        <div class="rc-text">Aunque Paraguay es inmune al Brent, el riesgo geopol&iacute;tico global sigue activo. XAUUSD como hedge puro contra incertidumbre sistémica. RSI recupera sobrevendido. Soporte $4,373 intacto.</div>
+        <div class="rc-arrow">&rarr; NFP d&eacute;bil = rebote directo $4,695</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+    <div class="rc ow">
+      <div class="rc-head">
+        <div class="rc-cat">Internacional &middot; Commodity Agro</div>
+        <div class="rc-name">SOYBEAN &mdash; Soja Cash</div>
+        <div class="rc-price">Upgrade OW</div>
+        <div class="rc-chg ac">4&ordm; exportador mundial &middot; ventaja Itaip&uacute;</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">INTL (Libertex)</span> Upgrade de Neutral a OW</div>
+        <div class="rc-text">Paraguay 4&ordm; exportador mundial soja. Brent $113 = transporte caro globalmente = ventaja competitiva de costo para Paraguay con energ&iacute;a barata de Itaip&uacute;. Exportaciones proyectan alza 8&ndash;12% en 2026.</div>
+        <div class="rc-arrow">&rarr; Exposici&oacute;n v&iacute;a CFD SOYBEAN en Libertex</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Catalizadores Institucionales</span><div class="st-line"></div></div>
+  <ul class="ci-list" style="margin-bottom:0">
+    <li class="ci"><span class="ci-n">1.</span><span class="ci-t"><strong>Paraguay: &uacute;nico mercado LATAM inmune al Brent $113.</strong> PIB 6% + d&eacute;ficit &lt;2% + Itaip&uacute; 70% energ&iacute;a = mejor risk/reward soberano de la regi&oacute;n. Cada semana sin posici&oacute;n = 8.50% de carry perdido.</span></li>
+    <li class="ci"><span class="ci-n">2.</span><span class="ci-t"><strong>NFP 3 Abr (viernes):</strong> d&eacute;bil (&lt;100K) &rarr; DXY cae &rarr; spreads EM comprimen &rarr; Eurobono PYG 2038 sube precio 3&ndash;5% + carry 8.50% = retorno total semana &gt;4%. Fuerte = solo carry, sin comprensi&oacute;n.</span></li>
+    <li class="ci"><span class="ci-n">3.</span><span class="ci-t"><strong>Deadline Ir&aacute;n 6 Abr:</strong> si Hormuz abre &rarr; Brent cae &rarr; ventaja Itaip&uacute; se reduce relativamente. Si no abre &rarr; Brent $120+ &rarr; ventaja Paraguay vs LATAM se ampl&iacute;a a&uacute;n m&aacute;s.</span></li>
+    <li class="ci"><span class="ci-n">4.</span><span class="ci-t"><strong>Exportaciones soja Paraguay 2026:</strong> pr&oacute;ximo reporte mensual del BCP. Volumen + precio = confirmar o ampliar posici&oacute;n SOYBEAN. Itaip&uacute; = ventaja estructural de costo sobre Brasil y Argentina.</span></li>
+    <li class="ci"><span class="ci-n">5.</span><span class="ci-t"><strong>BCP tasa de pol&iacute;tica monetaria 4.25%:</strong> muy por encima de inflaci&oacute;n proyectada 3.5% = real yield positivo en moneda local. Confirma atractivo del Eurobono PYG 2038 vs alternativas regionales.</span></li>
+  </ul>
+</div>
+
+<div style="background:var(--navy2);padding:10px 28px;border-top:1px solid rgba(147,133,101,0.2);border-bottom:1px solid rgba(147,133,101,0.2)">
+  <span style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold3)">&#8212; Posiciones Activas &amp; Agenda &mdash; Semana 30 Mar</span>
+</div>
+
+<div class="body">
+  <div class="st" style="margin-top:0"><div class="st-bar"></div><span class="st-text">Top-4 Recomendaciones</span><span class="st-sub">&middot; Semana 30 Mar &ndash; 4 Abr 2026</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">01</span><div class="pc-info"><div class="pc-asset">Eurobono PYG 2038</div><div class="pc-cat">Local &middot; Renta Fija Soberana en Guaran&iacute;</div></div><div class="pc-badges"><span class="btag local">LOCAL</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">YTM act.</div><div class="pm-v">8.50%</div></div>
+        <div class="pm"><div class="pm-l">Real yield</div><div class="pm-v g">+5.4%</div></div>
+        <div class="pm"><div class="pm-l">Rating PYG</div><div class="pm-v c">BB+</div></div>
+        <div class="pm"><div class="pm-l">PIB PYG</div><div class="pm-v a">6.0%</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">6&ndash;24 m.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">Mejor R:R soberano LATAM &middot; carry + apreciaci&oacute;n PYG potencial</div>
+        <div class="pc-text">Real yield +5.4% = nadie en LATAM ofrece esto con estos fundamentales. <strong>PIB 6% + d&eacute;ficit &lt;2% + Itaip&uacute; = inmune al Brent. Cada d&iacute;a de carry = 8.50%/365 en PYG.</strong></div>
+        <div class="pc-note">&#9888; Riesgo: DXY muy fuerte = presi&oacute;n precio (no carry). Diversificar con USD 2033.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">02</span><div class="pc-info"><div class="pc-asset">XAUUSD &mdash; Gold CFD</div><div class="pc-cat">Internacional &middot; Metal Precioso / Hedge</div></div><div class="pc-badges"><span class="btag intl">INTL (Libertex)</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Entrada</div><div class="pm-v">$4,373&ndash;4,520</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">$4,695&ndash;5,000</div></div>
+        <div class="pm"><div class="pm-l">Stop</div><div class="pm-v r">$4,200</div></div>
+        <div class="pm"><div class="pm-l">R:R</div><div class="pm-v a">&asymp;1:2.0</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">4&ndash;8 sem.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">Hedge riesgo geopol&iacute;tico global &middot; RSI recuperando</div>
+        <div class="pc-text">Paraguay inmune al Brent pero no al riesgo sist&eacute;mico global. <strong>XAUUSD es el &uacute;nico hedge puro disponible. NFP d&eacute;bil &rarr; rebote $4,695. Tesis institucional $6,000&ndash;6,200 intacta.</strong></div>
+        <div class="pc-note">&#9888; Stop $4,200. Reducir si NFP fuerte + Powell hawkish confirman.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">03</span><div class="pc-info"><div class="pc-asset">Eurobono USD 2033</div><div class="pc-cat">Local &middot; Renta Fija Soberana USD</div></div><div class="pc-badges"><span class="btag local">LOCAL</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">YTM act.</div><div class="pm-v">6.80%</div></div>
+        <div class="pm"><div class="pm-l">Denominac.</div><div class="pm-v g">USD</div></div>
+        <div class="pm"><div class="pm-l">Spread UST</div><div class="pm-v a">+235pbs</div></div>
+        <div class="pm"><div class="pm-l">R.total</div><div class="pm-v a">8&ndash;10%</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">6&ndash;18 m.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">Complementario al PYG 2038 &middot; diversificaci&oacute;n cambiaria</div>
+        <div class="pc-text">Denominado en USD: protege contra escenario DXY fuerte. <strong>Mismos fundamentales s&oacute;lidos que respaldan el PYG 2038. Spread 235pbs sobre UST10Y atractivo para rating BB+.</strong></div>
+        <div class="pc-note">&#9888; Correlaci&oacute;n positiva con spreads EM globales. Monitorear DXY y EMBI.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">04</span><div class="pc-info"><div class="pc-asset">SOYBEAN &mdash; Soja Cash</div><div class="pc-cat">Internacional &middot; Commodity Agro / CFD</div></div><div class="pc-badges"><span class="btag intl">INTL (Libertex)</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Exposici&oacute;n</div><div class="pm-v">Ag&iacute;cola</div></div>
+        <div class="pm"><div class="pm-l">PYG export.</div><div class="pm-v g">4&ordm; mundial</div></div>
+        <div class="pm"><div class="pm-l">Ventaja</div><div class="pm-v a">Itaip&uacute;</div></div>
+        <div class="pm"><div class="pm-l">Alza est.</div><div class="pm-v g">8&ndash;12%</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">3&ndash;6 m.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">Upgrade Neutral &rarr; OW &middot; Brent alto beneficia competitividad</div>
+        <div class="pc-text">Brent $113 = costos log&iacute;sticos globales suben. Paraguay con Itaip&uacute; tiene costo energ&eacute;tico m&iacute;nimo = <strong>ventaja competitiva vs Brasil y Argentina. Exportaciones soja alza 8&ndash;12% en 2026.</strong></div>
+        <div class="pc-note">&#9888; Riesgo: sequ&iacute;a regional. Monitorear ENSO y lluvias en la regi&oacute;n.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Calendario Econ&oacute;mico</span><span class="st-sub">&middot; Semana 30 Mar &ndash; 6 Abr 2026 &middot; Filtrado para Paraguay</span><div class="st-line"></div></div>
+  <div class="atbl-card">
+    <table class="atbl">
+      <thead><tr><th>Fecha</th><th>Evento</th><th>Impacto Paraguay</th></tr></thead>
+      <tbody>
+        <tr><td>Mar 31</td><td><span class="imp md"></span>China PMI Manufacturero mar</td><td>Demanda soja China &rarr; exportaciones PYG</td></tr>
+        <tr><td>Mar 31</td><td><span class="imp md"></span>JOLTS Empleos EE.UU. feb</td><td>Anticipa NFP &middot; DXY &rarr; spreads Eurobono</td></tr>
+        <tr><td>Abr 01</td><td><span class="imp lo"></span>EIA Inventarios petr&oacute;leo</td><td>Brent direcci&oacute;n (impacto m&iacute;nimo PYG)</td></tr>
+        <tr><td>Abr 02</td><td><span class="imp hi"></span>Powell speech <span class="kw">KEY</span></td><td>DXY &rarr; spreads EM &rarr; Eurobono PYG precio</td></tr>
+        <tr><td>Abr 03</td><td><span class="imp hi"></span>NFP N&oacute;minas no agr&iacute;colas <span class="kw">KEY</span></td><td>DXY &rarr; EMBI &rarr; Eurobono PYG &amp; USD precio</td></tr>
+        <tr><td>Abr 06</td><td><span class="imp md"></span>Deadline Ir&aacute;n Hormuz <span class="kw bin">BINARY</span></td><td>Brent &rarr; ventaja Itaip&uacute; (ampl&iacute;a o reduce)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-disc">&#9888; Informe con fines exclusivamente informativos. No constituye asesor&iacute;a financiera personalizada. Las inversiones implican riesgos incluyendo p&eacute;rdida del capital. Liberty Finance no asume responsabilidad por decisiones basadas en este an&aacute;lisis.</div>
+  <div class="footer-next" style="margin-left:20px">Liberty Finance &middot; A Legacy with Future</div>
+</div>
+
+</div>
+</body>
+</html>

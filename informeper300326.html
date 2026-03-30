@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — Weekly Report Perú · 30 Mar 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Barlow:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#001337;--navy2:#00193f;--navy3:#002050;
+  --gold:#938565;--gold2:#b3a993;--gold3:#c4b89a;--gold-d:#7a6c52;
+  --w:#f0ede6;--w90:rgba(240,237,230,0.9);--w60:rgba(240,237,230,0.6);--w35:rgba(240,237,230,0.35);
+  --ink:#1c1c2e;--ink2:#383850;--ink3:#64648a;
+  --bg:#eae7e0;--bg2:#f4f2ed;
+  --card:#ffffff;--card-bg:#f8f6f2;
+  --bdr:rgba(0,0,0,0.09);--bdr2:rgba(0,0,0,0.15);
+  --green:#1a6b3c;--green2:#1f9b52;--green-bg:#e8f5ee;
+  --red:#a02020;--red2:#c93030;--red-bg:#faeaea;
+  --amber:#8a5a18;--amber2:#c47820;--amber-bg:#fdf3e3;
+  --blue:#1a4080;--blue2:#2a68c4;--blue-bg:#e8f0fa;
+  --page-w:780px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#1a1e2e}
+body{font-family:'Barlow',sans-serif;background:#1a1e2e;min-height:100vh;padding:28px 16px 56px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--page-w);margin:0 auto;box-shadow:0 12px 80px rgba(0,0,0,0.8)}
+
+/* ── DARK HEADER ── */
+.ph{background:var(--navy2);border-bottom:2px solid rgba(147,133,101,0.35);padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+.ph-brand{display:flex;align-items:center;gap:14px}
+.ph-logo{display:flex;flex-direction:column}
+.ph-l1{font-size:22px;font-weight:700;color:var(--w);letter-spacing:0.1em;line-height:1}
+.ph-l2{font-size:8px;font-weight:400;color:var(--gold3);letter-spacing:0.35em;text-transform:uppercase;margin-top:2px}
+.ph-vsep{width:1px;height:40px;background:rgba(147,133,101,0.3)}
+.ph-meta{flex:1;padding-left:0}
+.ph-t{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--w90)}
+.ph-s{font-size:10px;color:var(--gold3);margin-top:2px;letter-spacing:0.04em}
+.ph-d{font-size:9px;color:var(--w35);text-transform:uppercase;letter-spacing:0.08em;margin-top:1px}
+.ph-right{text-align:right;flex-shrink:0}
+.ph-sent-badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:2px;background:rgba(196,120,32,0.2);border:1px solid rgba(196,120,32,0.45);color:#e8a840;letter-spacing:0.04em;display:inline-block;margin-bottom:4px}
+.ph-pg{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--w35);letter-spacing:0.08em}
+
+/* ── DARK TICKER ── */
+.ticker{background:var(--navy3);border-bottom:1px solid rgba(147,133,101,0.18);padding:0 28px;display:flex;overflow-x:auto;scrollbar-width:none}
+.ticker::-webkit-scrollbar{display:none}
+.tk{padding:10px 20px 10px 0;margin-right:20px;border-right:1px solid rgba(147,133,101,0.15);white-space:nowrap;flex-shrink:0}
+.tk:last-child{border-right:none;margin-right:0}
+.tk-l{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(196,184,154,0.55);display:block;margin-bottom:2px}
+.tk-v{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;color:#fff}
+.tk-c{font-size:10px;font-weight:500;margin-left:4px}
+.up{color:#34c97a}.dn{color:#e05555}.fl{color:rgba(255,255,255,0.38)}.ac{color:var(--gold3)}
+
+/* ── LIGHT BODY ── */
+.body{background:var(--bg);padding:24px 28px 32px}
+
+/* ── SENTIMENT BAR ── */
+.sentinel{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:12px 18px;display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.sent-l{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);white-space:nowrap}
+.sent-bar{flex:1;height:6px;background:linear-gradient(to right,var(--red2) 0%,#d4a020 35%,rgba(100,100,100,0.15) 50%,#1f9b52 100%);border-radius:3px;position:relative}
+.sent-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:13px;height:13px;border:3px solid var(--card);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.25)}
+.sent-tags{display:flex;gap:7px;flex-shrink:0}
+.sent-tag{font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:2px;letter-spacing:0.04em}
+.st-bajista{background:var(--red-bg);border:1px solid rgba(168,40,40,0.25);color:var(--red)}
+.st-neutro{background:var(--card-bg);border:1px solid var(--bdr2);color:var(--ink3);font-weight:600}
+.st-riskoff{background:var(--card-bg);border:1px solid var(--bdr);color:var(--ink3)}
+
+/* ── SECTION TITLE ── */
+.st{display:flex;align-items:center;gap:12px;margin-bottom:15px;margin-top:26px}
+.st:first-of-type{margin-top:0}
+.st-bar{width:4px;height:22px;background:var(--gold-d);border-radius:2px;flex-shrink:0}
+.st-text{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;font-weight:500;color:var(--ink)}
+.st-sub{font-size:9.5px;font-family:'Barlow',sans-serif;font-style:normal;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3)}
+.st-line{flex:1;height:1px;background:var(--bdr2)}
+
+/* ── GRIDS ── */
+.g6040{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:20px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+
+/* ── WHITE CARD BASE ── */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+
+/* ── PERFORMANCE TABLE ── */
+.ptbl{width:100%;border-collapse:collapse}
+.ptbl th{padding:8px 12px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);background:var(--card-bg);border-bottom:1px solid var(--bdr)}
+.ptbl td{padding:10px 12px;border-bottom:1px solid var(--bdr);font-size:12.5px;color:var(--ink2)}
+.ptbl td:first-child{font-weight:600;color:var(--ink)}
+.ptbl tbody tr:last-child td{border-bottom:none}
+.ptbl tbody tr:hover{background:var(--card-bg)}
+.t-up{color:var(--green);font-weight:600}.t-dn{color:var(--red);font-weight:600}.t-fl{color:var(--ink3)}
+
+/* ── TECH LEVELS ── */
+.lv-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid var(--bdr)}
+.lv-row:last-child{border-bottom:none}
+.lv-k{font-size:12px;color:var(--ink2)}
+.lv-v{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+.lv-v.r{color:var(--red)}.lv-v.g{color:var(--green)}.lv-v.c{color:var(--gold-d)}
+
+/* ── NEWS CARDS ── */
+.nc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:14px 17px}
+.nc.hi{border-left:4px solid var(--amber2)}.nc.pos{border-left:4px solid var(--green2)}
+.nc.neg{border-left:4px solid var(--red2)}.nc.neu{border-left:4px solid var(--blue2)}
+.nc-stars{font-size:11.5px;margin-bottom:4px;color:var(--amber2);letter-spacing:1px}
+.nc-tag{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.nc-title{font-size:13px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:8px}
+.nc-body{font-size:12px;color:var(--ink2);line-height:1.6}
+.nc-arrow{font-size:11.5px;color:var(--gold-d);margin-top:8px;font-style:italic;font-weight:500}
+
+/* ── SCENARIOS ── */
+.sc-box{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:16px 17px}
+.sc-box.b{border-top:3px solid var(--blue2)}.sc-box.bu{border-top:3px solid var(--green2)}.sc-box.be{border-top:3px solid var(--red2)}
+.sc-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.sc-prob{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;line-height:1;margin-bottom:8px}
+.sc-box.b .sc-prob{color:var(--blue)}.sc-box.bu .sc-prob{color:var(--green)}.sc-box.be .sc-prob{color:var(--red)}
+.sc-txt{font-size:12px;line-height:1.6;color:var(--ink2)}
+
+/* ── GESTOR COMMENT ── */
+.cg{background:var(--card);border:1px solid var(--bdr);border-left:4px solid var(--gold-d);border-radius:3px;padding:17px 22px;margin-bottom:0}
+.cg-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.cg-lbl::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.cg-text{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--ink);line-height:1.75;font-weight:500}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--bdr2);margin:28px 0 0}
+.section-block{padding:24px 28px 0;background:var(--bg)}
+
+/* ── RADAR CARDS ── */
+.rc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+.rc.ow{border-top:3px solid var(--green2)}.rc.wt{border-top:3px solid var(--amber2)}
+.rc.nt{border-top:3px solid var(--bdr2)}.rc.ac{border-top:3px solid var(--gold-d)}
+.rc-head{padding:14px 17px 12px;border-bottom:1px solid var(--bdr);background:var(--card-bg)}
+.rc-cat{font-size:9.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.rc-name{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:5px;line-height:1.2}
+.rc-price{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--ink);line-height:1}
+.rc-chg{font-size:11.5px;font-weight:600;margin-top:4px}
+.rc-chg.up{color:var(--green)}.rc-chg.dn{color:var(--red)}.rc-chg.fl{color:var(--ink3)}.rc-chg.ac{color:var(--gold-d)}
+.rc-body{padding:13px 17px 15px}
+.rc-bmk{font-size:10.5px;color:var(--ink3);margin-bottom:9px;padding-bottom:8px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.rc-text{font-size:12.5px;color:var(--ink2);line-height:1.65;margin-bottom:9px}
+.rc-arrow{font-size:11.5px;color:var(--gold-d);font-style:italic;font-weight:500}
+.badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-top:9px}
+.badge.ac{background:var(--green-bg);color:var(--green);border:1px solid rgba(26,107,60,0.2)}
+.badge.wt{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.2)}
+.badge.nt{background:var(--card-bg);color:var(--ink3);border:1px solid var(--bdr)}
+.btag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 7px;border-radius:2px}
+.btag.intl{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(26,64,128,0.15)}
+.btag.local{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.15)}
+
+/* ── CATALYST LIST ── */
+.ci-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ci{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:12px 16px;display:flex;gap:13px}
+.ci-n{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--gold-d);min-width:20px;flex-shrink:0;padding-top:1px}
+.ci-t{font-size:13px;color:var(--ink2);line-height:1.55}
+.ci-t strong{color:var(--ink);font-weight:700}
+
+/* ── POSITION CARDS ── */
+.pc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+.pc-head{padding:11px 15px 10px;border-bottom:1px solid var(--bdr);background:var(--card-bg);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.pc-n{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--gold-d);flex-shrink:0;padding-top:2px}
+.pc-info{flex:1}
+.pc-asset{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:2px}
+.pc-cat{font-size:10px;color:var(--ink3)}
+.pc-badges{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+.pc-met{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--bdr)}
+.pm{padding:7px 9px;border-right:1px solid var(--bdr)}.pm:last-child{border-right:none}
+.pm-l{font-size:7.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.pm-v{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);font-weight:700}
+.pm-v.g{color:var(--green)}.pm-v.r{color:var(--red)}.pm-v.a{color:var(--amber)}.pm-v.c{color:var(--gold-d)}
+.pc-body{padding:11px 15px 13px}
+.pc-bmk{font-size:11px;color:var(--ink3);margin-bottom:7px;padding-bottom:7px;border-bottom:1px dashed var(--bdr);font-style:italic}
+.pc-text{font-size:12.5px;color:var(--ink2);line-height:1.55}
+.pc-text strong{color:var(--ink);font-weight:700}
+.pc-note{margin-top:8px;padding-top:7px;border-top:1px dashed var(--bdr);font-size:10.5px;color:var(--ink3);line-height:1.5}
+
+/* ── AGENDA TABLE ── */
+.atbl-card{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden;margin-bottom:0}
+.atbl{width:100%;border-collapse:collapse}
+.atbl th{padding:8px 13px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);background:var(--card-bg);border-bottom:1px solid var(--bdr)}
+.atbl td{padding:10px 13px;border-bottom:1px solid var(--bdr);font-size:13px;vertical-align:middle;color:var(--ink2)}
+.atbl td:first-child{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-d);font-weight:700;white-space:nowrap}
+.atbl tbody tr:last-child td{border-bottom:none}
+.atbl tbody tr:hover{background:var(--card-bg)}
+.kw{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:2px;margin-left:5px;background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.2)}
+.kw.bin{background:var(--red-bg);color:var(--red);border:1px solid rgba(168,40,40,0.2)}
+.imp{display:inline-block;width:8px;height:8px;border-radius:50%;vertical-align:middle;margin-right:5px}
+.imp.hi{background:var(--red2)}.imp.md{background:var(--amber2)}.imp.lo{background:var(--green2)}
+
+/* ── DARK FOOTER ── */
+.footer{background:var(--navy2);border-top:1px solid rgba(147,133,101,0.2);padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.footer-disc{font-size:10px;color:rgba(196,184,154,0.45);line-height:1.5;flex:1}
+.footer-next{font-size:11px;color:var(--gold2);font-weight:500;text-align:right;flex-shrink:0}
+
+/* ── SECTION SEPARATOR ── */
+.sec-sep{height:1px;background:var(--bg2);margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="ph">
+  <div class="ph-brand">
+    <div class="ph-logo"><div class="ph-l1">LIBERTY</div><div class="ph-l2">Finance</div></div>
+    <div class="ph-vsep" style="margin:0 16px"></div>
+    <div style="flex:1">
+      <div class="ph-t">Reporte Semanal de Mercados &mdash; &#127477;&#127466; Per&uacute;</div>
+      <div class="ph-s">Semana 30 Mar &ndash; 4 Abr 2026 &middot; Dep. Research &amp; Estrategia</div>
+      <div class="ph-d">Asesor&iacute;a de Inversiones e Investigaci&oacute;n</div>
+    </div>
+  </div>
+  <div class="ph-right"><div class="ph-sent-badge">&#9888; Cauteloso</div></div>
+</div>
+
+<div class="ticker">
+  <div class="tk"><span class="tk-l">USD/PEN</span><span class="tk-v">3.4965</span><span class="tk-c dn">&#9660; m&aacute;x. 4 meses</span></div>
+  <div class="tk"><span class="tk-l">BAP Credicorp</span><span class="tk-v">~$292</span><span class="tk-c dn">&#9660; &minus;22% vs ATH</span></div>
+  <div class="tk"><span class="tk-l">Cobre LME</span><span class="tk-v">$5.47/lb</span><span class="tk-c fl">&#9654; presi&oacute;n</span></div>
+  <div class="tk"><span class="tk-l">Bono PEN 10Y</span><span class="tk-v">7.1% YTM</span><span class="tk-c ac">real +4.8%</span></div>
+  <div class="tk"><span class="tk-l">XAUUSD</span><span class="tk-v">$4,490</span><span class="tk-c dn">&#9660; &minus;2.8% sem</span></div>
+  <div class="tk"><span class="tk-l">BCRP TPM</span><span class="tk-v">4.25%</span><span class="tk-c ac">&#10230; pausa</span></div>
+</div>
+
+<div class="body">
+  <div class="sentinel">
+    <span class="sent-l">Sentimiento</span>
+    <div class="sent-bar"><div class="sent-dot" style="left:38%;background:#c47820"></div></div>
+    <div class="sent-tags">
+      <span class="sent-tag st-bajista">Bajista</span>
+      <span class="sent-tag st-neutro">&#9679; Cauteloso</span>
+      <span class="sent-tag st-riskoff">Risk-Off EM</span>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Performance</span><span class="st-sub">&middot; Cierre 27 Mar 2026</span><div class="st-line"></div></div>
+  <div class="g6040">
+    <div class="card">
+      <table class="ptbl">
+        <thead><tr><th>Instrumento</th><th>Cierre</th><th>Var. Semana</th><th>vs Benchmark</th></tr></thead>
+        <tbody>
+          <tr><td>USD/PEN</td><td class="t-fl">S/3.4965</td><td class="t-dn">+0.33% d&iacute;a</td><td class="t-dn">&minus;4.0% mes &middot; Sol d&eacute;bil</td></tr>
+          <tr><td>BAP Credicorp</td><td class="t-fl">~$292</td><td class="t-dn">&#9660; &minus;22% vs ATH</td><td class="t-up">P/E 9.2x &middot; descuento 35%</td></tr>
+          <tr><td>Cobre LME</td><td class="t-fl">~$5.47/lb</td><td class="t-fl">&rarr; flat</td><td class="t-fl">DXY 100 headwind</td></tr>
+          <tr><td>XAUUSD</td><td class="t-fl">$4,490</td><td class="t-dn">&minus;2.8%</td><td class="t-fl">RSI recuperando</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="lv-row"><span class="lv-k">USD/PEN rango semana</span><span class="lv-v c">3.45&ndash;3.55</span></div>
+      <div class="lv-row"><span class="lv-k">BAP soporte</span><span class="lv-v g">$275&ndash;285</span></div>
+      <div class="lv-row"><span class="lv-k">BAP resistencia</span><span class="lv-v r">$310&ndash;320</span></div>
+      <div class="lv-row"><span class="lv-k">Bono PEN 10Y YTM</span><span class="lv-v g">7.0&ndash;7.3%</span></div>
+      <div class="lv-row"><span class="lv-k">XAUUSD soporte</span><span class="lv-v g">$4,373 (F38.2%)</span></div>
+      <div class="lv-row"><span class="lv-k">XAUUSD objetivo</span><span class="lv-v c">$4,695&ndash;5,000</span></div>
+      <div class="lv-row"><span class="lv-k">BVN entrada condicional</span><span class="lv-v c">XAUUSD &gt;$4,800</span></div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Noticias de la Semana</span><span class="st-sub">&middot; Filtrado para Per&uacute;</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="nc pos">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">Per&uacute; &middot; Energ&iacute;a</div>
+      <div class="nc-title">Camisea 100% normalizado desde 14-Mar &mdash; gas fluye sin restricciones</div>
+      <div class="nc-body">El gasoducto Camisea operat&iacute;vo al 100%. Abastecimiento energ&eacute;tico garantizado para industria y exportaciones. Reduci&oacute; riesgo de racionamiento que pesaba sobre BVL y PEN.</div>
+      <div class="nc-arrow">&rarr; Remove un riesgo interno &middot; foco ahora en drivers externos</div>
+    </div>
+    <div class="nc neg">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">Global &middot; EM Risk</div>
+      <div class="nc-title">VIX 30.97 + Brent $113 &mdash; PEN &minus;4% en marzo &middot; Sol bajo presi&oacute;n</div>
+      <div class="nc-body">Risk-off global fuerza salida de emergentes. PEN toca m&aacute;ximos de 4 meses vs USD. BCRP interviene moderadamente. Cobre bajo presi&oacute;n DXY pesa sobre BVL y exportaciones.</div>
+      <div class="nc-arrow">&rarr; NFP d&eacute;bil = USD cae = PEN se fortalece a 3.38&ndash;3.42</div>
+    </div>
+    <div class="nc hi">
+      <div class="nc-stars">&#9733;&#9733;&#9734;</div>
+      <div class="nc-tag">Per&uacute; &middot; Renta Fija</div>
+      <div class="nc-title">Bonos PEN 10Y al 7.1% (real +4.8%) &mdash; mejor carry soberano LATAM</div>
+      <div class="nc-body">BCRP mantiene 4.25% (pausa). Bono PEN al 7.1% YTM = real yield +4.8% = mejor tasa real soberana de Am&eacute;rica Latina con rating BBB. Sin competencia regional en esta relaci&oacute;n retorno/riesgo.</div>
+      <div class="nc-arrow">&rarr; Acumular mientras BCRP en pausa y yield &gt;7%</div>
+    </div>
+    <div class="nc pos">
+      <div class="nc-stars">&#9733;&#9733;&#9734;</div>
+      <div class="nc-tag">Per&uacute; &middot; Mercado</div>
+      <div class="nc-title">BAP Credicorp P/E 9.2x vs media hist&oacute;rica 12&ndash;14x &mdash; descuento 35%</div>
+      <div class="nc-body">ROE 17.5%, dividendo 4.2%, expansi&oacute;n en Chile y Colombia. Adquisici&oacute;n Helm Bank en curso. Primer banco EM en recuperar en ciclos risk-on. Valuaci&oacute;n en m&iacute;nimos de 2 a&ntilde;os.</div>
+      <div class="nc-arrow">&rarr; Acumular gradualmente en zona $275&ndash;295</div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Escenarios</span><span class="st-sub">&middot; Semana 30 Mar &ndash; 4 Abr</span><div class="st-line"></div></div>
+  <div class="g3">
+    <div class="sc-box b"><div class="sc-lbl">Escenario Base</div><div class="sc-prob">55%</div><div class="sc-txt">NFP neutro ~150K. PEN en 3.45&ndash;3.55. BAP consolida $285&ndash;305. Bonos PEN 7.0&ndash;7.2%. Cobre estable $5.40&ndash;5.60.</div></div>
+    <div class="sc-box bu"><div class="sc-lbl">Alcista</div><div class="sc-prob">25%</div><div class="sc-txt">China PMI &gt;50 + NFP &lt;80K &rarr; USD cae &rarr; PEN 3.38. BAP sube a $310. Cobre rebota &rarr; SCCO se&ntilde;al. XAUUSD $4,695+.</div></div>
+    <div class="sc-box be"><div class="sc-lbl">Bajista</div><div class="sc-prob">20%</div><div class="sc-txt">Powell hawkish + China PMI &lt;50. DXY 102+. PEN 3.60+. Cobre pierde $5.20. BAP test $275. XAUUSD $4,200.</div></div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Lectura de Apertura</span><span class="st-sub">&middot; 30 Mar 2026</span><div class="st-line"></div></div>
+  <div class="cg">
+    <div class="cg-lbl">Comentario del Gestor</div>
+    <div class="cg-text">&ldquo;Per&uacute; es el mercado m&aacute;s complejo de la semana: VIX 31 limita flujos EM, PEN d&eacute;bil (&minus;4% en el mes), y cobre bajo presi&oacute;n. Sin embargo, los fundamentales son s&oacute;lidos. BAP en P/E 9.2x es una de las mejores oportunidades de valor en mercados emergentes este a&ntilde;o. Los Bonos PEN al 7.1% real son insuperables en LATAM. Estrategia: sesgo defensivo a corto plazo con XAUUSD + Bonos PEN, y acumulaci&oacute;n gradual de BAP en zona $275&ndash;295. NFP viernes define si activamos m&aacute;s posiciones.&rdquo;</div>
+  </div>
+</div>
+
+<div style="background:var(--navy2);padding:10px 28px;border-top:1px solid rgba(147,133,101,0.2);border-bottom:1px solid rgba(147,133,101,0.2)">
+  <span style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold3)">&#8212; Radar de Activos &mdash; Posicionamiento HNWI Per&uacute;</span>
+</div>
+
+<div class="body">
+  <div class="st" style="margin-top:0"><div class="st-bar"></div><span class="st-text">Radar de Mercados</span><span class="st-sub">&middot; Qu&eacute; seguir &middot; Por qu&eacute; importa para Per&uacute;</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="rc ow">
+      <div class="rc-head">
+        <div class="rc-cat">Internacional &middot; Metal Precioso / Hedge PEN</div>
+        <div class="rc-name">XAUUSD &mdash; Oro CFD</div>
+        <div class="rc-price">$4,490</div>
+        <div class="rc-chg dn">&minus;2.8% sem &middot; &minus;20% vs ATH $5,595</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">INTL (Libertex)</span> OW &middot; doble cobertura PEN + inflaci&oacute;n</div>
+        <div class="rc-text">Con PEN &minus;4% en el mes, XAUUSD act&uacute;a como cobertura de moneda Y de inflaci&oacute;n simult&aacute;neamente. RSI recupera sobrevendido. Soporte $4,373 (F38.2%). NFP d&eacute;bil = rebote directo $4,695.</div>
+        <div class="rc-arrow">&rarr; Mejor activo de cobertura en cartera peruana esta semana</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+    <div class="rc wt">
+      <div class="rc-head">
+        <div class="rc-cat">NYSE &middot; Finanzas Per&uacute;</div>
+        <div class="rc-name">BAP &mdash; Credicorp</div>
+        <div class="rc-price">~$292</div>
+        <div class="rc-chg dn">&minus;22% vs ATH $375 &middot; P/E 9.2x</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">INTL (Libertex)</span> Acumular gradual &middot; zona $275&ndash;295</div>
+        <div class="rc-text">P/E 9.2x vs media hist&oacute;rica 12&ndash;14x = descuento 35%. ROE 17.5%. Dividendo 4.2%. Adquisici&oacute;n Helm Bank. Primero en recuperar en ciclos EM risk-on. NFP d&eacute;bil = USD cae = BAP sube 3&ndash;5%.</div>
+        <div class="rc-arrow">&rarr; Aumentar posici&oacute;n si BAP toca $275&ndash;285 esta semana</div>
+        <div class="badge wt">ACUMULAR</div>
+      </div>
+    </div>
+    <div class="rc ac">
+      <div class="rc-head">
+        <div class="rc-cat">Local &middot; Renta Fija BCRP</div>
+        <div class="rc-name">Bonos Tesoro PEN 10 a&ntilde;os</div>
+        <div class="rc-price">7.1% YTM</div>
+        <div class="rc-chg ac">real yield +4.8% &middot; l&iacute;der LATAM</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag local">LOCAL</span> OW &middot; mejor carry soberano Am&eacute;rica Latina</div>
+        <div class="rc-text">BCRP mantiene 4.25% (pausa por Brent alto). Real yield +4.8% = mejor tasa real soberana LATAM con rating BBB. Carry sostenido mientras BCRP en pausa. Bono PEN = cobertura PEN d&eacute;bil + carry.</div>
+        <div class="rc-arrow">&rarr; Acumular mientras yield &gt;7% &middot; BCRP en pausa</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+    <div class="rc nt">
+      <div class="rc-head">
+        <div class="rc-cat">NYSE &middot; Miner&iacute;a Per&uacute; &middot; Oro y Plata</div>
+        <div class="rc-name">BVN &mdash; Buenaventura</div>
+        <div class="rc-price">P/NAV 0.65x</div>
+        <div class="rc-chg fl">descuento hist&oacute;rico &middot; condici&oacute;n: oro &gt;$4,800</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">NYSE</span> Sin posici&oacute;n &middot; condicional XAUUSD &gt;$4,800</div>
+        <div class="rc-text">BVN es el proxy peruano de oro y plata. P/NAV 0.65x = zona de acumulaci&oacute;n hist&oacute;rica. Condici&oacute;n: XAUUSD consolida sobre $4,800 por 2+ sesiones. NFP d&eacute;bil podr&iacute;a activar la se&ntilde;al.</div>
+        <div class="rc-arrow">&rarr; Se&ntilde;al activa si XAUUSD &gt;$4,800 con volumen</div>
+        <div class="badge nt">ESPERAR SE&Ntilde;AL</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Catalizadores Institucionales</span><div class="st-line"></div></div>
+  <ul class="ci-list" style="margin-bottom:0">
+    <li class="ci"><span class="ci-n">1.</span><span class="ci-t"><strong>BAP a P/E 9.2x es una de las mayores oportunidades de valor en EM 2026.</strong> Descuento 35% vs media hist&oacute;rica. ROE 17.5%. Dividendo 4.2%. El mercado est&aacute; equivocado en su valoraci&oacute;n actual.</span></li>
+    <li class="ci"><span class="ci-n">2.</span><span class="ci-t"><strong>Bonos PEN 10Y al 7.1% (real +4.8%) = nadie en LATAM ofrece esto con BBB rating.</strong> BCRP en pausa &rarr; carry sostenido. Cada d&iacute;a sin invertir = costo de oportunidad real.</span></li>
+    <li class="ci"><span class="ci-n">3.</span><span class="ci-t"><strong>NFP viernes 3 Abr:</strong> d&eacute;bil (&lt;100K) &rarr; USD cae &rarr; PEN 3.38&ndash;3.42 &rarr; BAP sube 3&ndash;5% &rarr; cobre rebota &rarr; SCCO se&ntilde;al. Ventana de 24 horas para posicionarse.</span></li>
+    <li class="ci"><span class="ci-n">4.</span><span class="ci-t"><strong>China PMI martes 31:</strong> si &gt;50 &rarr; cobre sube &rarr; SCCO/BVN se&ntilde;al &rarr; BVL sube &rarr; sol se fortalece. Driver directo para el sector minero peruano.</span></li>
+    <li class="ci"><span class="ci-n">5.</span><span class="ci-t"><strong>BCRP reuni&oacute;n mayo 2026:</strong> si NFP + Powell sugieren Fed dovish &rarr; BCRP m&aacute;s cercano a recorte &rarr; precio bonos PEN sube adicionalmente al carry actual.</span></li>
+  </ul>
+</div>
+
+<div style="background:var(--navy2);padding:10px 28px;border-top:1px solid rgba(147,133,101,0.2);border-bottom:1px solid rgba(147,133,101,0.2)">
+  <span style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold3)">&#8212; Posiciones Activas &amp; Agenda &mdash; Semana 30 Mar</span>
+</div>
+
+<div class="body">
+  <div class="st" style="margin-top:0"><div class="st-bar"></div><span class="st-text">Top-4 Recomendaciones</span><span class="st-sub">&middot; Semana 30 Mar &ndash; 4 Abr 2026</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">01</span><div class="pc-info"><div class="pc-asset">XAUUSD &mdash; Gold CFD</div><div class="pc-cat">Internacional &middot; Metal Precioso / Hedge PEN + inflaci&oacute;n</div></div><div class="pc-badges"><span class="btag intl">INTL (Libertex)</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Entrada</div><div class="pm-v">$4,373&ndash;4,520</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">$4,695&ndash;5,000</div></div>
+        <div class="pm"><div class="pm-l">Stop</div><div class="pm-v r">$4,200</div></div>
+        <div class="pm"><div class="pm-l">R:R</div><div class="pm-v a">&asymp;1:2.0</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">4&ndash;8 sem.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">OW &middot; doble cobertura PEN d&eacute;bil + Brent alto = inflaci&oacute;n</div>
+        <div class="pc-text">Con PEN &minus;4% en el mes, XAUUSD act&uacute;a como cobertura de moneda Y de inflaci&oacute;n simult&aacute;neamente. <strong>NFP d&eacute;bil &rarr; rebote $4,695. Tesis JP Morgan/UBS $6,000&ndash;6,200 intacta.</strong></div>
+        <div class="pc-note">&#9888; Stop $4,200. Reducir 50% si NFP fuerte + Powell hawkish confirman.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">02</span><div class="pc-info"><div class="pc-asset">BAP &mdash; Credicorp</div><div class="pc-cat">NYSE &middot; Finanzas Per&uacute; &middot; P/E 9.2x &middot; Div 4.2%</div></div><div class="pc-badges"><span class="btag intl">INTL (Libertex)</span><span class="badge wt">ACUMULAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Precio</div><div class="pm-v">~$292</div></div>
+        <div class="pm"><div class="pm-l">Acum. zona</div><div class="pm-v a">$275&ndash;295</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">$340&ndash;360</div></div>
+        <div class="pm"><div class="pm-l">R:R</div><div class="pm-v a">&asymp;1:2.5</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">3&ndash;6 m.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">P/E 9.2x vs media hist. 12&ndash;14x &middot; ROE 17.5% &middot; dividendo 4.2%</div>
+        <div class="pc-text">BAP = mejor banco de Per&uacute;. <strong>Descuento 35% vs media hist&oacute;rica. Si NFP d&eacute;bil &rarr; USD cae &rarr; BAP sube 3&ndash;5% en sesi&oacute;n.</strong> Primer banco EM en recuperar en ciclos risk-on.</div>
+        <div class="pc-note">&#9888; Acumular gradualmente. Aumentar posici&oacute;n si BAP toca $275&ndash;285 esta semana.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">03</span><div class="pc-info"><div class="pc-asset">Bonos Tesoro PEN 10 a&ntilde;os</div><div class="pc-cat">Local &middot; Renta Fija &middot; Mejor carry soberano LATAM</div></div><div class="pc-badges"><span class="btag local">LOCAL</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">YTM act.</div><div class="pm-v">7.1%</div></div>
+        <div class="pm"><div class="pm-l">Real yield</div><div class="pm-v g">+4.8%</div></div>
+        <div class="pm"><div class="pm-l">BCRP TPM</div><div class="pm-v c">4.25%</div></div>
+        <div class="pm"><div class="pm-l">Rating</div><div class="pm-v a">BBB</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">6&ndash;12 m.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">Mejor tasa real soberana LATAM &middot; BCRP en pausa &rarr; carry sostenido</div>
+        <div class="pc-text">BCRP 4.25% (pausa). Real yield +4.8% = l&iacute;der regional. <strong>Si BCRP recorta en mayo (dovish Fed) &rarr; precio del bono tambi&eacute;n sube. Carry + potencial capital gain.</strong></div>
+        <div class="pc-note">&#9888; Riesgo pol&iacute;tico peruano latente. Diversificar entre bonos PEN y USD.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">04</span><div class="pc-info"><div class="pc-asset">BVN &mdash; Buenaventura</div><div class="pc-cat">NYSE &middot; Miner&iacute;a Per&uacute; &middot; Oro y Plata</div></div><div class="pc-badges"><span class="btag intl">NYSE</span><span class="badge nt">ESPERAR SE&Ntilde;AL</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">P/NAV</div><div class="pm-v">0.65x</div></div>
+        <div class="pm"><div class="pm-l">Condici&oacute;n</div><div class="pm-v a">XAU&gt;$4,800</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">+25&ndash;35%</div></div>
+        <div class="pm"><div class="pm-l">R:R</div><div class="pm-v a">&asymp;1:2.8</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">8&ndash;16 sem.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">P/NAV 0.65x = zona acumulaci&oacute;n hist&oacute;rica &middot; proxy peruano de metales</div>
+        <div class="pc-text">BVN is el proxy peruano de oro y plata. <strong>Condici&oacute;n: XAUUSD consolida sobre $4,800 por 2+ sesiones.</strong> NFP d&eacute;bil viernes podr&iacute;a activar la se&ntilde;al directamente.</div>
+        <div class="pc-note">&#9888; No entrar hasta se&ntilde;al XAUUSD. Stop: cierre por debajo de $4,373.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Calendario Econ&oacute;mico</span><span class="st-sub">&middot; Semana 30 Mar &ndash; 6 Abr 2026 &middot; Filtrado para Per&uacute;</span><div class="st-line"></div></div>
+  <div class="atbl-card">
+    <table class="atbl">
+      <thead><tr><th>Fecha</th><th>Evento</th><th>Impacto Per&uacute;</th></tr></thead>
+      <tbody>
+        <tr><td>Mar 31</td><td><span class="imp md"></span>China PMI Manufacturero mar</td><td>Cobre LME &rarr; SCCO, BVN, BVL, PEN se&ntilde;al</td></tr>
+        <tr><td>Mar 31</td><td><span class="imp md"></span>JOLTS Empleos EE.UU. feb</td><td>Anticipa NFP &middot; DXY &rarr; PEN y BAP</td></tr>
+        <tr><td>Abr 01</td><td><span class="imp md"></span>EIA Inventarios petr&oacute;leo</td><td>Brent &rarr; inflaci&oacute;n &rarr; BCRP presi&oacute;n</td></tr>
+        <tr><td>Abr 02</td><td><span class="imp hi"></span>Powell speech <span class="kw">KEY</span></td><td>DXY &rarr; PEN &middot; bonos PEN precio &middot; BAP</td></tr>
+        <tr><td>Abr 03</td><td><span class="imp hi"></span>NFP N&oacute;minas no agr&iacute;colas <span class="kw">KEY</span></td><td>USD/PEN &middot; BAP &middot; XAUUSD &middot; todas posiciones</td></tr>
+        <tr><td>Abr 06</td><td><span class="imp hi"></span>Deadline Ir&aacute;n Hormuz <span class="kw bin">BINARY</span></td><td>Brent &rarr; inflaci&oacute;n &rarr; BCRP &middot; bonos PEN</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-disc">&#9888; Informe con fines exclusivamente informativos. No constituye asesor&iacute;a financiera personalizada. Las inversiones implican riesgos incluyendo p&eacute;rdida del capital. Liberty Finance no asume responsabilidad por decisiones basadas en este an&aacute;lisis.</div>
+  <div class="footer-next" style="margin-left:20px">Liberty Finance &middot; A Legacy with Future</div>
+</div>
+
+</div>
+</body>
+</html>
