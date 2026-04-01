@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — HNWI Wealth Advisory LATAM</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#070f1e;
+  --navy1:#0a1628;
+  --navy2:#0d1f3c;
+  --navy3:#0f2347;
+  --panel:#111d33;
+  --panel2:#152040;
+  --border:rgba(255,255,255,0.08);
+  --border2:rgba(255,255,255,0.13);
+  --gold:#c9a96e;
+  --gold2:#b8965a;
+  --gold3:#e8d5a3;
+  --gold-dim:rgba(201,169,110,0.15);
+  --silver:#8a9bb5;
+  --silver2:#c2cfe0;
+  --cream:#e8ecf2;
+  --cream2:rgba(232,236,242,0.55);
+  --muted:rgba(194,207,224,0.45);
+  --green:#22c55e;--green-dim:rgba(34,197,94,0.12);
+  --red:#ef4444;--red-dim:rgba(239,68,68,0.1);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,0.1);
+  --blue:#60a5fa;--blue-dim:rgba(96,165,250,0.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--cream);-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.6}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────────────────── */
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:500;line-height:1.15}
+.mono{font-family:'IBM Plex Mono',monospace}
+.up{color:var(--green)}.dn{color:var(--red)}.fl{color:var(--silver)}
+.gold{color:var(--gold)}
+
+/* ─── NAV ────────────────────────────────────────────────────────────── */
+nav{background:var(--navy);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-top{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;max-width:1440px;margin:0 auto}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;letter-spacing:0.04em;color:#fff}
+.brand-tag{font-size:9px;font-weight:500;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;opacity:0.8}
+.nav-links{display:flex;gap:0}
+.nav-link{font-size:12px;font-weight:500;color:var(--silver);padding:0 18px;height:52px;display:flex;align-items:center;letter-spacing:0.02em;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;text-decoration:none}
+.nav-link:hover{color:var(--cream);border-bottom-color:rgba(201,169,110,0.3)}
+.nav-link.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-lang{font-size:11px;color:var(--muted);letter-spacing:0.1em;cursor:pointer;padding:4px 8px;border:1px solid var(--border);transition:all 0.15s}
+.nav-lang:hover{border-color:var(--border2);color:var(--silver)}
+.btn-cta{background:var(--gold);color:var(--navy);padding:8px 20px;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.15s;white-space:nowrap}
+.btn-cta:hover{background:var(--gold3)}
+
+/* ticker */
+.ticker-bar{background:var(--panel);border-bottom:1px solid var(--border);padding:0 32px;overflow:hidden}
+.ticker-inner{display:flex;max-width:1440px;margin:0 auto}
+.tk{padding:6px 20px 6px 0;margin-right:20px;border-right:1px solid var(--border);white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:10px}
+.tk:last-child{border-right:none}
+.tk-l{font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase}
+.tk-v{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--cream2)}
+.tk-c{font-size:10px;font-family:'IBM Plex Mono',monospace}
+
+/* ─── LAYOUT HELPERS ─────────────────────────────────────────────────── */
+.container{max-width:1440px;margin:0 auto;padding:0 32px}
+.section{padding:56px 0;border-bottom:1px solid var(--border)}
+.section-sm{padding:40px 0;border-bottom:1px solid var(--border)}
+.label{font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.label::before{content:'';display:block;width:20px;height:1px;background:var(--gold);opacity:0.6}
+.panel{background:var(--panel);border:1px solid var(--border)}
+.panel2{background:var(--panel2);border:1px solid var(--border2)}
+
+/* grid utils */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.g-5050{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.g-4060{display:grid;grid-template-columns:2fr 3fr;gap:48px;align-items:start}
+.g-6040{display:grid;grid-template-columns:3fr 2fr;gap:48px;align-items:start}
+
+/* ─── HERO ───────────────────────────────────────────────────────────── */
+.hero{padding:64px 0 56px;background:var(--navy1)}
+.hero-split{display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start}
+.hero h1{font-size:48px;color:#fff;margin-bottom:16px;letter-spacing:-0.01em}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:15px;color:var(--cream2);line-height:1.75;margin-bottom:28px;max-width:520px}
+.hero-stats{display:flex;gap:32px;padding-top:24px;border-top:1px solid var(--border);margin-top:4px}
+.hero-stat-n{font-family:'IBM Plex Mono',monospace;font-size:22px;color:var(--gold);display:block;margin-bottom:2px}
+.hero-stat-l{font-size:11px;color:var(--muted);letter-spacing:0.04em}
+.hero-actions{display:flex;gap:12px;margin-bottom:28px}
+.btn-primary{background:var(--gold);color:var(--navy);padding:11px 28px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.15s}
+.btn-primary:hover{background:var(--gold3)}
+.btn-ghost{background:transparent;color:var(--cream2);padding:11px 28px;font-size:12px;font-weight:500;border:1px solid var(--border2);cursor:pointer;transition:all 0.15s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* seg card */
+.seg{background:var(--panel);border:1px solid var(--border2)}
+.seg-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.seg-head-l{font-size:10px;font-weight:600;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase}
+.seg-head-r{font-family:'IBM Plex Mono',monospace;font-size:18px;color:#fff}
+.seg-body{padding:20px}
+.range-wrap{margin-bottom:16px}
+.range-label{font-size:11px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
+input[type=range]{width:100%;accent-color:var(--gold);height:3px;cursor:pointer;margin-bottom:4px}
+.tier{padding:12px 16px;border:1px solid var(--border);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.15s}
+.tier:hover{border-color:rgba(201,169,110,0.3);background:rgba(201,169,110,0.04)}
+.tier.active{border-color:var(--gold);background:var(--gold-dim)}
+.tier-left h4{font-size:13px;font-weight:500;color:#fff;margin-bottom:2px}
+.tier-left p{font-size:11px;color:var(--muted)}
+.tier-badge{font-size:9px;font-weight:600;padding:3px 10px;letter-spacing:0.06em;text-transform:uppercase;border:1px solid}
+.tb-std{border-color:rgba(201,169,110,0.35);color:var(--gold);background:var(--gold-dim)}
+.tb-prm{border-color:rgba(96,165,250,0.35);color:var(--blue);background:var(--blue-dim)}
+.seg-cta{width:100%;background:var(--gold);color:var(--navy);padding:11px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;margin-top:4px}
+
+/* ─── DATA TABLE style panels ────────────────────────────────────────── */
+.dt-head{padding:10px 16px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.dt-head-l{font-size:10px;font-weight:600;letter-spacing:0.14em;color:var(--silver);text-transform:uppercase}
+.dt-head-r{font-size:9px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase}
+.dt-row{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;border-bottom:1px solid var(--border);transition:background 0.12s;cursor:pointer}
+.dt-row:last-child{border-bottom:none}
+.dt-row:hover{background:rgba(255,255,255,0.03)}
+.dt-name{font-size:12px;font-weight:500;color:var(--cream)}
+.dt-sub{font-size:10px;color:var(--muted);margin-top:1px}
+.dt-val{font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:right}
+.dt-val-sub{font-size:10px;color:var(--muted);margin-top:1px;text-align:right}
+.tag-local{font-size:9px;font-weight:600;padding:1px 7px;border:1px solid rgba(245,158,11,0.3);color:var(--amber);background:var(--amber-dim);letter-spacing:0.04em}
+.tag-intl{font-size:9px;font-weight:600;padding:1px 7px;border:1px solid rgba(96,165,250,0.3);color:var(--blue);background:var(--blue-dim);letter-spacing:0.04em}
+.tag-ow{font-size:9px;font-weight:600;padding:1px 7px;border:1px solid rgba(34,197,94,0.25);color:var(--green);background:var(--green-dim)}
+.tag-w{font-size:9px;font-weight:600;padding:1px 7px;border:1px solid rgba(201,169,110,0.3);color:var(--gold);background:var(--gold-dim)}
+.tag-n{font-size:9px;font-weight:600;padding:1px 7px;border:1px solid var(--border2);color:var(--silver);background:rgba(255,255,255,0.04)}
+
+/* ─── COUNTRY TABS ───────────────────────────────────────────────────── */
+.ctabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:24px}
+.ctab{padding:10px 20px;font-size:12px;font-weight:500;color:var(--silver);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;letter-spacing:0.02em}
+.ctab:hover{color:var(--cream)}
+.ctab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.products-note{padding:14px 16px;background:var(--gold-dim);border:1px solid rgba(201,169,110,0.2);margin-top:16px}
+.products-note p{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:var(--gold3)}
+
+/* ─── MERIDIAN SECTION ───────────────────────────────────────────────── */
+.meridian-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.merit-item{padding:20px;border:1px solid var(--border);border-left:2px solid var(--gold);display:flex;gap:16px}
+.merit-num{font-family:'Playfair Display',serif;font-size:32px;color:rgba(201,169,110,0.2);flex-shrink:0;line-height:1}
+.merit-body h4{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:4px}
+.merit-body p{font-size:12px;color:var(--muted);line-height:1.6}
+.perf-panel{background:var(--panel)}
+.perf-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline}
+.perf-title{font-size:10px;font-weight:600;letter-spacing:0.14em;color:var(--silver);text-transform:uppercase}
+.perf-val{font-family:'IBM Plex Mono',monospace;font-size:28px;color:var(--gold)}
+.perf-body{padding:16px 20px}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.bar-lbl{font-size:11px;color:var(--muted);min-width:72px}
+.bar-bg{flex:1;height:4px;background:rgba(255,255,255,0.06)}
+.bar-fill{height:100%;transition:width 1.2s ease}
+.bar-gold{background:var(--gold)}
+.bar-silver{background:rgba(138,155,181,0.35)}
+.bar-dim{background:rgba(138,155,181,0.2)}
+.bar-n{font-family:'IBM Plex Mono',monospace;font-size:11px;min-width:44px;text-align:right}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:20px}
+.stat-box{background:var(--panel);padding:14px}
+.stat-box-l{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.stat-box-v{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500}
+
+/* ─── REPORTS SECTION ────────────────────────────────────────────────── */
+.report-card{background:var(--panel);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color 0.15s}
+.report-card:hover{border-color:rgba(201,169,110,0.35)}
+.rc-head{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.rc-country{font-size:10px;font-weight:600;letter-spacing:0.14em;color:var(--silver);text-transform:uppercase}
+.rc-sent{font-size:9px;font-weight:600;padding:2px 8px;letter-spacing:0.04em;text-transform:uppercase}
+.rc-bull{background:var(--green-dim);color:var(--green);border:1px solid rgba(34,197,94,0.2)}
+.rc-neu{background:rgba(245,158,11,0.1);color:var(--amber);border:1px solid rgba(245,158,11,0.2)}
+.rc-row{padding:8px 16px;display:flex;justify-content:space-between;border-bottom:1px solid var(--border)}
+.rc-row:last-of-type{border-bottom:none}
+.rc-label{font-size:11px;color:var(--muted)}
+.rc-val{font-family:'IBM Plex Mono',monospace;font-size:11px}
+.rc-foot{padding:10px 16px;background:var(--panel2);display:flex;justify-content:space-between;align-items:center}
+.rc-link{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:0.04em;cursor:pointer}
+.rc-date{font-size:10px;color:var(--muted)}
+
+/* ─── FEE ────────────────────────────────────────────────────────────── */
+.fee-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border2);color:#fff;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:16px;outline:none;margin-bottom:16px;transition:border 0.15s}
+.fee-input:focus{border-color:var(--gold)}
+.fee-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.fee-row-l{font-size:12px;color:var(--muted)}
+.fee-row-v{font-family:'IBM Plex Mono',monospace;font-size:13px}
+.fee-total{background:var(--gold-dim);border:1px solid rgba(201,169,110,0.25);padding:14px 16px;margin-top:12px;display:flex;justify-content:space-between;align-items:center}
+.fee-total-l{font-size:12px;font-weight:600;color:var(--gold3)}
+.fee-total-v{font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--gold)}
+.comp-row{padding:12px 16px;border:1px solid var(--border);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid}
+.comp-lf{border-left-color:var(--gold)}
+.comp-agf{border-left-color:rgba(138,155,181,0.25)}
+.comp-name{font-size:11px;font-weight:500;color:var(--cream)}
+.comp-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.comp-rate{font-family:'IBM Plex Mono',monospace;font-size:15px;text-align:right}
+
+/* ─── COUNTRIES ──────────────────────────────────────────────────────── */
+.cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.cc{background:var(--panel);padding:20px;cursor:pointer;transition:background 0.15s;border-top:2px solid transparent}
+.cc:hover{background:var(--panel2)}
+.cc.active{border-top-color:var(--gold);background:var(--panel2)}
+.cc-flag{font-size:20px;margin-bottom:8px;display:block}
+.cc-name{font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.cc-headline{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:var(--cream2);margin-bottom:10px;line-height:1.35}
+.cc-stat{font-size:10px;color:var(--muted);margin-bottom:4px;padding-left:10px;border-left:1px solid var(--border2)}
+
+/* ─── CTA ────────────────────────────────────────────────────────────── */
+.cta-band{background:var(--navy1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:48px 0}
+
+/* ─── FOOTER ─────────────────────────────────────────────────────────── */
+footer{background:var(--navy);padding:40px 0 20px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.ft-brand-name{font-family:'Playfair Display',serif;font-size:16px;color:#fff;margin-bottom:4px}
+.ft-brand-tag{font-size:9px;letter-spacing:0.24em;color:var(--gold);text-transform:uppercase;opacity:0.7}
+.ft-brand-desc{font-size:11px;color:var(--muted);line-height:1.7;margin-top:12px;max-width:260px}
+.ft-col h4{font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--silver);margin-bottom:14px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-col ul li a{font-size:12px;color:var(--muted);text-decoration:none;transition:color 0.15s}
+.ft-col ul li a:hover{color:var(--gold)}
+.ft-bottom{padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.ft-disc{font-size:10px;color:rgba(138,155,181,0.3);line-height:1.5;max-width:560px}
+.ft-tag{font-family:'Playfair Display',serif;font-size:12px;font-style:italic;color:rgba(201,169,110,0.3)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-top">
+    <div class="brand">
+      <span class="brand-name">Liberty Finance</span>
+      <span class="brand-tag">A Legacy with Future</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="#invest">Soluciones</a>
+      <a class="nav-link active" href="#products">Local + Global</a>
+      <a class="nav-link" href="#meridian">Meridian Method</a>
+      <a class="nav-link" href="#research">Research</a>
+      <a class="nav-link" href="#fee">Comisiones</a>
+      <a class="nav-link" href="#markets">Mercados</a>
+    </div>
+    <div class="nav-actions">
+      <span class="nav-lang">ES · EN · RU</span>
+      <button class="btn-cta">Hablar con un asesor</button>
+    </div>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <div class="tk"><span class="tk-l">XAUUSD</span><span class="tk-v">4,490.20</span><span class="tk-c dn">▼ −2.8%</span></div>
+    <div class="tk"><span class="tk-l">USD/CLP</span><span class="tk-v">925.26</span><span class="tk-c up">▲ 0.4%</span></div>
+    <div class="tk"><span class="tk-l">Brent</span><span class="tk-v">113.04</span><span class="tk-c dn">▼ +55% mar</span></div>
+    <div class="tk"><span class="tk-l">USD/PEN</span><span class="tk-v">3.4965</span><span class="tk-c dn">▼ máx 4M</span></div>
+    <div class="tk"><span class="tk-l">IPSA</span><span class="tk-v">10,420</span><span class="tk-c dn">▼ −1.2%</span></div>
+    <div class="tk"><span class="tk-l">USD/PYG</span><span class="tk-v">6,512</span><span class="tk-c fl">— estable</span></div>
+    <div class="tk"><span class="tk-l">BCCh TPM</span><span class="tk-v">4.50%</span><span class="tk-c fl">— hold</span></div>
+    <div class="tk"><span class="tk-l">VIX</span><span class="tk-v">30.97</span><span class="tk-c dn">▼ riesgo alto</span></div>
+    <div class="tk"><span class="tk-l">DXY</span><span class="tk-v">100.29</span><span class="tk-c dn">▼ resistencia</span></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero section" id="invest">
+  <div class="container">
+    <div class="hero-split">
+      <div>
+        <div class="label">HNWI Wealth Advisory · Chile · Ecuador · Perú · Paraguay</div>
+        <h1>Tu patrimonio,<br><em>en dos mundos.</em></h1>
+        <p class="hero-sub">El único asesor independiente de LATAM que combina instrumentos locales de cada mercado con acceso completo a Wall Street — bajo una metodología verificada, sin conflicto de interés.</p>
+        <div class="hero-actions">
+          <button class="btn-primary">Comenzar ahora</button>
+          <button class="btn-ghost">Ver Meridian Method →</button>
+        </div>
+        <div class="hero-stats">
+          <div><span class="hero-stat-n">+10 años</span><span class="hero-stat-l">Historial validado</span></div>
+          <div><span class="hero-stat-n">4 países</span><span class="hero-stat-l">Presencia local</span></div>
+          <div><span class="hero-stat-n">$500K+</span><span class="hero-stat-l">Advisory premium</span></div>
+          <div><span class="hero-stat-n">2 plataformas</span><span class="hero-stat-l">Acceso global</span></div>
+        </div>
+      </div>
+
+      <!-- SEGMENTADOR -->
+      <div class="seg">
+        <div class="seg-head">
+          <span class="seg-head-l">¿Cuánto deseas invertir?</span>
+          <span class="seg-head-r mono" id="seg-val">$250,000</span>
+        </div>
+        <div class="seg-body">
+          <div class="range-wrap">
+            <div class="range-label"><span>$50,000</span><span>$5,000,000+</span></div>
+            <input type="range" min="50000" max="5000000" value="250000" step="50000" oninput="updateSeg(this.value)">
+          </div>
+          <div class="tier active" id="t-std" onclick="selectT('std')">
+            <div class="tier-left">
+              <h4>Standard Advisory</h4>
+              <p>$50,000 – $499,999 · Estrategias LF + mercados globales</p>
+            </div>
+            <span class="tier-badge tb-std">STANDARD</span>
+          </div>
+          <div class="tier" id="t-prm" onclick="selectT('prm')">
+            <div class="tier-left">
+              <h4>Premium Advisory</h4>
+              <p>$500,000+ · Meridian Portfolios · Advisory personalizado HNWI</p>
+            </div>
+            <span class="tier-badge tb-prm">PREMIUM</span>
+          </div>
+          <button class="seg-cta">Agendar consulta gratuita →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL + INTERNATIONAL -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="label">Lo que ya conoces + lo que el mundo te ofrece</div>
+    <div class="g-6040" style="align-items:end;margin-bottom:24px">
+      <div>
+        <h2 style="font-size:34px;color:#fff;margin-bottom:8px">Acceso local e internacional —<br><em>por primera vez, juntos.</em></h2>
+        <p style="color:var(--cream2);font-size:14px;line-height:1.7">El mismo asesor que gestiona tus instrumentos locales también construye tu portafolio global. Sin cambiar de plataforma, sin perder continuidad.</p>
+      </div>
+      <div class="ctabs" style="margin-bottom:0;border:none;gap:4px">
+        <div class="ctab active" onclick="switchC('cl',this)">🇨🇱 Chile</div>
+        <div class="ctab" onclick="switchC('ec',this)">🇪🇨 Ecuador</div>
+        <div class="ctab" onclick="switchC('pe',this)">🇵🇪 Perú</div>
+        <div class="ctab" onclick="switchC('py',this)">🇵🇾 Paraguay</div>
+      </div>
+    </div>
+    <div class="g2" id="prod-grid"></div>
+    <div class="products-note" style="margin-top:16px">
+      <p>"Lo que ya conoces de tu mercado + lo que el mundo te ofrece — bajo un solo asesor, una sola estrategia."</p>
+    </div>
+    <div style="margin-top:10px;padding:12px 20px;border:1px solid var(--border);display:flex;align-items:center;gap:16px">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0"><circle cx="8" cy="8" r="7" stroke="#c9a96e" stroke-width="1"/><path d="M8 5v4M8 11v.5" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <p style="font-size:12px;color:var(--muted);line-height:1.6">Trabajamos con los mejores intermediarios regulados de cada mercado para garantizar acceso a instrumentos locales bajo los más altos estándares.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MERIDIAN METHOD -->
+<section class="section" id="meridian">
+  <div class="container">
+    <div class="g-5050">
+      <div>
+        <div class="label">IP exclusivo Liberty Finance</div>
+        <h2 style="font-size:36px;color:#fff;margin-bottom:12px">Meridian<br><em>Portfolios</em></h2>
+        <p style="color:var(--cream2);font-size:14px;line-height:1.75;margin-bottom:20px">Metodología de inversión exclusiva de Liberty Finance, construida sobre principios académicos consolidados y validada con más de 10 años de historial auditado. No elegimos activos por intuición — seguimos un sistema probado.</p>
+        <p style="color:var(--muted);font-size:12px;line-height:1.7;margin-bottom:24px;font-style:italic;border-left:2px solid var(--gold);padding-left:14px">"Historial verificado de más de 10 años bajo metodología propia Liberty Finance. Rentabilidad y métricas disponibles bajo solicitud."</p>
+        <div class="meridian-grid">
+          <div class="merit-item">
+            <div class="merit-num">I</div>
+            <div class="merit-body"><h4>Diversificación eficiente</h4><p>Construcción en frontera eficiente. Máximo retorno por unidad de riesgo.</p></div>
+          </div>
+          <div class="merit-item">
+            <div class="merit-num">II</div>
+            <div class="merit-body"><h4>Factor investing</h4><p>Exposición sistemática a factores de valor, momentum y calidad.</p></div>
+          </div>
+          <div class="merit-item">
+            <div class="merit-num">III</div>
+            <div class="merit-body"><h4>Risk management activo</h4><p>Stop-loss sistémico, hedges condicionales y gestión de drawdown.</p></div>
+          </div>
+          <div class="merit-item">
+            <div class="merit-num">IV</div>
+            <div class="merit-body"><h4>LATAM-native calibration</h4><p>Ajuste a correlaciones locales: CLP, PEN, PYG, commodities.</p></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="perf-panel">
+          <div class="perf-head">
+            <span class="perf-title">Retorno acumulado · 10 años</span>
+            <span class="perf-val">+214.8%</span>
+          </div>
+          <div class="perf-body">
+            <div class="bar-row">
+              <div class="bar-lbl" style="color:var(--gold);font-size:11px">LF Meridian</div>
+              <div class="bar-bg"><div class="bar-fill bar-gold" style="width:85%"></div></div>
+              <div class="bar-n" style="color:var(--gold)">+214.8%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-lbl" style="font-size:11px;color:var(--muted)">IPSA</div>
+              <div class="bar-bg"><div class="bar-fill bar-silver" style="width:48%"></div></div>
+              <div class="bar-n" style="color:var(--muted)">+122.3%</div>
+            </div>
+            <div class="bar-row" style="margin-bottom:0">
+              <div class="bar-lbl" style="font-size:11px;color:var(--muted)">Inflación CHL</div>
+              <div class="bar-bg"><div class="bar-fill bar-dim" style="width:22%"></div></div>
+              <div class="bar-n" style="color:var(--muted)">+56.1%</div>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div class="stat-box-l">Sharpe</div>
+                <div class="stat-box-v" style="color:var(--gold)">1.42</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-l">Max DD</div>
+                <div class="stat-box-v" style="color:var(--red)">−9.8%</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-l">Volatilidad</div>
+                <div class="stat-box-v" style="color:var(--cream)">8.9%</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-l">Alpha</div>
+                <div class="stat-box-v" style="color:var(--green)">+4.2%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--border)">
+          <p style="font-size:11px;color:var(--muted);line-height:1.6">Rentabilidad histórica no garantiza resultados futuros. Métricas auditadas disponibles para clientes Premium bajo NDA.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="section" id="research">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px">
+      <div>
+        <div class="label">Research semanal · Publicado cada lunes</div>
+        <h2 style="font-size:30px;color:#fff">El único advisory que publica<br><em>sus análisis abiertamente.</em></h2>
+      </div>
+      <button class="btn-ghost" style="white-space:nowrap">Suscribirse al research →</button>
+    </div>
+    <div class="g4">
+      <div class="report-card">
+        <div class="rc-head"><span class="rc-country">🇨🇱 Chile</span><span class="rc-sent rc-neu">⚠ Neutro-Cauto</span></div>
+        <div class="rc-row"><span class="rc-label">IPSA</span><span class="rc-val dn">10,420 ▼</span></div>
+        <div class="rc-row"><span class="rc-label">BCU UF</span><span class="rc-val" style="color:var(--gold)">2.85% OW ▲</span></div>
+        <div class="rc-row"><span class="rc-label">XAUUSD</span><span class="rc-val" style="color:var(--gold)">OW ▲</span></div>
+        <div class="rc-row"><span class="rc-label">USD/CLP</span><span class="rc-val">925.26 →</span></div>
+        <div class="rc-foot"><span class="rc-link">Ver análisis completo →</span><span class="rc-date">30 Mar 2026</span></div>
+      </div>
+      <div class="report-card">
+        <div class="rc-head"><span class="rc-country">🇪🇨 Ecuador</span><span class="rc-sent rc-bull">✓ Alcista</span></div>
+        <div class="rc-row"><span class="rc-label">Eurobono 2034</span><span class="rc-val" style="color:var(--gold)">9.1% OW ▲</span></div>
+        <div class="rc-row"><span class="rc-label">WTI windfall</span><span class="rc-val up">$21M/día ▲</span></div>
+        <div class="rc-row"><span class="rc-label">EMBI ECU</span><span class="rc-val">~460 pbs</span></div>
+        <div class="rc-row"><span class="rc-label">XAUUSD</span><span class="rc-val" style="color:var(--gold)">OW ▲</span></div>
+        <div class="rc-foot"><span class="rc-link">Ver análisis completo →</span><span class="rc-date">30 Mar 2026</span></div>
+      </div>
+      <div class="report-card">
+        <div class="rc-head"><span class="rc-country">🇵🇪 Perú</span><span class="rc-sent rc-neu">⚠ Cauteloso</span></div>
+        <div class="rc-row"><span class="rc-label">Bono PEN 10Y</span><span class="rc-val" style="color:var(--gold)">7.1% OW ▲</span></div>
+        <div class="rc-row"><span class="rc-label">BAP Credicorp</span><span class="rc-val" style="color:var(--gold)">$292 Acum.</span></div>
+        <div class="rc-row"><span class="rc-label">USD/PEN</span><span class="rc-val dn">3.4965 ▼</span></div>
+        <div class="rc-row"><span class="rc-label">XAUUSD</span><span class="rc-val" style="color:var(--gold)">OW ▲</span></div>
+        <div class="rc-foot"><span class="rc-link">Ver análisis completo →</span><span class="rc-date">30 Mar 2026</span></div>
+      </div>
+      <div class="report-card">
+        <div class="rc-head"><span class="rc-country">🇵🇾 Paraguay</span><span class="rc-sent rc-bull">✓ Alcista</span></div>
+        <div class="rc-row"><span class="rc-label">Eurobono PYG</span><span class="rc-val" style="color:var(--gold)">8.5% OW ▲</span></div>
+        <div class="rc-row"><span class="rc-label">SOYBEAN</span><span class="rc-val" style="color:var(--gold)">OW ▲</span></div>
+        <div class="rc-row"><span class="rc-label">PIB Paraguay</span><span class="rc-val up">6.0% #1 LATAM</span></div>
+        <div class="rc-row"><span class="rc-label">USD/PYG</span><span class="rc-val">6,512 →</span></div>
+        <div class="rc-foot"><span class="rc-link">Ver análisis completo →</span><span class="rc-date">30 Mar 2026</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEE CALCULATOR -->
+<section class="section" id="fee">
+  <div class="container">
+    <div class="g-5050">
+      <div>
+        <div class="label">Transparencia total · sin letra pequeña</div>
+        <h2 style="font-size:30px;color:#fff;margin-bottom:12px">Comisiones alineadas<br><em>con tus resultados.</em></h2>
+        <p style="color:var(--cream2);font-size:14px;line-height:1.75;margin-bottom:24px">2.5% anual + 10% sobre PnL superior al 3.5% hurdle. Solo ganamos más cuando tú superas un umbral de rentabilidad real.</p>
+        <div class="comp-row comp-lf">
+          <div><div class="comp-name">Liberty Finance</div><div class="comp-sub">Intereses alineados — ganamos cuando tú ganas más</div></div>
+          <div class="comp-rate gold">2.5% + 10%</div>
+        </div>
+        <div class="comp-row comp-agf">
+          <div><div class="comp-name">AGF promedio Chile</div><div class="comp-sub">Cobran igual sin importar resultados</div></div>
+          <div class="comp-rate" style="color:var(--silver)">1.5–2.5%</div>
+        </div>
+        <div class="comp-row comp-agf">
+          <div><div class="comp-name">Banca privada</div><div class="comp-sub">Conflicto de interés — venden sus propios fondos</div></div>
+          <div class="comp-rate" style="color:var(--silver)">2.0–3.0%</div>
+        </div>
+      </div>
+      <div>
+        <div class="panel" style="padding:24px">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;margin-bottom:16px">Simulador de comisiones</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px">AUM a invertir (USD)</div>
+          <input type="text" class="fee-input" id="f-aum" value="500,000" oninput="calcF()">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Retorno esperado anual (%)</div>
+          <input type="text" class="fee-input" id="f-ret" value="15" oninput="calcF()">
+          <div id="fee-out"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section class="section" id="markets">
+  <div class="container">
+    <div style="margin-bottom:20px">
+      <div class="label">4 mercados · 1 advisor</div>
+      <h2 style="font-size:30px;color:#fff">Presencia local, <em>visión global.</em></h2>
+    </div>
+    <div class="cc-grid">
+      <div class="cc active">
+        <span class="cc-flag">🇨🇱</span>
+        <div class="cc-name">Chile</div>
+        <div class="cc-headline">"Nobel + instrumentos BCCh + Wall Street en una estrategia"</div>
+        <div class="cc-stat">CMF Advisory license · 2026</div>
+        <div class="cc-stat">BCU UF + IPSA + IBKR global</div>
+        <div class="cc-stat">TPM 4.50% · XAUUSD OW</div>
+      </div>
+      <div class="cc">
+        <span class="cc-flag">🇪🇨</span>
+        <div class="cc-name">Ecuador</div>
+        <div class="cc-headline">"Tus dólares merecen crecer globalmente"</div>
+        <div class="cc-stat">Economía dolarizada · sin riesgo FX</div>
+        <div class="cc-stat">Eurobono 2034 9.1% + US Treasuries</div>
+        <div class="cc-stat">WTI windfall $21M/día</div>
+      </div>
+      <div class="cc">
+        <span class="cc-flag">🇵🇪</span>
+        <div class="cc-name">Perú</div>
+        <div class="cc-headline">"Protege tu patrimonio del riesgo político"</div>
+        <div class="cc-stat">BCRP 4.25% · PEN hedge disponible</div>
+        <div class="cc-stat">BAP P/E 9.2x · Bono PEN 7.1%</div>
+        <div class="cc-stat">Mejor real yield soberano LATAM</div>
+      </div>
+      <div class="cc">
+        <span class="cc-flag">🇵🇾</span>
+        <div class="cc-name">Paraguay</div>
+        <div class="cc-headline">"Único mercado LATAM inmune al Brent"</div>
+        <div class="cc-stat">PIB 6% · déficit &lt;2% · Itaipú</div>
+        <div class="cc-stat">Eurobono PYG 8.5% real +5.4%</div>
+        <div class="cc-stat">Guaraní más estable de la región</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFRAESTRUCTURA -->
+<section class="section-sm" style="padding:40px 0;border-bottom:1px solid var(--border);background:var(--navy1)">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:center">
+      <div>
+        <div class="label">Nuestra infraestructura</div>
+        <h2 style="font-size:26px;color:#fff;margin-bottom:8px">Acceso local,<br><em>sin compromisos.</em></h2>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7">Trabajamos con los mejores intermediarios regulados de cada mercado para garantizar acceso a instrumentos locales bajo los más altos estándares.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:var(--panel);border:1px solid var(--border);border-left:2px solid var(--gold);padding:16px 20px">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px">Standard Advisory</div>
+          <div style="font-size:13px;color:var(--cream);margin-bottom:6px;font-weight:500">$50,000 – $499,999</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Plataforma propia + acceso a mercados globales + instrumentos locales vía intermediarios regulados</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-left:2px solid var(--blue);padding:16px 20px">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.14em;color:var(--blue);text-transform:uppercase;margin-bottom:8px">Premium Advisory</div>
+          <div style="font-size:13px;color:var(--cream);margin-bottom:6px;font-weight:500">$500,000+</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Plataforma institucional global + Meridian Portfolios + intermediarios locales certificados en 4 países</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:12px">
+          <div style="width:8px;height:8px;background:var(--green);border-radius:50%;flex-shrink:0"></div>
+          <div><div style="font-size:11px;color:var(--cream)">CMF Chile</div><div style="font-size:10px;color:var(--muted)">Licencia advisory · 2026</div></div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:12px">
+          <div style="width:8px;height:8px;background:var(--amber);border-radius:50%;flex-shrink:0"></div>
+          <div><div style="font-size:11px;color:var(--cream)">Global License</div><div style="font-size:10px;color:var(--muted)">EE.UU. o Dubai · 2027</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:40px">
+    <div>
+      <div class="label">Primera consulta sin costo</div>
+      <h2 style="font-size:28px;color:#fff">Tu patrimonio merece un asesor<br><em>que trabaja para ti.</em></h2>
+    </div>
+    <div style="display:flex;gap:12px;flex-shrink:0">
+      <button class="btn-primary">Agendar consulta gratuita</button>
+      <button class="btn-ghost">Ver Meridian Portfolios →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-brand-name">Liberty Finance</div>
+        <div class="ft-brand-tag">A Legacy with Future</div>
+        <p class="ft-brand-desc">Advisory de inversiones independiente para HNWI en Chile, Ecuador, Perú y Paraguay. Meridian Portfolios + acceso global + instrumentos locales.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Soluciones</h4>
+        <ul>
+          <li><a href="#">Meridian Portfolios</a></li>
+          <li><a href="#">Standard Advisory</a></li>
+          <li><a href="#">Premium HNWI ($500K+)</a></li>
+          <li><a href="#">Crypto Advisory</a></li>
+          <li><a href="#">Tax &amp; Capital Protection</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Mercados</h4>
+        <ul>
+          <li><a href="#">Chile · CMF 2026</a></li>
+          <li><a href="#">Ecuador</a></li>
+          <li><a href="#">Perú</a></li>
+          <li><a href="#">Paraguay</a></li>
+          <li><a href="#">Global · 2027</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Research</h4>
+        <ul>
+          <li><a href="#">Reporte Chile</a></li>
+          <li><a href="#">Reporte Ecuador</a></li>
+          <li><a href="#">Reporte Perú</a></li>
+          <li><a href="#">Reporte Paraguay</a></li>
+          <li><a href="#">Suscripción gratuita</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p class="ft-disc">Liberty Finance SpA · En proceso de autorización CMF Chile (NCG N°502). Las inversiones implican riesgos, incluyendo pérdida del capital. Retornos pasados no garantizan resultados futuros. Solo con fines informativos.</p>
+      <span class="ft-tag">A Legacy with Future</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Segmentador ─────────────────────────────────────────────────────────
+function fmt(v){return '$'+parseInt(v).toLocaleString()}
+function updateSeg(v){
+  document.getElementById('seg-val').textContent=fmt(v);
+  const n=parseInt(v);
+  if(n<500000){
+    document.getElementById('t-std').classList.add('active');
+    document.getElementById('t-prm').classList.remove('active');
+  } else {
+    document.getElementById('t-prm').classList.add('active');
+    document.getElementById('t-std').classList.remove('active');
+  }
+}
+function selectT(t){
+  ['std','prm'].forEach(x=>document.getElementById('t-'+x).classList.remove('active'));
+  document.getElementById('t-'+t).classList.add('active');
+}
+
+// ── Products ─────────────────────────────────────────────────────────────
+const PD={
+  cl:{
+    local:'🇨🇱 Instrumentos Locales',
+    intl:'Mercados Internacionales',
+    li:[
+      ['BCU UF 10Y','Bono BCCh · inflación ajustada','2.85% UF','ow'],
+      ['BTP Chile','Bono nominal en CLP','4.50% CLP','ow'],
+      ['IPSA acciones','Falabella · Copec · Banco Chile','selectivo','n'],
+      ['DPF bancario','Depósito a plazo CLP','~5.2% CLP','n'],
+      ['Fondos mutuos','Renta fija e instrumentos mixtos','1.5–2.5%','n'],
+    ],
+    ii:[
+      ['XAUUSD','Oro · hedge inflación + geopolítico','$4,490','ow'],
+      ['NYSE: SQM · FCX','Litio · cobre · materias primas','OW selectivo','ow'],
+      ['ETF: ECH · COPX','iShares Chile · sector cobre','exposición','n'],
+      ['US Treasuries','Renta fija USD · cash parking','4.4% YTM','w'],
+      ['ETF: EMB · ILF','Renta fija EM · LATAM equity','diversificación','n'],
+    ]
+  },
+  ec:{
+    local:'🇪🇨 Instrumentos Locales',
+    intl:'Mercados Internacionales',
+    li:[
+      ['Eurobono ECU 2034','Soberano USD · mejor oportunidad EM','9.10% YTM','ow'],
+      ['Eurobono ECU 2039','Soberano USD · mayor duración','9.25% YTM','ow'],
+      ['DAP bancario','Depósito en USD · sin riesgo cambiario','3–6%','n'],
+      ['CETES','Certificados Tesorería Ecuador','rend. variable','n'],
+      ['Acciones BVQ/BVG','Mercado local · liquidez limitada','baja demanda','n'],
+    ],
+    ii:[
+      ['XAUUSD','Único hedge disponible en economía dolarizada','$4,490','ow'],
+      ['US Treasuries','Cash parking en USD · máxima seguridad','4.4% YTM','ow'],
+      ['XLE / USO','ETF petróleo · cobertura WTI','monitor','n'],
+      ['NYSE diversificado','MELI · NU · acceso global','exposición','n'],
+      ['ETF: EMB','Soberanos EM · fuera de ECU','diversificación','n'],
+    ]
+  },
+  pe:{
+    local:'🇵🇪 Instrumentos Locales',
+    intl:'Mercados Internacionales',
+    li:[
+      ['Bonos soberanos PEN','Treasury Perú 10Y · mejor carry LATAM','7.10% YTM','ow'],
+      ['BAP Credicorp','NYSE · P/E 9.2x · descuento 35%','$292 Acum.','w'],
+      ['BVN Buenaventura','NYSE · oro y plata · proxy minero','esperar','n'],
+      ['Depósitos PEN','Interbancario · tasa real positiva','~5.5%','n'],
+      ['BVL acciones','BCP · Alicorp · mercado local','selectivo','n'],
+    ],
+    ii:[
+      ['XAUUSD','Hedge PEN débil + inflación importada','$4,490','ow'],
+      ['SCCO','Southern Copper NYSE · mayor productor','exposición','n'],
+      ['US Treasuries','Preservación en USD','4.4% YTM','w'],
+      ['FCX Freeport','Cobre NYSE · esperar condiciones','esperar','n'],
+      ['ETF: EPU','iShares MSCI Peru · índice completo','diversificación','n'],
+    ]
+  },
+  py:{
+    local:'🇵🇾 Instrumentos Locales',
+    intl:'Mercados Internacionales',
+    li:[
+      ['Eurobono PYG 2038','Soberano guaraní · real yield +5.4%','8.50% YTM','ow'],
+      ['CDA guaraní','Depósito plazo · tasa real positiva','~8% PYG','n'],
+      ['Bonos corporativos','BVP emisores locales','selectivo','n'],
+      ['Fondos mutuos PYG','Fondos locales guaraní','PYG diversif.','n'],
+      ['Acciones BVP','Mercado local · liquidez limitada','baja dem.','n'],
+    ],
+    ii:[
+      ['Eurobono USD 2033','Soberano en USD · exposición global','6.80% YTM','ow'],
+      ['XAUUSD','Hedge geopolítico universal','$4,490','ow'],
+      ['SOYB / DBA','ETF soja · Paraguay 4° exportador mundial','OW upgrade','ow'],
+      ['US Treasuries','Cash parking en USD','4.4% YTM','w'],
+      ['NYSE diversificado','Acceso global · MELI · NU','diversificación','n'],
+    ]
+  }
+};
+const TAGS={ow:'<span class="tag-ow">OW</span>',w:'<span class="tag-w">Acum.</span>',n:'<span class="tag-n">Neutral</span>'};
+
+function renderProd(c){
+  const d=PD[c];
+  const col=(items,head,type)=>`
+    <div class="panel">
+      <div class="dt-head">
+        <span class="dt-head-l">${head}</span>
+        <span class="tag-${type==='local'?'local':'intl'}">${type==='local'?'LOCAL':'INTERNACIONAL'}</span>
+      </div>
+      ${items.map(i=>`
+        <div class="dt-row">
+          <div><div class="dt-name">${i[0]}</div><div class="dt-sub">${i[1]}</div></div>
+          <div style="text-align:right">
+            <div class="dt-val" style="color:var(--cream2)">${i[2]}</div>
+            <div style="margin-top:3px">${TAGS[i[3]]||''}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  document.getElementById('prod-grid').innerHTML=col(d.li,d.local,'local')+col(d.ii,d.intl,'intl');
+}
+let cc='cl';
+function switchC(c,el){
+  cc=c;
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderProd(c);
+}
+renderProd('cl');
+
+// ── Fee calculator ────────────────────────────────────────────────────────
+function calcF(){
+  const aum=parseFloat(document.getElementById('f-aum').value.replace(/,/g,''))||500000;
+  const ret=parseFloat(document.getElementById('f-ret').value)||15;
+  const gross=aum*ret/100;
+  const mgmt=aum*0.025;
+  const netPnl=gross-mgmt;
+  const hurdle=aum*0.035;
+  const perfBase=Math.max(0,netPnl-hurdle);
+  const perf=perfBase*0.1;
+  const total=mgmt+perf;
+  const clientNet=gross-total;
+  const clientRet=(clientNet/aum*100).toFixed(2);
+  document.getElementById('fee-out').innerHTML=`
+    <div class="fee-row" style="margin-top:12px"><span class="fee-row-l">Retorno bruto</span><span class="fee-row-v up">+$${Math.round(gross).toLocaleString()}</span></div>
+    <div class="fee-row"><span class="fee-row-l">Comisión gestión (2.5%)</span><span class="fee-row-v dn">−$${Math.round(mgmt).toLocaleString()}</span></div>
+    <div class="fee-row"><span class="fee-row-l">Performance fee 10% (sobre PnL &gt;3.5%)</span><span class="fee-row-v dn">−$${Math.round(perf).toLocaleString()}</span></div>
+    <div class="fee-total"><span class="fee-total-l">Retorno neto del cliente</span><span class="fee-total-v">+${clientRet}%</span></div>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px">Total honorarios LF: $${Math.round(total).toLocaleString()} · Effective rate: ${(total/aum*100).toFixed(2)}%</div>`;
+}
+calcF();
+
+// ── Country cards ─────────────────────────────────────────────────────────
+document.querySelectorAll('.cc').forEach(c=>{
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.cc').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
