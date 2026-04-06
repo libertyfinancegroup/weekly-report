@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — Weekly Report Chile · 6 Abr 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Barlow:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#001337;--navy2:#00193f;--navy3:#002050;
+  --gold:#938565;--gold2:#b3a993;--gold3:#c4b89a;--gold-d:#7a6c52;
+  --w:#f0ede6;--w90:rgba(240,237,230,0.9);--w60:rgba(240,237,230,0.6);--w35:rgba(240,237,230,0.35);
+  --ink:#1c1c2e;--ink2:#383850;--ink3:#64648a;
+  --bg:#eae7e0;--bg2:#f4f2ed;
+  --card:#ffffff;--card-bg:#f8f6f2;
+  --bdr:rgba(0,0,0,0.09);--bdr2:rgba(0,0,0,0.15);
+  --green:#1a6b3c;--green2:#1f9b52;--green-bg:#e8f5ee;
+  --red:#a02020;--red2:#c93030;--red-bg:#faeaea;
+  --amber:#8a5a18;--amber2:#c47820;--amber-bg:#fdf3e3;
+  --blue:#1a4080;--blue2:#2a68c4;--blue-bg:#e8f0fa;
+  --page-w:780px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#1a1e2e}
+body{font-family:'Barlow',sans-serif;background:#1a1e2e;min-height:100vh;padding:28px 16px 56px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--page-w);margin:0 auto;box-shadow:0 12px 80px rgba(0,0,0,0.8)}
+
+/* ── DARK HEADER ── */
+.ph{background:var(--navy2);border-bottom:2px solid rgba(147,133,101,0.35);padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+.ph-brand{display:flex;align-items:center;gap:14px}
+.ph-logo{display:flex;flex-direction:column}
+.ph-l1{font-size:22px;font-weight:700;color:var(--w);letter-spacing:0.1em;line-height:1}
+.ph-l2{font-size:8px;font-weight:400;color:var(--gold3);letter-spacing:0.35em;text-transform:uppercase;margin-top:2px}
+.ph-vsep{width:1px;height:40px;background:rgba(147,133,101,0.3)}
+.ph-meta{flex:1;padding-left:0}
+.ph-t{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--w90)}
+.ph-s{font-size:10px;color:var(--gold3);margin-top:2px;letter-spacing:0.04em}
+.ph-d{font-size:9px;color:var(--w35);text-transform:uppercase;letter-spacing:0.08em;margin-top:1px}
+.ph-right{text-align:right;flex-shrink:0}
+.ph-sent-badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:2px;background:rgba(196,120,32,0.2);border:1px solid rgba(196,120,32,0.45);color:#e8a840;letter-spacing:0.04em;display:inline-block;margin-bottom:4px}
+.ph-pg{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--w35);letter-spacing:0.08em}
+
+/* ── DARK TICKER ── */
+.ticker{background:var(--navy3);border-bottom:1px solid rgba(147,133,101,0.18);padding:0 28px;display:flex;overflow-x:auto;scrollbar-width:none}
+.ticker::-webkit-scrollbar{display:none}
+.tk{padding:10px 20px 10px 0;margin-right:20px;border-right:1px solid rgba(147,133,101,0.15);white-space:nowrap;flex-shrink:0}
+.tk:last-child{border-right:none;margin-right:0}
+.tk-l{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(196,184,154,0.55);display:block;margin-bottom:2px}
+.tk-v{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;color:#fff}
+.tk-c{font-size:10px;font-weight:500;margin-left:4px}
+.up{color:#34c97a}.dn{color:#e05555}.fl{color:rgba(255,255,255,0.38)}.ac{color:var(--gold3)}
+
+/* ── LIGHT BODY ── */
+.body{background:var(--bg);padding:24px 28px 32px}
+
+/* ── SENTIMENT BAR ── */
+.sentinel{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:12px 18px;display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.sent-l{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);white-space:nowrap}
+.sent-bar{flex:1;height:6px;background:linear-gradient(to right,var(--red2) 0%,#d4a020 35%,rgba(100,100,100,0.15) 50%,#1f9b52 100%);border-radius:3px;position:relative}
+.sent-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:13px;height:13px;border:3px solid var(--card);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.25)}
+.sent-tags{display:flex;gap:7px;flex-shrink:0}
+.sent-tag{font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:2px;letter-spacing:0.04em}
+.st-bajista{background:var(--red-bg);border:1px solid rgba(168,40,40,0.25);color:var(--red)}
+.st-neutro{background:var(--card-bg);border:1px solid var(--bdr2);color:var(--ink3);font-weight:600}
+.st-riskoff{background:var(--card-bg);border:1px solid var(--bdr);color:var(--ink3)}
+
+/* ── SECTION TITLE ── */
+.st{display:flex;align-items:center;gap:12px;margin-bottom:15px;margin-top:26px}
+.st:first-of-type{margin-top:0}
+.st-bar{width:4px;height:22px;background:var(--gold-d);border-radius:2px;flex-shrink:0}
+.st-text{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;font-weight:500;color:var(--ink)}
+.st-sub{font-size:9.5px;font-family:'Barlow',sans-serif;font-style:normal;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3)}
+.st-line{flex:1;height:1px;background:var(--bdr2)}
+
+/* ── GRIDS ── */
+.g6040{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:20px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+
+/* ── WHITE CARD BASE ── */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+
+/* ── PERFORMANCE TABLE ── */
+.ptbl{width:100%;border-collapse:collapse}
+.ptbl th{padding:8px 12px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);background:var(--card-bg);border-bottom:1px solid var(--bdr)}
+.ptbl td{padding:10px 12px;border-bottom:1px solid var(--bdr);font-size:12.5px;color:var(--ink2)}
+.ptbl td:first-child{font-weight:600;color:var(--ink)}
+.ptbl tbody tr:last-child td{border-bottom:none}
+.ptbl tbody tr:hover{background:var(--card-bg)}
+.t-up{color:var(--green);font-weight:600}.t-dn{color:var(--red);font-weight:600}.t-fl{color:var(--ink3)}
+
+/* ── TECH LEVELS ── */
+.lv-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid var(--bdr)}
+.lv-row:last-child{border-bottom:none}
+.lv-k{font-size:12px;color:var(--ink2)}
+.lv-v{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+.lv-v.r{color:var(--red)}.lv-v.g{color:var(--green)}.lv-v.c{color:var(--gold-d)}
+
+/* ── NEWS CARDS ── */
+.nc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:14px 17px}
+.nc.hi{border-left:4px solid var(--amber2)}.nc.pos{border-left:4px solid var(--green2)}
+.nc.neg{border-left:4px solid var(--red2)}.nc.neu{border-left:4px solid var(--blue2)}
+.nc-stars{font-size:11.5px;margin-bottom:4px;color:var(--amber2);letter-spacing:1px}
+.nc-tag{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.nc-title{font-size:13px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:8px}
+.nc-body{font-size:12px;color:var(--ink2);line-height:1.6}
+.nc-arrow{font-size:11.5px;color:var(--gold-d);margin-top:8px;font-style:italic;font-weight:500}
+
+/* ── SCENARIOS ── */
+.sc-box{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:16px 17px}
+.sc-box.b{border-top:3px solid var(--blue2)}.sc-box.bu{border-top:3px solid var(--green2)}.sc-box.be{border-top:3px solid var(--red2)}
+.sc-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.sc-prob{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;line-height:1;margin-bottom:8px}
+.sc-box.b .sc-prob{color:var(--blue)}.sc-box.bu .sc-prob{color:var(--green)}.sc-box.be .sc-prob{color:var(--red)}
+.sc-txt{font-size:12px;line-height:1.6;color:var(--ink2)}
+
+/* ── GESTOR COMMENT ── */
+.cg{background:var(--card);border:1px solid var(--bdr);border-left:4px solid var(--gold-d);border-radius:3px;padding:17px 22px;margin-bottom:0}
+.cg-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.cg-lbl::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.cg-text{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--ink);line-height:1.75;font-weight:500}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--bdr2);margin:28px 0 0}
+.section-block{padding:24px 28px 0;background:var(--bg)}
+
+/* ── RADAR CARDS ── */
+.rc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+.rc.ow{border-top:3px solid var(--green2)}.rc.wt{border-top:3px solid var(--amber2)}
+.rc.nt{border-top:3px solid var(--bdr2)}.rc.ac{border-top:3px solid var(--gold-d)}
+.rc-head{padding:14px 17px 12px;border-bottom:1px solid var(--bdr);background:var(--card-bg)}
+.rc-cat{font-size:9.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.rc-name{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:5px;line-height:1.2}
+.rc-price{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--ink);line-height:1}
+.rc-chg{font-size:11.5px;font-weight:600;margin-top:4px}
+.rc-chg.up{color:var(--green)}.rc-chg.dn{color:var(--red)}.rc-chg.fl{color:var(--ink3)}.rc-chg.ac{color:var(--gold-d)}
+.rc-body{padding:13px 17px 15px}
+.rc-bmk{font-size:10.5px;color:var(--ink3);margin-bottom:9px;padding-bottom:8px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.rc-text{font-size:12.5px;color:var(--ink2);line-height:1.65;margin-bottom:9px}
+.rc-arrow{font-size:11.5px;color:var(--gold-d);font-style:italic;font-weight:500}
+.badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-top:9px}
+.badge.ac{background:var(--green-bg);color:var(--green);border:1px solid rgba(26,107,60,0.2)}
+.badge.wt{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.2)}
+.badge.nt{background:var(--card-bg);color:var(--ink3);border:1px solid var(--bdr)}
+.btag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 7px;border-radius:2px}
+.btag.intl{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(26,64,128,0.15)}
+.btag.local{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.15)}
+
+/* ── CATALYST LIST ── */
+.ci-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ci{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:12px 16px;display:flex;gap:13px}
+.ci-n{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--gold-d);min-width:20px;flex-shrink:0;padding-top:1px}
+.ci-t{font-size:13px;color:var(--ink2);line-height:1.55}
+.ci-t strong{color:var(--ink);font-weight:700}
+
+/* ── POSITION CARDS ── */
+.pc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+.pc-head{padding:11px 15px 10px;border-bottom:1px solid var(--bdr);background:var(--card-bg);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.pc-n{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--gold-d);flex-shrink:0;padding-top:2px}
+.pc-info{flex:1}
+.pc-asset{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:2px}
+.pc-cat{font-size:10px;color:var(--ink3)}
+.pc-badges{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+.pc-met{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--bdr)}
+.pm{padding:7px 9px;border-right:1px solid var(--bdr)}.pm:last-child{border-right:none}
+.pm-l{font-size:7.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.pm-v{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);font-weight:700}
+.pm-v.g{color:var(--green)}.pm-v.r{color:var(--red)}.pm-v.a{color:var(--amber)}.pm-v.c{color:var(--gold-d)}
+.pc-body{padding:11px 15px 13px}
+.pc-bmk{font-size:11px;color:var(--ink3);margin-bottom:7px;padding-bottom:7px;border-bottom:1px dashed var(--bdr);font-style:italic}
+.pc-text{font-size:12.5px;color:var(--ink2);line-height:1.55}
+.pc-text strong{color:var(--ink);font-weight:700}
+.pc-note{margin-top:8px;padding-top:7px;border-top:1px dashed var(--bdr);font-size:10.5px;color:var(--ink3);line-height:1.5}
+
+/* ── AGENDA TABLE ── */
+.atbl-card{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden;margin-bottom:0}
+.atbl{width:100%;border-collapse:collapse}
+.atbl th{padding:8px 13px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);background:var(--card-bg);border-bottom:1px solid var(--bdr)}
+.atbl td{padding:10px 13px;border-bottom:1px solid var(--bdr);font-size:13px;vertical-align:middle;color:var(--ink2)}
+.atbl td:first-child{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-d);font-weight:700;white-space:nowrap}
+.atbl tbody tr:last-child td{border-bottom:none}
+.atbl tbody tr:hover{background:var(--card-bg)}
+.kw{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:2px;margin-left:5px;background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.2)}
+.kw.bin{background:var(--red-bg);color:var(--red);border:1px solid rgba(168,40,40,0.2)}
+.imp{display:inline-block;width:8px;height:8px;border-radius:50%;vertical-align:middle;margin-right:5px}
+.imp.hi{background:var(--red2)}.imp.md{background:var(--amber2)}.imp.lo{background:var(--green2)}
+
+/* ── DARK FOOTER ── */
+.footer{background:var(--navy2);border-top:1px solid rgba(147,133,101,0.2);padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.footer-disc{font-size:10px;color:rgba(196,184,154,0.45);line-height:1.5;flex:1}
+.footer-next{font-size:11px;color:var(--gold2);font-weight:500;text-align:right;flex-shrink:0}
+
+/* ── SECTION SEPARATOR ── */
+.sec-sep{height:1px;background:var(--bg2);margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="ph">
+  <div class="ph-brand">
+    <div class="ph-logo"><div class="ph-l1">LIBERTY</div><div class="ph-l2">Finance</div></div>
+    <div class="ph-vsep" style="margin:0 16px"></div>
+    <div style="flex:1">
+      <div class="ph-t">Reporte Semanal de Mercados &mdash; 🇨🇱 Chile</div>
+      <div class="ph-s">Semana 6 &ndash; 11 Abr 2026 &middot; Dep. Research &amp; Estrategia</div>
+      <div class="ph-d">Asesor&iacute;a de Inversiones e Investigaci&oacute;n</div>
+    </div>
+  </div>
+  <div class="ph-right">
+    <div class="ph-sent-badge">⚠️ Neutro-Cauto</div>
+  </div>
+</div>
+<div class="ticker">
+  <div class="tk"><span class="tk-l">IPSA</span><span class="tk-v">10,405</span><span class="tk-c up">&#9650; +2.0% sem</span></div>
+  <div class="tk"><span class="tk-l">USD / CLP</span><span class="tk-v">915.21</span><span class="tk-c up">&#9650; &minus;1.6% sem</span></div>
+  <div class="tk"><span class="tk-l">Cobre LME</span><span class="tk-v">$5.66</span><span class="tk-c up">&#9650; +0.9% · LME cerrado hoy</span></div>
+  <div class="tk"><span class="tk-l">TPM BCCh</span><span class="tk-v">4.50%</span><span class="tk-c ac">&#10230; Hold &middot; mayo pr&oacute;x.</span></div>
+  <div class="tk"><span class="tk-l">Brent</span><span class="tk-v">~$112</span><span class="tk-c dn">&#9660; Hormuz 6&ordf; sem.</span></div>
+  <div class="tk"><span class="tk-l">XAUUSD</span><span class="tk-v">$4,682</span><span class="tk-c up">&#9650; +3.9% sem</span></div>
+</div>
+
+<div class="body">
+  <div class="sentinel">
+    <span class="sent-l">Sentimiento</span>
+    <div class="sent-bar"><div class="sent-dot" style="left:42%;background:#c47820"></div></div>
+    <div class="sent-tags">
+      <span class="sent-tag st-bajista">Bajista</span>
+      <span class="sent-tag st-neutro">&#9679; Neutro-Cauto</span>
+      <span class="sent-tag st-riskoff">Risk-Off moderado</span>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Performance</span><span class="st-sub">&middot; Cierre 3 Abr 2026 &amp; Apertura 6 Abr</span><div class="st-line"></div></div>
+  <div class="g6040">
+    <div class="card">
+      <table class="ptbl">
+        <thead><tr><th>Instrumento</th><th>Nivel</th><th>Var. Sem.</th><th>Lectura</th></tr></thead>
+        <tbody>
+          <tr><td>S&amp;P IPSA</td><td class="t-fl">10,405 pts</td><td class="t-up">+2.0%</td><td class="t-fl">Recuperaci&oacute;n desde m&iacute;n. 9,931</td></tr>
+          <tr><td>USD/CLP</td><td class="t-fl">915.21</td><td class="t-up">&minus;1.6%</td><td class="t-fl">Peso fortalece &middot; cobre +0.9%</td></tr>
+          <tr><td>Cobre LME</td><td class="t-fl">~$5.66/lb</td><td class="t-up">+0.9%</td><td class="t-fl">PMI China + talks Hormuz</td></tr>
+          <tr><td>XAUUSD</td><td class="t-fl">$4,682</td><td class="t-up">+3.9%</td><td class="t-fl">RSI sale sobrevendido</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="lv-row"><span class="lv-k">Resistencia IPSA</span><span class="lv-v r">10,614&ndash;10,680</span></div>
+      <div class="lv-row"><span class="lv-k">Soporte IPSA</span><span class="lv-v g">10,248&ndash;10,300</span></div>
+      <div class="lv-row"><span class="lv-k">USD/CLP resistencia</span><span class="lv-v r">920&ndash;925</span></div>
+      <div class="lv-row"><span class="lv-k">USD/CLP soporte</span><span class="lv-v g">900&ndash;905</span></div>
+      <div class="lv-row"><span class="lv-k">Cobre soporte</span><span class="lv-v g">$5.20/lb</span></div>
+      <div class="lv-row"><span class="lv-k">XAUUSD soporte</span><span class="lv-v g">$4,520 (F23.6%)</span></div>
+      <div class="lv-row"><span class="lv-k">XAUUSD objetivo</span><span class="lv-v c">$4,800&ndash;4,970</span></div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Noticias de la Semana</span><span class="st-sub">&middot; Filtrado para Chile</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="nc hi">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">EE.UU. &middot; NFP</div>
+      <div class="nc-title">NFP +178K &mdash; triple consenso &middot; Fed hold confirmado abril</div>
+      <div class="nc-body">Emp. m&eacute;dico +76K por retorno huelgas. Org&aacute;nico ~+102K. AHE +0.2% MoM &rarr; YoY 3.5% = desaceleraci&oacute;n. Fed en 3.50&ndash;3.75% &middot; pr&oacute;xima reuni&oacute;n 29 Abr. CPI 10 Abr = factor decisivo.</div>
+      <div class="nc-arrow">&rarr; Hawkish surprise &middot; DXY firms &middot; EM bajo presi&oacute;n &middot; CPI 10 abr = catalizador</div>
+    </div>
+    <div class="nc pos">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">VIX &middot; Risk</div>
+      <div class="nc-title">VIX colapsa de 30.97 a 24.20 &mdash; reversi&oacute;n risk-on</div>
+      <div class="nc-body">Talks cese al fuego Ir&aacute;n (45 d&iacute;as, mediaci&oacute;n Pakist&aacute;n/Egipto/Turqu&iacute;a) alivian presi&oacute;n. S&amp;P 500 +0.44% apertura lunes. IPSA recupera +2.8% en la semana.</div>
+      <div class="nc-arrow">&rarr; IPSA puede testar 10,614&ndash;10,680 si CPI no sorprende al alza</div>
+    </div>
+    <div class="nc neg">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">EE.UU. &middot; CPI</div>
+      <div class="nc-title">CPI Marzo 10 Abr &mdash; consenso +1% MoM &middot; mayor desde 2022</div>
+      <div class="nc-body">Brent $112 durante marzo +55% mensual = pass-through energ&iacute;a brutal. YoY proyectado 3.4% = m&aacute;s alto desde abr 2024. Si se confirma: Fed no corta en 2026. BCCh tampoco.</div>
+      <div class="nc-arrow">&rarr; Si CPI &gt;1% &rarr; DXY 101+ &rarr; USD/CLP 920+ &rarr; IPSA presionado</div>
+    </div>
+    <div class="nc pos">
+      <div class="nc-stars">&#9733;&#9734;&#9734;</div>
+      <div class="nc-tag">Iran &middot; Hormuz</div>
+      <div class="nc-title">Talks cese al fuego activos &middot; deadline 6 Abr extendido</div>
+      <div class="nc-body">Propuesta 45 d&iacute;as mediada por Pakist&aacute;n, Egipto, Turqu&iacute;a. Trump: &ldquo;paso significativo&rdquo; pero no suficiente. Algunos buques chinos/indios pasan con coordinaci&oacute;n iran&iacute;. Hormuz a&uacute;n cerrado formalmente.</div>
+      <div class="nc-arrow">&rarr; Alivio parcial Brent &middot; cobre +0.9% &middot; peso se aprecia</div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Escenarios</span><span class="st-sub">&middot; Semana 6 &ndash; 11 Abr</span><div class="st-line"></div></div>
+  <div class="g3">
+    <div class="sc-box b"><div class="sc-lbl">Escenario Base</div><div class="sc-prob">55%</div><div class="sc-txt">CPI +0.8&ndash;1.0% MoM. DXY rango 99&ndash;101. IPSA consolida 10,300&ndash;10,680. XAUUSD $4,520&ndash;4,800. BCU UF sin novedad.</div></div>
+    <div class="sc-box bu"><div class="sc-lbl">Alcista</div><div class="sc-prob">25%</div><div class="sc-txt">CPI bajo consenso &lt;0.8% + cese al fuego Hormuz &rarr; DXY &lt;99 &rarr; CLP 890&ndash;900 &middot; Cobre $5.70+ &middot; IPSA 10,800 &middot; XAUUSD $4,970+.</div></div>
+    <div class="sc-box be"><div class="sc-lbl">Bajista</div><div class="sc-prob">20%</div><div class="sc-txt">CPI &gt;1.2% + escal. Ir&aacute;n &rarr; DXY 102 &middot; USD/CLP 925+ &middot; Cobre &lt;$5.20 &middot; IPSA 10,000 &middot; XAUUSD $4,300.</div></div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Lectura de Apertura</span><span class="st-sub">&middot; 6 Abr 2026</span><div class="st-line"></div></div>
+  <div class="cg">
+    <div class="cg-lbl">Comentario del Gestor</div>
+    <div class="cg-text">&ldquo;El NFP +178K fue el gran evento de la semana pasada &mdash; tri&oacute; el consenso, pero el mercado ya lo absorbi&oacute;. El VIX baj&oacute; de 30.97 a 24.20: las talks de cese al fuego en Ir&aacute;n moderaron el risk-off. El peso se apreci&oacute; a 915.21, el IPSA recuper&oacute; 2.8%, el oro subi&oacute; 3.9%. Nuestra semana en Chile dep. del CPI del 10 de abril: si confirma +1% MoM, el BCCh no cortar&aacute; en 2026 y el BCU UF se vuelve a&uacute;n m&aacute;s atractivo. Mantenemos XAUUSD OW y BCU UF OW: ambos ganan en cualquier escenario inflacionario.&rdquo;</div>
+  </div>
+</div>
+
+<div style="background:var(--navy2);padding:10px 28px;border-top:1px solid rgba(147,133,101,0.2);border-bottom:1px solid rgba(147,133,101,0.2)">
+  <span style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold3)">&#8212; Radar de Activos &mdash; Posicionamiento HNWI Chile</span>
+</div>
+
+<div class="body">
+  <div class="st" style="margin-top:0"><div class="st-bar"></div><span class="st-text">Radar de Mercados</span><span class="st-sub">&middot; Qu&eacute; seguir &middot; Por qu&eacute; importa para Chile</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="rc ow">
+      <div class="rc-head">
+        <div class="rc-cat">Internacional &middot; Metal Precioso</div>
+        <div class="rc-name">XAUUSD &mdash; Oro CFD</div>
+        <div class="rc-price">$4,682</div>
+        <div class="rc-chg up">+3.9% sem &middot; recupera desde sobrevendido</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">INTL</span> OW +15% &middot; RSI sale sobrevendido &middot; posici&oacute;n ganando</div>
+        <div class="rc-text">RSI recupera sobrevendido. Soporte $4,520 (F23.6%) sostiene. Goldman Sachs target $5,400 fin 2026. UBS bullish. Doble cobertura: inflaci&oacute;n + geopo. CPI 10 Abr = nuevo catalizador si &gt;1%.</div>
+        <div class="rc-arrow">&rarr; CPI alto = hedge inflaci&oacute;n sube &middot; talks Hormuz = alivio temporal</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+    <div class="rc wt">
+      <div class="rc-head">
+        <div class="rc-cat">Local &middot; Renta Fija BCCh</div>
+        <div class="rc-name">BCU 10 a&ntilde;os &mdash; UF</div>
+        <div class="rc-price">2.85% UF</div>
+        <div class="rc-chg ac">CPI +1% MoM esperado &rarr; UF asim&eacute;trico al alza</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag local">LOCAL</span> OW &middot; mejor posici&oacute;n del portafolio esta semana</div>
+        <div class="rc-text">CPI Marzo = test definitivo. Brent $112 durante marzo = pass-through energ&iacute;a. Si CPI &gt;1% MoM: BCCh mantiene 4.50% todo 2026 = precio BCU sube + UF sube. Si CPI bajo: recorte eventual = precio sube tambi&eacute;n. Sin escenario adverso.</div>
+        <div class="rc-arrow">&rarr; Acumular antes del CPI 10 Abr &middot; catalizador inminente</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+    <div class="rc nt">
+      <div class="rc-head">
+        <div class="rc-cat">Internacional &middot; Acci&oacute;n / Cobre NYSE</div>
+        <div class="rc-name">FCX &mdash; Freeport-McMoRan</div>
+        <div class="rc-price">~$55</div>
+        <div class="rc-chg fl">&rarr; +1.8% sem &middot; cobre rebota a $5.66</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">INTL</span> Sin posici&oacute;n &middot; se acerca a zona entrada</div>
+        <div class="rc-text">Cobre $5.66 (+0.9%) por PMI China mejor y talks Hormuz. DXY 99.8 = headwind menor. Condici&oacute;n entrada: DXY &lt;99 sostenido + CPI no sorprende al alza.</div>
+        <div class="rc-arrow">&rarr; CPI 10 Abr = bifurcaci&oacute;n &middot; bajo: entrada activa &middot; alto: esperar</div>
+        <div class="badge nt">ESPERAR CPI</div>
+      </div>
+    </div>
+    <div class="rc nt">
+      <div class="rc-head">
+        <div class="rc-cat">T&aacute;ctico &middot; Forex CFD</div>
+        <div class="rc-name">USD/CLP &mdash; Revisi&oacute;n T&aacute;ctica</div>
+        <div class="rc-price">915.21</div>
+        <div class="rc-chg up">Peso aprecia &middot; cobre + talks Ir&aacute;n</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">INTL</span> Posici&oacute;n larga anterior en ganancias</div>
+        <div class="rc-text">Peso fortaleció 1.6% desde 925 a 910. Target 935-945 alcanzado parcialmente. Stop 910 activado. Consenso anual: CLP aprecia a 840-880. Posición táctica cerrada en ganancias.</div>
+        <div class="rc-arrow">&rarr; Salida t&aacute;ctica &middot; revisar tras CPI &middot; nuevo entry si DXY &gt;101</div>
+        <div class="badge nt">REVISAR</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Catalizadores Institucionales</span><div class="st-line"></div></div>
+  <ul class="ci-list" style="margin-bottom:0">
+    <li class="ci"><span class="ci-n">1.</span><span class="ci-t"><strong>CPI Marzo EE.UU. 10 Abr (viernes):</strong> el evento de la semana. Consenso +1% MoM &rarr; YoY 3.4% = mayor desde abr 2024. Si se confirma: Fed hold todo 2026 &rarr; DXY firms &rarr; BCCh no corta &rarr; BCU UF gana.</span></li>
+    <li class="ci"><span class="ci-n">2.</span><span class="ci-t"><strong>Actas FOMC 8 Abr:</strong> debate interno sobre impacto inflacionario de la guerra en Ir&aacute;n. Mercado busca cualquier se&ntilde;al hawkish adicional. DXY sensible.</span></li>
+    <li class="ci"><span class="ci-n">3.</span><span class="ci-t"><strong>PIB EE.UU. Q4 + PCE 9 Abr:</strong> dato rezagado pero referencia para contexto de crecimiento antes del CPI.</span></li>
+    <li class="ci"><span class="ci-n">4.</span><span class="ci-t"><strong>Hormuz &mdash; talks cese al fuego:</strong> propuesta 45 d&iacute;as de Pakist&aacute;n/Egipto/Turqu&iacute;a. Trump extendi&oacute; deadline. Brent &lt;$100 si acuerdo &rarr; CLP se aprecia &rarr; cobre rebota &rarr; IPSA 11,000.</span></li>
+    <li class="ci"><span class="ci-n">5.</span><span class="ci-t"><strong>IPSA zona t&eacute;cnica 10,614&ndash;10,680:</strong> cluster MA clave. Si CPI no sorprende, IPSA puede testar esta resistencia. Reforma fiscal Kast (27%&rarr;23%) = catalizador estructural pendiente.</span></li>
+  </ul>
+</div>
+
+<div style="background:var(--navy2);padding:10px 28px;border-top:1px solid rgba(147,133,101,0.2);border-bottom:1px solid rgba(147,133,101,0.2)">
+  <span style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold3)">&#8212; Top-4 Recomendaciones &amp; Agenda &mdash; Semana 6 Abr</span>
+</div>
+
+<div class="body">
+  <div class="st" style="margin-top:0"><div class="st-bar"></div><span class="st-text">Top-4 Recomendaciones</span><span class="st-sub">&middot; Semana 6 &ndash; 11 Abr 2026</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">01</span><div class="pc-info"><div class="pc-asset">XAUUSD &mdash; Gold CFD</div><div class="pc-cat">Internacional &middot; Metal Precioso</div></div><div class="pc-badges"><span class="btag intl">INTL</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Entrada</div><div class="pm-v">$4,520&ndash;4,650</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">$4,800&ndash;4,970</div></div>
+        <div class="pm"><div class="pm-l">Stop</div><div class="pm-v r">$4,300</div></div>
+        <div class="pm"><div class="pm-l">R:R</div><div class="pm-v a">&asymp;1:2.2</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">4&ndash;8 sem.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">OW +15% &middot; posici&oacute;n +3.9% esta semana &middot; RSI sale sobrevendido</div>
+        <div class="pc-text">RSI rebota desde sobrevendido. Soporte $4,520 sostenido. <strong>CPI 10 Abr &gt;1% = aceleraci&oacute;n rally oro. Goldman $5,400 fin 2026.</strong></div>
+        <div class="pc-note">&#9888; Stop $4,300. Reducir 30% si CPI muy bajo + cese al fuego total.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">02</span><div class="pc-info"><div class="pc-asset">BCU 10 a&ntilde;os &mdash; UF</div><div class="pc-cat">Local &middot; Renta Fija BCCh</div></div><div class="pc-badges"><span class="btag local">LOCAL</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Tasa Ref.</div><div class="pm-v">2.85% UF</div></div>
+        <div class="pm"><div class="pm-l">Target</div><div class="pm-v g">2.50&ndash;2.60%</div></div>
+        <div class="pm"><div class="pm-l">Stop tasa</div><div class="pm-v r">3.20%</div></div>
+        <div class="pm"><div class="pm-l">R.Real</div><div class="pm-v a">+1.5%</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">6&ndash;12 m.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">OW &middot; CPI 10 Abr = catalizador directo</div>
+        <div class="pc-text">Brent $112 todo marzo = IPC importado brutal. <strong>CPI &gt;1% MoM: UF sube + precio BCU sube. TPM se mantiene alto = carry atractivo. Asim&eacute;trico total.</strong></div>
+        <div class="pc-note">&#9888; Stop tasa 3.20%. Acumular antes del CPI 10 Abr.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">03</span><div class="pc-info"><div class="pc-asset">FCX &mdash; Freeport-McMoRan</div><div class="pc-cat">Internacional &middot; Acci&oacute;n / Cobre NYSE</div></div><div class="pc-badges"><span class="btag intl">INTL</span><span class="badge nt">ESPERAR CPI</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Nivel Act.</div><div class="pm-v">~$55</div></div>
+        <div class="pm"><div class="pm-l">Entrada</div><div class="pm-v a">$49&ndash;52</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">$62&ndash;65</div></div>
+        <div class="pm"><div class="pm-l">R:R</div><div class="pm-v a">&asymp;1:2.5</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">8&ndash;14 sem.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">Sin posici&oacute;n &middot; condicional CPI + DXY &lt;99</div>
+        <div class="pc-text">Cobre $5.66 rebota. <strong>Si CPI no sorprende + DXY cede &lt;99 = entrada FCX. Tesis L/P intacta: AI + EVs + d&eacute;ficit estructural.</strong></div>
+        <div class="pc-note">&#9888; No entrar hasta CPI 10 Abr. Stop $46 si entrada activa.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">04</span><div class="pc-info"><div class="pc-asset">USD/CLP &mdash; Nueva Entrada T&aacute;ctica</div><div class="pc-cat">Internacional &middot; Forex CFD</div></div><div class="pc-badges"><span class="btag intl">INTL</span><span class="badge nt">CONDICIONAL</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Nivel Act.</div><div class="pm-v">915.21</div></div>
+        <div class="pm"><div class="pm-l">Entrada</div><div class="pm-v a">Si CPI &gt;1%</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">920&ndash;928</div></div>
+        <div class="pm"><div class="pm-l">R:R</div><div class="pm-v a">&asymp;1:1.5</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">1 sem.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">Posici&oacute;n anterior cerrada en ganancia</div>
+        <div class="pc-text"><strong>Nueva entrada t&aacute;ctica solo si CPI &gt;1% MoM el viernes. DXY 101+ = USD/CLP rebota hacia 920-928.</strong> Consenso anual CLP 840-880.</div>
+        <div class="pc-note">&#9888; Stop 904. Solo si CPI confirma sorpresa inflacionaria.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Calendario Econ&oacute;mico</span><span class="st-sub">&middot; Semana 6 &ndash; 11 Abr 2026 &middot; Filtrado para Chile</span><div class="st-line"></div></div>
+  <div class="atbl-card">
+    <table class="atbl">
+      <thead><tr><th>Fecha</th><th>Evento</th><th>Impacto Chile</th></tr></thead>
+      <tbody>
+        <tr><td>Lun 6</td><td><span class="imp md"></span>Talks Ir&aacute;n &middot; Deadline extendido</td><td>Brent direcci&oacute;n &middot; CLP &middot; IPSA sentimiento</td></tr>
+        <tr><td>Mar 7</td><td><span class="imp md"></span>ADP Employment EE.UU.</td><td>Preview NFP &middot; DXY direcci&oacute;n</td></tr>
+        <tr><td>Mi&eacute; 8</td><td><span class="imp hi"></span>Actas FOMC <span class="kw">KEY</span></td><td>Se&ntilde;al Fed &middot; DXY &middot; BCU UF &middot; XAUUSD</td></tr>
+        <tr><td>Jue 9</td><td><span class="imp md"></span>PIB EE.UU. Q4 + PCE Febrero</td><td>Contexto crecimiento &middot; inflaci&oacute;n subyacente</td></tr>
+        <tr><td>Vie 10</td><td><span class="imp hi"></span>CPI Marzo EE.UU. <span class="kw bin">CRÍTICO</span></td><td>Catalizador m&aacute;ximo &middot; todas posiciones &middot; BCCh</td></tr>
+        <tr><td>Lun 14</td><td><span class="imp md"></span>PPI EE.UU. Marzo</td><td>Presi&oacute;n mayorista &middot; inflaci&oacute;n pipeline</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-disc">&#9888; Informe con fines exclusivamente informativos. No constituye asesor&iacute;a financiera personalizada. Las inversiones implican riesgos incluyendo p&eacute;rdida del capital. CFDs son instrumentos complejos con alto riesgo. Liberty Finance no asume responsabilidad por decisiones basadas en este an&aacute;lisis.</div>
+  <div class="footer-next" style="margin-left:20px">Liberty Finance &middot; A Legacy with Future</div>
+</div>
+</div>
+</body>
+</html>
