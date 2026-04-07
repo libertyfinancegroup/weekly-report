@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — HNWI Wealth Advisory LATAM</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#001337;--navy2:#00193f;--navy3:#000d24;
+  --gold:#938565;--gold2:#b3a993;--gold3:#c4b89a;--gold-d:#7a6c52;
+  --cream:#f0ede6;--cream2:#e8e4dc;--cream3:#f8f6f2;
+  --ink:#1c1c2e;--ink2:#383850;--muted:#64648a;
+  --green:#1a6b3c;--green-bg:#e8f5ee;
+  --red:#a02020;--red-bg:#faeaea;
+  --amber:#8a5a18;--amber-bg:#fdf3e3;
+  --blue:#1a4080;--blue-bg:#e8f0fa;
+  --w:780px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#0e1420;color:var(--cream);-webkit-font-smoothing:antialiased}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(0,19,55,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(147,133,101,0.2);padding:0 5vw}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-brand span:first-child{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.18em;color:#fff}
+.nav-brand span:last-child{font-size:8px;letter-spacing:0.4em;color:var(--gold3);text-transform:uppercase}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:rgba(240,237,230,0.65);text-decoration:none;letter-spacing:0.04em;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold3)}
+.nav-right{display:flex;gap:12px;align-items:center}
+.nav-lang{font-size:11px;color:rgba(240,237,230,0.4);letter-spacing:0.08em;cursor:pointer}
+.nav-cta{background:var(--gold);color:var(--navy);padding:8px 20px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.2s}
+.nav-cta:hover{background:var(--gold2)}
+.nav-ticker{background:var(--navy3);border-bottom:1px solid rgba(147,133,101,0.1);padding:0 5vw}
+.ticker-inner{max-width:1200px;margin:0 auto;display:flex;gap:0;overflow:hidden}
+.tk{padding:7px 24px 7px 0;margin-right:24px;border-right:1px solid rgba(147,133,101,0.12);white-space:nowrap;flex-shrink:0}
+.tk:last-child{border-right:none}
+.tk-l{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(196,184,154,0.45);display:block;margin-bottom:1px}
+.tk-v{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#fff}
+.tk-c{font-size:10px;margin-left:4px}
+.up{color:#34c97a}.dn{color:#e05555}.fl{color:rgba(255,255,255,0.35)}
+
+/* ── HERO ── */
+.hero{min-height:92vh;background:var(--navy);display:flex;flex-direction:column;justify-content:center;padding:0 5vw;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(147,133,101,0.04) 80px),repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(147,133,101,0.04) 80px)}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center}
+.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5vw,68px);font-weight:600;line-height:1.08;color:#fff;margin-bottom:24px}
+.hero-h1 em{font-style:italic;color:var(--gold3)}
+.hero-sub{font-size:16px;line-height:1.7;color:rgba(240,237,230,0.6);max-width:520px;margin-bottom:40px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--navy);padding:14px 32px;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s}
+.btn-primary:hover{background:var(--gold2)}
+.btn-secondary{background:transparent;color:var(--gold3);padding:14px 32px;font-size:13px;font-weight:600;letter-spacing:0.06em;border:1px solid rgba(147,133,101,0.4);cursor:pointer;transition:all 0.2s}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Segmentador */
+.seg-card{background:rgba(255,255,255,0.04);border:1px solid rgba(147,133,101,0.2);padding:28px}
+.seg-title{font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.seg-label{font-size:13px;color:rgba(240,237,230,0.55);margin-bottom:8px}
+.seg-amount{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:500;color:#fff;margin-bottom:16px}
+input[type=range]{width:100%;accent-color:var(--gold);margin-bottom:20px;cursor:pointer}
+.seg-tier{background:rgba(147,133,101,0.1);border:1px solid rgba(147,133,101,0.25);padding:14px 18px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.2s}
+.seg-tier:hover,.seg-tier.active{background:rgba(147,133,101,0.18);border-color:var(--gold)}
+.seg-tier-name{font-size:13px;font-weight:600;color:#fff}
+.seg-tier-tag{font-size:10px;font-weight:700;padding:3px 8px;letter-spacing:0.06em;text-transform:uppercase}
+.tag-ibkr{background:var(--blue-bg);color:var(--blue)}
+.tag-lib{background:var(--amber-bg);color:var(--amber)}
+.seg-cta{width:100%;background:var(--gold);color:var(--navy);padding:12px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;margin-top:4px}
+
+/* ── SECTION BASE ── */
+section{padding:96px 5vw}
+.section-inner{max-width:1200px;margin:0 auto}
+.sec-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sec-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.sec-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,48px);font-weight:500;color:#fff;margin-bottom:16px;line-height:1.15}
+.sec-h2 em{font-style:italic;color:var(--gold3)}
+.sec-sub{font-size:15px;color:rgba(240,237,230,0.55);max-width:600px;line-height:1.7;margin-bottom:48px}
+
+/* ── PRODUCTS SECTION ── */
+.products-section{background:var(--navy2)}
+.prod-tabs{display:flex;gap:0;border-bottom:1px solid rgba(147,133,101,0.2);margin-bottom:40px}
+.prod-tab{padding:14px 28px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:rgba(240,237,230,0.4);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s}
+.prod-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.prod-col{display:flex;flex-direction:column;gap:1px}
+.prod-col-head{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);padding:12px 16px;background:rgba(147,133,101,0.1);margin-bottom:2px;display:flex;align-items:center;justify-content:space-between}
+.prod-col-tag{font-size:9px;padding:2px 8px;font-weight:700;letter-spacing:0.04em}
+.local-tag{background:var(--amber-bg);color:var(--amber)}
+.intl-tag{background:var(--blue-bg);color:var(--blue)}
+.prod-item{background:rgba(255,255,255,0.03);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-left:2px solid transparent;transition:all 0.2s;cursor:pointer}
+.prod-item:hover{background:rgba(255,255,255,0.07);border-left-color:var(--gold)}
+.prod-item-name{font-size:13px;font-weight:500;color:#fff}
+.prod-item-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.prod-item-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold3);text-align:right}
+.prod-item-val small{font-size:10px;color:var(--muted);display:block}
+.prod-bridge{background:rgba(147,133,101,0.08);border:1px dashed rgba(147,133,101,0.25);padding:20px 24px;margin-top:24px;text-align:center}
+.prod-bridge p{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--gold3)}
+
+/* ── NOBEL SECTION ── */
+.nobel-section{background:var(--navy3)}
+.nobel-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.nobel-pillars{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+.nobel-pillar{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(147,133,101,0.12)}
+.pillar-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(147,133,101,0.25);min-width:48px;line-height:1}
+.pillar-body h4{font-size:14px;font-weight:600;color:#fff;margin-bottom:6px}
+.pillar-body p{font-size:13px;color:rgba(240,237,230,0.5);line-height:1.6}
+.nobel-chart{background:rgba(255,255,255,0.03);border:1px solid rgba(147,133,101,0.15);padding:24px}
+.chart-title{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.chart-val{font-family:'JetBrains Mono',monospace;font-size:32px;color:var(--gold);margin-bottom:24px}
+.chart-bars{display:flex;flex-direction:column;gap:10px}
+.chart-bar-row{display:flex;align-items:center;gap:12px}
+.chart-bar-label{font-size:11px;color:var(--muted);min-width:80px}
+.chart-bar-bg{flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+.chart-bar-fill{height:100%;border-radius:3px;transition:width 1s ease}
+.chart-bar-val{font-family:'JetBrains Mono',monospace;font-size:11px;min-width:48px;text-align:right}
+.chart-bar-fill.lf{background:var(--gold)}
+.chart-bar-fill.agf{background:rgba(147,133,101,0.3)}
+.chart-bar-fill.dep{background:rgba(100,100,138,0.4)}
+
+/* ── WEEKLY REPORTS ── */
+.reports-section{background:var(--navy2)}
+.reports-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.report-card{background:rgba(255,255,255,0.03);border:1px solid rgba(147,133,101,0.15);padding:20px;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:12px}
+.report-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(147,133,101,0.4)}
+.report-flag{font-size:22px}
+.report-country{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+.report-sentiment{font-size:12px;font-weight:600;padding:3px 10px;display:inline-block;margin:2px 0}
+.sent-bull{background:var(--green-bg);color:var(--green)}
+.sent-bear{background:var(--red-bg);color:var(--red)}
+.sent-neu{background:rgba(100,100,138,0.15);color:var(--muted)}
+.report-items{display:flex;flex-direction:column;gap:6px}
+.report-item{font-size:11px;color:rgba(240,237,230,0.5);display:flex;justify-content:space-between}
+.report-item-v{font-family:'JetBrains Mono',monospace;font-size:11px}
+.report-cta{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:0.04em;margin-top:4px}
+
+/* ── FEE CALCULATOR ── */
+.fee-section{background:var(--navy)}
+.fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.fee-calc{background:rgba(255,255,255,0.03);border:1px solid rgba(147,133,101,0.15);padding:32px}
+.fee-row{margin-bottom:24px}
+.fee-row label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+.fee-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(147,133,101,0.2);color:#fff;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:18px;outline:none}
+.fee-input:focus{border-color:var(--gold)}
+.fee-results{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.fee-result-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(147,133,101,0.1)}
+.fee-result-label{font-size:12px;color:rgba(240,237,230,0.5)}
+.fee-result-val{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500}
+.fee-result-row.total{background:rgba(147,133,101,0.08);padding:16px;border:none;margin-top:4px}
+.fee-result-row.total .fee-result-label{font-weight:700;color:var(--gold)}
+.fee-result-row.total .fee-result-val{color:var(--gold);font-size:20px}
+.fee-compare{display:flex;flex-direction:column;gap:12px}
+.compare-item{background:rgba(255,255,255,0.03);padding:16px 20px;border-left:3px solid transparent}
+.compare-item.lf{border-left-color:var(--gold)}
+.compare-item.agf{border-left-color:rgba(100,100,138,0.4)}
+.compare-name{font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.compare-rate{font-family:'JetBrains Mono',monospace;font-size:24px;color:#fff}
+.compare-note{font-size:11px;color:rgba(240,237,230,0.4);margin-top:4px}
+
+/* ── COUNTRIES ── */
+.countries-section{background:var(--navy3)}
+.countries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.country-card{background:rgba(255,255,255,0.03);padding:28px 24px;cursor:pointer;transition:all 0.2s;border-top:3px solid transparent}
+.country-card:hover{background:rgba(255,255,255,0.07);border-top-color:var(--gold)}
+.country-card.active{background:rgba(147,133,101,0.1);border-top-color:var(--gold)}
+.cc-flag{font-size:28px;margin-bottom:12px}
+.cc-name{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cc-tagline{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#fff;line-height:1.3;margin-bottom:16px}
+.cc-stats{display:flex;flex-direction:column;gap:6px}
+.cc-stat{font-size:11px;color:rgba(240,237,230,0.45);display:flex;gap:8px}
+.cc-stat::before{content:'→';color:var(--gold);font-size:10px;margin-top:1px}
+
+/* ── TEAM ── */
+.team-section{background:var(--navy2)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.team-card{background:rgba(255,255,255,0.03);border:1px solid rgba(147,133,101,0.12);padding:24px;display:flex;gap:16px}
+.team-avatar{width:52px;height:52px;background:rgba(147,133,101,0.15);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold);flex-shrink:0}
+.team-name{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px}
+.team-role{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+.team-bio{font-size:12px;color:rgba(240,237,230,0.45);line-height:1.6}
+
+/* ── CTA FINAL ── */
+.cta-section{background:var(--gold-d);padding:80px 5vw;text-align:center}
+.cta-section .sec-h2{color:var(--navy)}
+.cta-section .sec-sub{color:rgba(0,19,55,0.6);margin:0 auto 40px}
+.cta-section .sec-eyebrow{color:var(--navy);justify-content:center}
+.cta-section .sec-eyebrow::before{background:var(--navy)}
+.btn-dark{background:var(--navy);color:#fff;padding:16px 40px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer}
+.btn-dark:hover{background:var(--navy2)}
+
+/* ── FOOTER ── */
+footer{background:var(--navy3);border-top:1px solid rgba(147,133,101,0.15);padding:48px 5vw 24px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand span:first-child{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:0.18em;color:#fff;display:block;margin-bottom:4px}
+.footer-brand p{font-size:12px;color:rgba(240,237,230,0.35);line-height:1.6;margin-top:12px;max-width:280px}
+.footer-col h4{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:12px;color:rgba(240,237,230,0.4);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold3)}
+.footer-bottom{border-top:1px solid rgba(147,133,101,0.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center}
+.footer-disc{font-size:10px;color:rgba(240,237,230,0.2);line-height:1.5;max-width:600px}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(147,133,101,0.5)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{animation:fadeUp 0.6s ease both}
+.hero-h1{animation:fadeUp 0.7s 0.1s ease both}
+.hero-sub{animation:fadeUp 0.7s 0.2s ease both}
+.hero-actions{animation:fadeUp 0.7s 0.3s ease both}
+.seg-card{animation:fadeUp 0.8s 0.2s ease both}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span>LIBERTY FINANCE</span>
+      <span>A Legacy with Future</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#products">Local + Global</a></li>
+      <li><a href="#nobel">Premium Advisory</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#fee">Comisiones</a></li>
+      <li><a href="#countries">Mercados</a></li>
+      <li><a href="#team">Equipo</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="nav-lang">ES · EN · RU</span>
+      <button class="nav-cta">Hablar con un asesor</button>
+    </div>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="nav-ticker">
+  <div class="ticker-inner">
+    <div class="tk"><span class="tk-l">XAUUSD</span><span class="tk-v">$4,490 <span class="tk-c dn">▼ −2.8%</span></span></div>
+    <div class="tk"><span class="tk-l">USD/CLP</span><span class="tk-v">925.26 <span class="tk-c up">▲ −0.4%</span></span></div>
+    <div class="tk"><span class="tk-l">Brent</span><span class="tk-v">$113.0 <span class="tk-c dn">▼ +55% mar</span></span></div>
+    <div class="tk"><span class="tk-l">USD/PEN</span><span class="tk-v">3.4965 <span class="tk-c dn">▼ máx 4M</span></span></div>
+    <div class="tk"><span class="tk-l">IPSA</span><span class="tk-v">10,420 <span class="tk-c dn">▼ −1.2%</span></span></div>
+    <div class="tk"><span class="tk-l">USD/PYG</span><span class="tk-v">6,512 <span class="tk-c fl">→ estable</span></span></div>
+    <div class="tk"><span class="tk-l">BCCh TPM</span><span class="tk-v">4.50% <span class="tk-c fl">→ hold</span></span></div>
+    <div class="tk"><span class="tk-l">VIX</span><span class="tk-v">30.97 <span class="tk-c dn">▼ risk-off</span></span></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">HNWI Wealth Advisory · Chile · Ecuador · Perú · Paraguay</div>
+      <h1 class="hero-h1">Tu patrimonio merece<br><em>independencia.</em></h1>
+      <p class="hero-sub" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(240,237,230,0.4);margin-bottom:16px;padding-left:16px;border-left:2px solid var(--gold-d)">"Asesoría que construye legados — no que vende productos."</p>
+      <p class="hero-sub">El único asesor independiente de LATAM que combina instrumentos locales de cada mercado con acceso completo a Wall Street — bajo una metodología verificada, sin conflicto de interés.</p>
+      <div class="hero-actions">
+        <button class="btn-primary">Comenzar ahora</button>
+        <button class="btn-secondary">Ver Premium Advisory →</button>
+      </div>
+    </div>
+    <div class="seg-card">
+      <div class="seg-title">¿Cuánto deseas invertir?</div>
+      <div class="seg-label">Monto aproximado</div>
+      <div class="seg-amount" id="seg-val">$250,000</div>
+      <input type="range" min="50000" max="5000000" value="250000" step="50000" id="seg-range" oninput="updateSeg(this.value)">
+      <div class="seg-tier active" id="tier-lib" onclick="selectTier('lib')">
+        <div>
+          <div class="seg-tier-name">Standard Advisory</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">$50,000 – $499,999 · 300+ instrumentos globales + estrategias automatizadas</div>
+        </div>
+        <span class="seg-tier-tag tag-lib">STANDARD</span>
+      </div>
+      <div class="seg-tier" id="tier-ibkr" onclick="selectTier('ibkr')">
+        <div>
+          <div class="seg-tier-name">Premium Advisory</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">$500,000+ · Sovereign Portfolios + 150+ mercados globales + advisory personalizado</div>
+        </div>
+        <span class="seg-tier-tag tag-ibkr">PREMIUM</span>
+      </div>
+      <button class="seg-cta">Agendar consulta gratuita →</button>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS: LOCAL + INTERNATIONAL -->
+<section class="products-section" id="products">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Lo que ya conoces + lo que el mundo te ofrece</div>
+    <h2 class="sec-h2">Local + Global —<br><em>por primera vez, juntos.</em></h2>
+    <p class="sec-sub">Elige tu mercado para ver los instrumentos disponibles bajo un solo advisory. El mismo asesor gestiona tu BCU UF y tu posición en NYSE Gold.</p>
+    <div class="prod-tabs">
+      <div class="prod-tab active" onclick="switchCountry('cl',this)">🇨🇱 Chile</div>
+      <div class="prod-tab" onclick="switchCountry('ec',this)">🇪🇨 Ecuador</div>
+      <div class="prod-tab" onclick="switchCountry('pe',this)">🇵🇪 Perú</div>
+      <div class="prod-tab" onclick="switchCountry('py',this)">🇵🇾 Paraguay</div>
+    </div>
+    <div class="prod-grid" id="prod-grid">
+      <!-- filled by JS -->
+    </div>
+    <div class="prod-bridge" style="margin-top:24px">
+      <p>"Lo que ya conoces de tu mercado + lo que el mundo te ofrece — bajo un solo gestor, una sola estrategia."</p>
+    </div>
+  </div>
+</section>
+
+<!-- NOBEL PORTFOLIOS -->
+<section class="nobel-section" id="nobel">
+  <div class="section-inner">
+    <div class="sec-eyebrow">IP exclusivo Liberty Finance</div>
+    <h2 class="sec-h2">Sovereign <em>Portfolios</em></h2>
+    <div class="nobel-grid">
+      <div>
+        <p class="sec-sub">Sistema de inversión trimestral con diversificación por sectores, basado en principios académicos (Markowitz). Cada portafolio incluye acompañamiento completo desde la apertura hasta el cierre de posiciones.</p>
+        <div style="padding:14px 18px;background:rgba(147,133,101,0.06);border-left:2px solid rgba(147,133,101,0.25);margin-bottom:24px;font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,237,230,0.4)">"Historial verificado de 18 meses bajo metodología propia Liberty Finance. Rentabilidad y métricas disponibles bajo solicitud."</div>
+        <div class="nobel-pillars">
+          <div class="nobel-pillar">
+            <div class="pillar-num">I</div>
+            <div class="pillar-body"><h4>Diversificación eficiente (Markowitz)</h4><p>Construcción en frontera eficiente. Cada activo tiene su peso específico según perfil de riesgo.</p></div>
+          </div>
+          <div class="nobel-pillar">
+            <div class="pillar-num">II</div>
+            <div class="pillar-body"><h4>Horizonte trimestral disciplinado</h4><p>Ciclos de 3 meses con corrección según mercado. Sistema probado, sin improvisación.</p></div>
+          </div>
+          <div class="nobel-pillar">
+            <div class="pillar-num">III</div>
+            <div class="pillar-body"><h4>Acompañamiento completo</h4><p>Manager personal + canal cerrado con señales de entrada y salida en tiempo real.</p></div>
+          </div>
+          <div class="nobel-pillar">
+            <div class="pillar-num">IV</div>
+            <div class="pillar-body"><h4>Tú decides</h4><p>El derecho de tomar la decisión permanece en tus manos. Asesoramos — no imponemos.</p></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="nobel-chart">
+          <div class="chart-title">Ganancia acumulada · Desde noviembre 2023</div>
+          <div class="chart-val">+95.04%</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:16px">18 meses de track record verificado · Promedio trimestral ~15.8%</div>
+          <div class="chart-bars" style="display:flex;flex-direction:column;gap:6px">
+            <div class="chart-bar-row"><div class="chart-bar-label" style="font-size:10px;color:var(--muted);min-width:70px;font-family:'JetBrains Mono',monospace">Rally NY</div><div class="chart-bar-bg"><div class="chart-bar-fill lf" style="width:75%"></div></div><div class="chart-bar-val" style="color:#34c97a;font-size:11px">+35.58%</div></div>
+            <div class="chart-bar-row"><div class="chart-bar-label" style="font-size:10px;color:var(--muted);min-width:70px;font-family:'JetBrains Mono',monospace">Q1 2024</div><div class="chart-bar-bg"><div class="chart-bar-fill lf" style="width:22%"></div></div><div class="chart-bar-val" style="color:#34c97a;font-size:11px">+10.18%</div></div>
+            <div class="chart-bar-row"><div class="chart-bar-label" style="font-size:10px;color:var(--muted);min-width:70px;font-family:'JetBrains Mono',monospace">Q2 2024</div><div class="chart-bar-bg"><div class="chart-bar-fill lf" style="width:22%"></div></div><div class="chart-bar-val" style="color:#34c97a;font-size:11px">+10.21%</div></div>
+            <div class="chart-bar-row"><div class="chart-bar-label" style="font-size:10px;color:var(--muted);min-width:70px;font-family:'JetBrains Mono',monospace">Q3 2024</div><div class="chart-bar-bg"><div class="chart-bar-fill lf" style="width:31%"></div></div><div class="chart-bar-val" style="color:#34c97a;font-size:11px">+14.46%</div></div>
+            <div class="chart-bar-row"><div class="chart-bar-label" style="font-size:10px;color:var(--muted);min-width:70px;font-family:'JetBrains Mono',monospace">Q1 2025</div><div class="chart-bar-bg"><div class="chart-bar-fill lf" style="width:32%"></div></div><div class="chart-bar-val" style="color:#34c97a;font-size:11px">+15.00%</div></div>
+            <div class="chart-bar-row"><div class="chart-bar-label" style="font-size:10px;color:var(--muted);min-width:70px;font-family:'JetBrains Mono',monospace">Q2 2025</div><div class="chart-bar-bg"><div class="chart-bar-fill lf" style="width:20%"></div></div><div class="chart-bar-val" style="color:#34c97a;font-size:11px">+9.61%</div></div>
+          </div>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(147,133,101,0.12)">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:12px;letter-spacing:0.06em;text-transform:uppercase">Estadísticas reales</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div style="background:rgba(255,255,255,0.03);padding:12px">
+                <div style="font-size:10px;color:var(--muted);margin-bottom:4px">Trimestres positivos</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:20px;color:var(--gold)">6/6</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);padding:12px">
+                <div style="font-size:10px;color:var(--muted);margin-bottom:4px">Mejor trimestre</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:20px;color:#34c97a">+35.6%</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);padding:12px">
+                <div style="font-size:10px;color:var(--muted);margin-bottom:4px">Promedio trimestral</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:20px;color:var(--gold)">~15.8%</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);padding:12px">
+                <div style="font-size:10px;color:var(--muted);margin-bottom:4px">Retorno total</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:20px;color:#34c97a">+95.0%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:16px;background:rgba(147,133,101,0.08);border-left:3px solid var(--gold)">
+          <p style="font-size:12px;color:rgba(240,237,230,0.5);line-height:1.6">Retornos históricos no garantizan resultados futuros. Track record verificado disponible bajo solicitud. Las inversiones implican riesgos incluyendo pérdida del capital.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH WEEKLY -->
+<section class="reports-section" id="research">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Research semanal · Publicado cada lunes</div>
+    <h2 class="sec-h2">El único advisory que publica<br><em>sus análisis abiertamente.</em></h2>
+    <p class="sec-sub">Cuatro reportes por semana, uno por mercado. Análisis institucional al nivel de BTG Pactual y Moneda — disponible para todos. Semana 30 Mar – 4 Abr 2026.</p>
+    <div class="reports-grid">
+      <div class="report-card">
+        <div class="report-flag">🇨🇱</div>
+        <div class="report-country">Chile</div>
+        <span class="report-sentiment sent-neu">⚠ Neutro-Cauto</span>
+        <div class="report-items">
+          <div class="report-item"><span>IPSA</span><span class="report-item-v" style="color:#e05555">10,420 ▼</span></div>
+          <div class="report-item"><span>USD/CLP</span><span class="report-item-v">925.26</span></div>
+          <div class="report-item"><span>BCU UF</span><span class="report-item-v" style="color:var(--gold)">OW ▲</span></div>
+          <div class="report-item"><span>XAUUSD</span><span class="report-item-v" style="color:var(--gold)">OW ▲</span></div>
+        </div>
+        <div class="report-cta">Ver reporte completo →</div>
+      </div>
+      <div class="report-card">
+        <div class="report-flag">🇪🇨</div>
+        <div class="report-country">Ecuador</div>
+        <span class="report-sentiment sent-bull">✓ Alcista</span>
+        <div class="report-items">
+          <div class="report-item"><span>WTI</span><span class="report-item-v" style="color:#34c97a">$102.88 ▲</span></div>
+          <div class="report-item"><span>Eurobono 2034</span><span class="report-item-v" style="color:var(--gold)">9.10% OW</span></div>
+          <div class="report-item"><span>EMBI ECU</span><span class="report-item-v">~460 pbs</span></div>
+          <div class="report-item"><span>XAUUSD</span><span class="report-item-v" style="color:var(--gold)">OW ▲</span></div>
+        </div>
+        <div class="report-cta">Ver reporte completo →</div>
+      </div>
+      <div class="report-card">
+        <div class="report-flag">🇵🇪</div>
+        <div class="report-country">Perú</div>
+        <span class="report-sentiment sent-neu">⚠ Cauteloso</span>
+        <div class="report-items">
+          <div class="report-item"><span>USD/PEN</span><span class="report-item-v" style="color:#e05555">3.4965 ▼</span></div>
+          <div class="report-item"><span>BAP NYSE</span><span class="report-item-v" style="color:var(--gold)">$292 ACUM</span></div>
+          <div class="report-item"><span>Bono PEN 10Y</span><span class="report-item-v" style="color:var(--gold)">7.1% OW</span></div>
+          <div class="report-item"><span>XAUUSD</span><span class="report-item-v" style="color:var(--gold)">OW ▲</span></div>
+        </div>
+        <div class="report-cta">Ver reporte completo →</div>
+      </div>
+      <div class="report-card">
+        <div class="report-flag">🇵🇾</div>
+        <div class="report-country">Paraguay</div>
+        <span class="report-sentiment sent-bull">✓ Alcista (Inmune)</span>
+        <div class="report-items">
+          <div class="report-item"><span>USD/PYG</span><span class="report-item-v">6,512 →</span></div>
+          <div class="report-item"><span>Eurobono PYG</span><span class="report-item-v" style="color:var(--gold)">8.50% OW</span></div>
+          <div class="report-item"><span>PIB 2025</span><span class="report-item-v" style="color:#34c97a">6.0% ▲</span></div>
+          <div class="report-item"><span>SOYBEAN</span><span class="report-item-v" style="color:var(--gold)">OW ▲</span></div>
+        </div>
+        <div class="report-cta">Ver reporte completo →</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <button class="btn-secondary">Suscribirse al research semanal gratis →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEE CALCULATOR -->
+<section class="fee-section" id="fee">
+  <div class="section-inner">
+    <div class="fee-grid">
+      <div>
+        <div class="sec-eyebrow">Transparencia total</div>
+        <h2 class="sec-h2">Comisiones alineadas<br><em>con tus resultados.</em></h2>
+        <p class="sec-sub">2.5% anual + 10% sobre PnL superior al 3.5% hurdle. Solo ganamos más cuando tú ganas más. Calcula lo que pagarías con nosotros versus una AGF tradicional.</p>
+        <div class="fee-compare">
+          <div class="compare-item lf">
+            <div class="compare-name">Liberty Finance</div>
+            <div class="compare-rate">2.5% <span style="font-size:14px;color:var(--muted)">+ 10% PnL &gt; 3.5%</span></div>
+            <div class="compare-note">Intereses alineados — solo ganamos cuando tú ganas más</div>
+          </div>
+          <div class="compare-item agf">
+            <div class="compare-name">AGF promedio Chile</div>
+            <div class="compare-rate">1.5–2.5% <span style="font-size:14px;color:var(--muted)">TAC flat</span></div>
+            <div class="compare-note">Cobran igual sin importar si pierdes o ganas</div>
+          </div>
+          <div class="compare-item agf">
+            <div class="compare-name">Banca privada banco</div>
+            <div class="compare-rate">2.0–3.0% <span style="font-size:14px;color:var(--muted)">+ productos propios</span></div>
+            <div class="compare-note">Conflicto de interés — venden sus fondos primero</div>
+          </div>
+        </div>
+      </div>
+      <div class="fee-calc">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:20px">Simulador de comisiones</div>
+        <div class="fee-row">
+          <label>AUM a invertir (USD)</label>
+          <input type="text" class="fee-input" id="fee-aum" value="500,000" oninput="calcFee()">
+        </div>
+        <div class="fee-row">
+          <label>Retorno esperado (%)</label>
+          <input type="text" class="fee-input" id="fee-ret" value="15" oninput="calcFee()">
+        </div>
+        <div class="fee-results" id="fee-results"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTRIES -->
+<section class="countries-section" id="countries">
+  <div class="section-inner">
+    <div class="sec-eyebrow">4 mercados · 1 advisor</div>
+    <h2 class="sec-h2">Presencia local,<br><em>visión global.</em></h2>
+    <p class="sec-sub">PBAs locales en cada mercado + partners regulados para instrumentos domésticos. La misma metodología, adaptada a cada economía.</p>
+    <div class="countries-grid">
+      <div class="country-card active">
+        <div class="cc-flag">🇨🇱</div>
+        <div class="cc-name">Chile</div>
+        <div class="cc-tagline">"Sovereign + BCU UF + NYSE en una estrategia"</div>
+        <div class="cc-stats">
+          <div class="cc-stat">CMF Advisory license · 2026</div>
+          <div class="cc-stat">Sin conflicto de interés vs AGF</div>
+          <div class="cc-stat">TPM BCCh 4.50% · IPSA −11% vs ATH</div>
+          <div class="cc-stat">BCU UF OW + XAUUSD OW</div>
+        </div>
+      </div>
+      <div class="country-card">
+        <div class="cc-flag">🇪🇨</div>
+        <div class="cc-name">Ecuador</div>
+        <div class="cc-tagline">"Tus dólares merecen crecer globalmente"</div>
+        <div class="cc-stats">
+          <div class="cc-stat">Economía dolarizada · sin riesgo FX</div>
+          <div class="cc-stat">Único asesor con acceso global</div>
+          <div class="cc-stat">WTI windfall $21M/día · EMBI 460pbs</div>
+          <div class="cc-stat">Eurobono 2034 9.1% OW</div>
+        </div>
+      </div>
+      <div class="country-card">
+        <div class="cc-flag">🇵🇪</div>
+        <div class="cc-name">Perú</div>
+        <div class="cc-tagline">"Protección del riesgo político con estrategia probada"</div>
+        <div class="cc-stats">
+          <div class="cc-stat">BCRP 4.25% · PEN −4% en marzo</div>
+          <div class="cc-stat">Diversificación USD sistematizada</div>
+          <div class="cc-stat">BAP P/E 9.2x · Bono PEN 7.1%</div>
+          <div class="cc-stat">Mejor real yield soberano LATAM</div>
+        </div>
+      </div>
+      <div class="country-card">
+        <div class="cc-flag">🇵🇾</div>
+        <div class="cc-name">Paraguay</div>
+        <div class="cc-tagline">"El único país LATAM inmune al Brent"</div>
+        <div class="cc-stats">
+          <div class="cc-stat">PIB 6% · déficit &lt;2% · Itaipú</div>
+          <div class="cc-stat">Acceso global desde Asunción</div>
+          <div class="cc-stat">Eurobono PYG 8.5% real +5.4%</div>
+          <div class="cc-stat">Guaraní más estable de LATAM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="section-inner">
+    <div class="sec-eyebrow">El equipo detrás de tu capital</div>
+    <h2 class="sec-h2">Asesores que conocen<br><em>tu mercado por dentro.</em></h2>
+    <p class="sec-sub" style="margin-bottom:40px">PBAs con experiencia en banca privada, gestión de fondos e instituciones reguladas. No vendedores — gestores.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">LF</div>
+        <div>
+          <div class="team-name">Equipo Chile</div>
+          <div class="team-role">Santiago · CMF registered</div>
+          <div class="team-bio">Especialistas en mercado local chileno, BCU UF, IPSA y acceso internacional. Ex-banca privada y AGF.</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">LF</div>
+        <div>
+          <div class="team-name">Equipo Ecuador</div>
+          <div class="team-role">Guayaquil + Quito</div>
+          <div class="team-bio">Expertise en Eurobonos ecuatorianos, mercado de capitales local y estrategias de preservación en USD.</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">LF</div>
+        <div>
+          <div class="team-name">Equipo Perú + Paraguay</div>
+          <div class="team-role">Lima · Asunción</div>
+          <div class="team-bio">Gestión de portafolios en PEN y PYG, acceso a BVL, bonos soberanos y plataforma institucional global.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="section-inner" style="text-align:center">
+    <div class="sec-eyebrow" style="justify-content:center;color:var(--navy)">El momento de actuar</div>
+    <h2 class="sec-h2" style="color:var(--navy);max-width:640px;margin:0 auto 20px">Tu patrimonio merece un asesor que trabaja <em style="color:var(--navy2)">para ti.</em></h2>
+    <p class="sec-sub" style="color:rgba(0,19,55,0.6);margin:0 auto 40px">Primera consulta gratuita. Sin compromiso. En 30 minutos evaluamos tu situación y te presentamos un portafolio personalizado.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-dark">Agendar consulta gratuita</button>
+      <button class="btn-secondary" style="color:var(--navy);border-color:rgba(0,19,55,0.3)">Conocer Premium Advisory</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span>LIBERTY FINANCE</span>
+        <span style="font-size:8px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;display:block;margin-top:2px">A Legacy with Future</span>
+        <p>Advisory de inversiones independiente para HNWI en Chile, Ecuador, Perú y Paraguay. Sovereign Portfolios + acceso a los mejores intermediarios regulados.</p>
+        <p style="margin-top:8px;color:var(--gold);font-size:10px">www.libertyfinancecapital.com</p>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#">Sovereign Portfolios</a></li>
+          <li><a href="#">Standard Advisory</a></li>
+          <li><a href="#">Premium Advisory</a></li>
+          <li><a href="#">Crypto HNWI</a></li>
+          <li><a href="#">Robo Advisory HNWI</a></li>
+          <li><a href="#">Tax & Capital Protection</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Mercados</h4>
+        <ul>
+          <li><a href="#">Chile · CMF 2026</a></li>
+          <li><a href="#">Ecuador</a></li>
+          <li><a href="#">Perú</a></li>
+          <li><a href="#">Paraguay</a></li>
+          <li><a href="#">Global · Dubai 2027</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Research</h4>
+        <ul>
+          <li><a href="#">Reporte semanal Chile</a></li>
+          <li><a href="#">Reporte semanal Ecuador</a></li>
+          <li><a href="#">Reporte semanal Perú</a></li>
+          <li><a href="#">Reporte semanal Paraguay</a></li>
+          <li><a href="#">Suscribirse gratis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-disc">Liberty Finance SpA · Av. La Dehesa 1500, Piso 4, Oficina 3 · Santiago, Chile · En proceso de autorización CMF (NCG N°502). Las inversiones implican riesgos incluyendo pérdida del capital. Retornos pasados no garantizan resultados futuros. CEO: Vladimir Kozlov.</p>
+      <div class="footer-tagline">A Legacy with Future</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Segmentador ──────────────────────────────────────────
+function updateSeg(v){
+  const n=parseInt(v);
+  document.getElementById('seg-val').textContent='$'+n.toLocaleString();
+  const tierLib=document.getElementById('tier-lib');
+  const tierIbkr=document.getElementById('tier-ibkr');
+  if(n<500000){tierLib.classList.add('active');tierIbkr.classList.remove('active')}
+  else{tierIbkr.classList.add('active');tierLib.classList.remove('active')}
+}
+function selectTier(t){
+  document.getElementById('tier-lib').classList.remove('active');
+  document.getElementById('tier-ibkr').classList.remove('active');
+  document.getElementById('tier-'+t).classList.add('active');
+}
+
+// ── Products by country ──────────────────────────────────
+const PRODUCTS={
+  cl:{
+    local:{name:'Instrumentos locales',tag:'local-tag',items:[
+      ['BCU UF 10Y','Bono BCCh inflación','2.85% UF'],
+      ['BTP Chile','Bono en CLP','4.50% CLP'],
+      ['IPSA acciones','Falabella · Copec · BCH','selectivo'],
+      ['DPF bancario','Depósito a plazo CLP','~5.2% CLP'],
+      ['Fondos mutuos','Renta fija local','1.5-2.5% TAC'],
+    ]},
+    intl:{name:'Instrumentos internacionales',tag:'intl-tag',items:[
+      ['XAUUSD','Oro CFD','$4,490 OW'],
+      ['SQM · FCX · LTM','NYSE LATAM','OW selectivo'],
+      ['ETF ECH / COPX','iShares Chile · Cobre','recomendado'],
+      ['US Treasuries','T-Bills USD','4.4% YTM'],
+      ['EMB / ILF','ETF renta fija EM','diversificación'],
+    ]}
+  },
+  ec:{
+    local:{name:'Instrumentos locales',tag:'local-tag',items:[
+      ['Eurobono ECU 2034','Soberano USD','9.10% YTM OW'],
+      ['Eurobono ECU 2039','Soberano USD','9.25% YTM'],
+      ['DAP bancario','Depósito a plazo','3-6% USD'],
+      ['CETES','Certificados Tesorería','rendim. variable'],
+      ['Acciones BVQ/BVG','Mercado local ilíquido','baja demanda'],
+    ]},
+    intl:{name:'Instrumentos internacionales',tag:'intl-tag',items:[
+      ['XAUUSD','Único hedge disponible','$4,490 OW'],
+      ['US Treasuries','Cash parking USD','4.4% YTM'],
+      ['XLE / USO','ETF petróleo','monitor WTI'],
+      ['NYSE acciones','MELI · NU · AMZN','diversificación'],
+      ['EMB','ETF soberanos EM','fuera de ECU'],
+    ]}
+  },
+  pe:{
+    local:{name:'Instrumentos locales',tag:'local-tag',items:[
+      ['Bonos soberanos PEN','10Y Treasury Perú','7.10% YTM OW'],
+      ['BAP Credicorp','NYSE · P/E 9.2x','$292 ACUMULAR'],
+      ['BVN Buenaventura','NYSE · oro y plata','esperar señal'],
+      ['Depósitos PEN','Interbancario','~5.5% PEN'],
+      ['BVL acciones','BCP · Alicorp locales','selectivo'],
+    ]},
+    intl:{name:'Instrumentos internacionales',tag:'intl-tag',items:[
+      ['XAUUSD','Hedge PEN + inflación','$4,490 OW'],
+      ['SCCO','Southern Copper NYSE','exposición cobre'],
+      ['US Treasuries','Preservación USD','4.4% YTM'],
+      ['FCX','Freeport-McMoRan','esperar señal'],
+      ['ETF EPU','iShares MSCI Peru','exposición índice'],
+    ]}
+  },
+  py:{
+    local:{name:'Instrumentos locales',tag:'local-tag',items:[
+      ['Eurobono PYG 2038','Soberano guaraní','8.50% YTM OW'],
+      ['CDA guaraní','Depósito a plazo','~8% PYG'],
+      ['Bonos corporativos','BVP emisores locales','selectivo'],
+      ['Fondos mutuos','Renta fija PYG','PYG diversificado'],
+      ['Acciones BVP','Mercado local','baja liquidez'],
+    ]},
+    intl:{name:'Instrumentos internacionales',tag:'intl-tag',items:[
+      ['Eurobono USD 2033','Soberano USD','6.80% YTM OW'],
+      ['XAUUSD','Hedge geopolítico','$4,490 OW'],
+      ['SOYB / DBA','ETF soja agrícola','Paraguay 4° mundial'],
+      ['US Treasuries','Cash parking USD','4.4% YTM'],
+      ['NYSE acciones','Diversificación global','MELI · NU'],
+    ]}
+  }
+};
+let currentCountry='cl';
+function switchCountry(c,el){
+  currentCountry=c;
+  document.querySelectorAll('.prod-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts(c);
+}
+function renderProducts(c){
+  const d=PRODUCTS[c];
+  const g=document.getElementById('prod-grid');
+  g.innerHTML=`
+    <div class="prod-col">
+      <div class="prod-col-head">${d.local.name} <span class="prod-col-tag ${d.local.tag}">LOCAL</span></div>
+      ${d.local.items.map(i=>`<div class="prod-item"><div><div class="prod-item-name">${i[0]}</div><div class="prod-item-sub">${i[1]}</div></div><div class="prod-item-val">${i[2]}</div></div>`).join('')}
+    </div>
+    <div class="prod-col">
+      <div class="prod-col-head">${d.intl.name} <span class="prod-col-tag ${d.intl.tag}">INTERNACIONAL</span></div>
+      ${d.intl.items.map(i=>`<div class="prod-item"><div><div class="prod-item-name">${i[0]}</div><div class="prod-item-sub">${i[1]}</div></div><div class="prod-item-val">${i[2]}</div></div>`).join('')}
+    </div>`;
+}
+renderProducts('cl');
+
+// ── Fee calculator ───────────────────────────────────────
+function calcFee(){
+  const aum=parseFloat(document.getElementById('fee-aum').value.replace(/,/g,''))||500000;
+  const ret=parseFloat(document.getElementById('fee-ret').value)||15;
+  const gross=aum*ret/100;
+  const mgmt=aum*0.025;
+  const netPnl=gross-mgmt;
+  const hurdle=aum*0.035;
+  const perfBase=Math.max(0,netPnl-hurdle);
+  const perf=perfBase*0.10;
+  const totalFee=mgmt+perf;
+  const clientNet=gross-totalFee;
+  const clientRet=(clientNet/aum*100).toFixed(2);
+  const r=document.getElementById('fee-results');
+  r.innerHTML=`
+    <div class="fee-result-row"><span class="fee-result-label">Retorno bruto</span><span class="fee-result-val" style="color:#34c97a">+$${Math.round(gross).toLocaleString()}</span></div>
+    <div class="fee-result-row"><span class="fee-result-label">Comisión gestión (2.5%)</span><span class="fee-result-val" style="color:#e05555">−$${Math.round(mgmt).toLocaleString()}</span></div>
+    <div class="fee-result-row"><span class="fee-result-label">Performance fee (10% sobre PnL >3.5%)</span><span class="fee-result-val" style="color:#e05555">−$${Math.round(perf).toLocaleString()}</span></div>
+    <div class="fee-result-row total"><span class="fee-result-label">Tu retorno neto</span><span class="fee-result-val">+${clientRet}%  ·  $${Math.round(clientNet).toLocaleString()}</span></div>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px">Total honorarios LF: $${Math.round(totalFee).toLocaleString()} · Effective rate: ${(totalFee/aum*100).toFixed(2)}%</div>`;
+}
+calcFee();
+
+// ── Country card interaction ─────────────────────────────
+document.querySelectorAll('.country-card').forEach(c=>{
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.country-card').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
