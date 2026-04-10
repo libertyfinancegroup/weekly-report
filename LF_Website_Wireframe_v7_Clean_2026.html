@@ -59,8 +59,10 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy-a);backdrop-filter:b
    HERO — clean, no quotes, no stats row
    ═══════════════════════════════════════════════════ */
 .hero{min-height:88vh;background:var(--navy);display:flex;align-items:center;padding:80px var(--px);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;right:-20%;top:-30%;width:900px;height:900px;background:radial-gradient(circle,rgba(147,133,101,0.06) 0%,transparent 60%);pointer-events:none}
-.hero-i{max-width:var(--max);margin:0 auto;width:100%;display:grid;grid-template-columns:1.2fr 400px;gap:80px;align-items:center;position:relative;z-index:1}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(147,133,101,0.015) 80px),repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(147,133,101,0.015) 80px);z-index:1}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,19,55,0.4) 0%,rgba(38,69,103,0.1) 40%,rgba(0,13,36,0.6) 100%);mix-blend-mode:multiply;z-index:1}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=70') center/cover no-repeat;opacity:0.18;filter:saturate(0.3) brightness(0.7);pointer-events:none}
+.hero-i{max-width:var(--max);margin:0 auto;width:100%;display:grid;grid-template-columns:1.2fr 400px;gap:80px;align-items:center;position:relative;z-index:2}
 .hero-ey{font-size:11px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:14px}
 .hero-ey::before{content:'';width:32px;height:1px;background:var(--gold)}
 .hero h1{font-size:clamp(40px,5vw,64px);font-weight:700;line-height:1.05;color:#fff;margin-bottom:28px;letter-spacing:-0.01em}
@@ -171,7 +173,7 @@ section{padding:120px var(--px)}
    FEE CALCULATOR — only the calculator, no LF/AGF/Banca cards
    ═══════════════════════════════════════════════════ */
 .fee-s{background:var(--navy2)}
-.fee-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center}
+.fee-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
 .fee-calc{background:var(--panel);border:1px solid var(--bdr);padding:36px;position:relative}
 .fee-calc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
 .fee-row{margin-bottom:24px}
@@ -186,6 +188,14 @@ section{padding:120px var(--px)}
 .fee-rr.total .fee-rl{font-weight:700;color:var(--gold)}
 .fee-rr.total .fee-rv{color:var(--gold-b);font-size:20px}
 .fee-note{font-size:12px;color:var(--cream-40);margin-top:14px;line-height:1.55}
+.comp-list{margin-top:28px;display:flex;flex-direction:column;gap:8px}
+.comp-i{background:var(--panel);padding:16px 22px;border-left:3px solid transparent;transition:background 0.2s}
+.comp-i.lf{border-left-color:var(--gold)}
+.comp-i.ot{border-left-color:rgba(170,170,170,0.18)}
+.comp-n{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream-55);margin-bottom:5px}
+.comp-r{font-family:'JetBrains Mono',monospace;font-size:20px;color:#fff;font-weight:500;line-height:1.1;margin-bottom:5px}
+.comp-r .comp-r-sub{font-size:11px;color:var(--cream-40);font-weight:400;margin-left:6px}
+.comp-nt{font-size:11px;color:var(--cream-55);line-height:1.45}
 
 /* ═══════════════════════════════════════════════════
    COUNTRIES
@@ -323,6 +333,7 @@ footer{background:var(--navy3);border-top:1px solid var(--bdr);padding:64px var(
   /* FEE — stack */
   .fee-grid{grid-template-columns:1fr;gap:40px}
   .fee-calc{padding:24px}
+  .comp-i{padding:14px 18px}
   
   /* COUNTRIES — 2x2 */
   .ctr-grid{grid-template-columns:1fr 1fr}
@@ -374,17 +385,20 @@ footer{background:var(--navy3);border-top:1px solid var(--bdr);padding:64px var(
   </div>
 </div></nav>
 
-<!-- ════════════════ TICKER (5 only) ════════════════ -->
+<!-- ════════════════ TICKER (Top 8 HNWI LATAM) ════════════════ -->
 <div class="ticker"><div class="ticker-i">
   <div class="tk"><span class="tk-l">XAUUSD</span><span class="tk-v">$3,320 <span class="tk-c up">▲ +1.2%</span></span></div>
-  <div class="tk"><span class="tk-l">S&P 500</span><span class="tk-v">5,074 <span class="tk-c dn">▼ −5.9%</span></span></div>
+  <div class="tk"><span class="tk-l">Eurobono ECU 2034</span><span class="tk-v">9.10% <span class="tk-c up">YTM · OW</span></span></div>
+  <div class="tk"><span class="tk-l">Bono PEN 10Y</span><span class="tk-v">7.10% <span class="tk-c up">YTM · OW</span></span></div>
   <div class="tk"><span class="tk-l">USD/CLP</span><span class="tk-v">941.50 <span class="tk-c dn">▼ −0.8%</span></span></div>
   <div class="tk"><span class="tk-l">IPSA</span><span class="tk-v">7,183 <span class="tk-c dn">▼ −2.4%</span></span></div>
+  <div class="tk"><span class="tk-l">WTI</span><span class="tk-v">$61.99 <span class="tk-c dn">▼ −5.5%</span></span></div>
   <div class="tk"><span class="tk-l">BTC</span><span class="tk-v">$83,400 <span class="tk-c dn">▼ −4.1%</span></span></div>
+  <div class="tk"><span class="tk-l">SOYB</span><span class="tk-v">$10.42 <span class="tk-c up">▲ +0.9%</span></span></div>
 </div></div>
 
 <!-- ════════════════ HERO — clean ════════════════ -->
-<section class="hero"><div class="hero-i">
+<section class="hero"><div class="hero-bg"></div><div class="hero-i">
   <div>
     <div class="hero-ey">HNWI Wealth Advisory · Chile · Ecuador · Perú · Paraguay</div>
     <h1>Tu patrimonio merece<br><em>independencia.</em></h1>
@@ -405,7 +419,7 @@ footer{background:var(--navy3);border-top:1px solid var(--bdr);padding:64px var(
       <span class="seg-tag tag-s">STANDARD</span>
     </div>
     <div class="seg-tier" id="tier-prm" onclick="selectTier('prm')">
-      <div><div class="seg-tn">Premium Advisory</div><div class="seg-td">$500K+ · Sovereign Portfolios + 150+ mercados globales</div></div>
+      <div><div class="seg-tn">Premium Advisory</div><div class="seg-td">$500K+ · Sovereign Portfolios + 150+ mercados globales · advisory personalizado</div></div>
       <span class="seg-tag tag-p">PREMIUM</span>
     </div>
     <button class="seg-cta" id="seg-cta-btn" onclick="goTier()">Conocer Standard Advisory →</button>
@@ -500,7 +514,24 @@ footer{background:var(--navy3);border-top:1px solid var(--bdr);padding:64px var(
     <div>
       <div class="ey">Transparencia total</div>
       <h2 class="h2">Comisiones alineadas <em>con tus resultados.</em></h2>
-      <p class="sub">2.5% anual + 10% sobre PnL superior al 3.5% hurdle. Solo ganamos más cuando tú superas un umbral real de rentabilidad. Calcula tu escenario:</p>
+      <p class="sub" style="margin-bottom:0">2.5% anual + 10% sobre PnL superior al 3.5% hurdle. Solo ganamos más cuando tú superas un umbral real de rentabilidad.</p>
+      <div class="comp-list">
+        <div class="comp-i lf">
+          <div class="comp-n">Liberty Finance</div>
+          <div class="comp-r">2.5%<span class="comp-r-sub">+ 10% PnL &gt; 3.5%</span></div>
+          <div class="comp-nt">Intereses alineados — ganamos cuando tú ganas más</div>
+        </div>
+        <div class="comp-i ot">
+          <div class="comp-n">AGF promedio Chile</div>
+          <div class="comp-r">1.5–2.5%<span class="comp-r-sub">TAC flat</span></div>
+          <div class="comp-nt">Cobran igual sin importar resultados</div>
+        </div>
+        <div class="comp-i ot">
+          <div class="comp-n">Banca privada</div>
+          <div class="comp-r">2.0–3.0%<span class="comp-r-sub">+ productos propios</span></div>
+          <div class="comp-nt">Conflicto de interés — venden sus propios fondos</div>
+        </div>
+      </div>
     </div>
     <div class="fee-calc">
       <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:24px">Simulador de comisiones</div>
@@ -550,8 +581,9 @@ footer{background:var(--navy3);border-top:1px solid var(--bdr);padding:64px var(
       <li><a href="#">Premium Advisory</a></li>
       <li><a href="#">Standard Advisory</a></li>
       <li><a href="#">Sovereign Portfolios</a></li>
-      <li><a href="#">Crypto HNWI</a></li>
+      <li><a href="#">Crypto Advisory</a></li>
       <li><a href="#">Robo Advisory</a></li>
+      <li><a href="#">Tax & Capital Protection</a></li>
     </ul></div>
     <div class="ft-col"><h4>Mercados</h4><ul>
       <li><a href="#">Chile · CMF 2026</a></li>
