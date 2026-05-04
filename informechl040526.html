@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Finance — Weekly Report Chile · 4 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Barlow:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#001337;--navy2:#00193f;--navy3:#002050;
+  --gold:#938565;--gold2:#b3a993;--gold3:#c4b89a;--gold-d:#7a6c52;
+  --w:#f0ede6;--w90:rgba(240,237,230,0.9);--w60:rgba(240,237,230,0.6);--w35:rgba(240,237,230,0.35);
+  --ink:#1c1c2e;--ink2:#383850;--ink3:#64648a;
+  --bg:#eae7e0;--bg2:#f4f2ed;
+  --card:#ffffff;--card-bg:#f8f6f2;
+  --bdr:rgba(0,0,0,0.09);--bdr2:rgba(0,0,0,0.15);
+  --green:#1a6b3c;--green2:#1f9b52;--green-bg:#e8f5ee;
+  --red:#a02020;--red2:#c93030;--red-bg:#faeaea;
+  --amber:#8a5a18;--amber2:#c47820;--amber-bg:#fdf3e3;
+  --blue:#1a4080;--blue2:#2a68c4;--blue-bg:#e8f0fa;
+  --page-w:780px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#1a1e2e}
+body{font-family:'Barlow',sans-serif;background:#1a1e2e;min-height:100vh;padding:28px 16px 56px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--page-w);margin:0 auto;box-shadow:0 12px 80px rgba(0,0,0,0.8)}
+
+/* ── DARK HEADER ── */
+.ph{background:var(--navy2);border-bottom:2px solid rgba(147,133,101,0.35);padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+.ph-brand{display:flex;align-items:center;gap:14px}
+.ph-logo{display:flex;flex-direction:column}
+.ph-l1{font-size:22px;font-weight:700;color:var(--w);letter-spacing:0.1em;line-height:1}
+.ph-l2{font-size:8px;font-weight:400;color:var(--gold3);letter-spacing:0.35em;text-transform:uppercase;margin-top:2px}
+.ph-vsep{width:1px;height:40px;background:rgba(147,133,101,0.3)}
+.ph-meta{flex:1;padding-left:0}
+.ph-t{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--w90)}
+.ph-s{font-size:10px;color:var(--gold3);margin-top:2px;letter-spacing:0.04em}
+.ph-d{font-size:9px;color:var(--w35);text-transform:uppercase;letter-spacing:0.08em;margin-top:1px}
+.ph-right{text-align:right;flex-shrink:0}
+.ph-sent-badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:2px;background:rgba(196,120,32,0.2);border:1px solid rgba(196,120,32,0.45);color:#e8a840;letter-spacing:0.04em;display:inline-block;margin-bottom:4px}
+.ph-pg{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--w35);letter-spacing:0.08em}
+
+/* ── DARK TICKER ── */
+.ticker{background:var(--navy3);border-bottom:1px solid rgba(147,133,101,0.18);padding:0 28px;display:flex;overflow-x:auto;scrollbar-width:none}
+.ticker::-webkit-scrollbar{display:none}
+.tk{padding:10px 20px 10px 0;margin-right:20px;border-right:1px solid rgba(147,133,101,0.15);white-space:nowrap;flex-shrink:0}
+.tk:last-child{border-right:none;margin-right:0}
+.tk-l{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(196,184,154,0.55);display:block;margin-bottom:2px}
+.tk-v{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;color:#fff}
+.tk-c{font-size:10px;font-weight:500;margin-left:4px}
+.up{color:#34c97a}.dn{color:#e05555}.fl{color:rgba(255,255,255,0.38)}.ac{color:var(--gold3)}
+
+/* ── LIGHT BODY ── */
+.body{background:var(--bg);padding:24px 28px 32px}
+
+/* ── SENTIMENT BAR ── */
+.sentinel{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:12px 18px;display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.sent-l{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);white-space:nowrap}
+.sent-bar{flex:1;height:6px;background:linear-gradient(to right,var(--red2) 0%,#d4a020 35%,rgba(100,100,100,0.15) 50%,#1f9b52 100%);border-radius:3px;position:relative}
+.sent-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:13px;height:13px;border:3px solid var(--card);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.25)}
+.sent-tags{display:flex;gap:7px;flex-shrink:0}
+.sent-tag{font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:2px;letter-spacing:0.04em}
+.st-bajista{background:var(--red-bg);border:1px solid rgba(168,40,40,0.25);color:var(--red)}
+.st-neutro{background:var(--card-bg);border:1px solid var(--bdr2);color:var(--ink3);font-weight:600}
+.st-riskoff{background:var(--card-bg);border:1px solid var(--bdr);color:var(--ink3)}
+
+/* ── SECTION TITLE ── */
+.st{display:flex;align-items:center;gap:12px;margin-bottom:15px;margin-top:26px}
+.st:first-of-type{margin-top:0}
+.st-bar{width:4px;height:22px;background:var(--gold-d);border-radius:2px;flex-shrink:0}
+.st-text{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;font-weight:500;color:var(--ink)}
+.st-sub{font-size:9.5px;font-family:'Barlow',sans-serif;font-style:normal;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3)}
+.st-line{flex:1;height:1px;background:var(--bdr2)}
+
+/* ── GRIDS ── */
+.g6040{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:20px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+
+/* ── WHITE CARD BASE ── */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+
+/* ── PERFORMANCE TABLE ── */
+.ptbl{width:100%;border-collapse:collapse}
+.ptbl th{padding:8px 12px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);background:var(--card-bg);border-bottom:1px solid var(--bdr)}
+.ptbl td{padding:10px 12px;border-bottom:1px solid var(--bdr);font-size:12.5px;color:var(--ink2)}
+.ptbl td:first-child{font-weight:600;color:var(--ink)}
+.ptbl tbody tr:last-child td{border-bottom:none}
+.ptbl tbody tr:hover{background:var(--card-bg)}
+.t-up{color:var(--green);font-weight:600}.t-dn{color:var(--red);font-weight:600}.t-fl{color:var(--ink3)}
+
+/* ── TECH LEVELS ── */
+.lv-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid var(--bdr)}
+.lv-row:last-child{border-bottom:none}
+.lv-k{font-size:12px;color:var(--ink2)}
+.lv-v{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+.lv-v.r{color:var(--red)}.lv-v.g{color:var(--green)}.lv-v.c{color:var(--gold-d)}
+
+/* ── NEWS CARDS ── */
+.nc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:14px 17px}
+.nc.hi{border-left:4px solid var(--amber2)}.nc.pos{border-left:4px solid var(--green2)}
+.nc.neg{border-left:4px solid var(--red2)}.nc.neu{border-left:4px solid var(--blue2)}
+.nc-stars{font-size:11.5px;margin-bottom:4px;color:var(--amber2);letter-spacing:1px}
+.nc-tag{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.nc-title{font-size:13px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:8px}
+.nc-body{font-size:12px;color:var(--ink2);line-height:1.6}
+.nc-arrow{font-size:11.5px;color:var(--gold-d);margin-top:8px;font-style:italic;font-weight:500}
+
+/* ── SCENARIOS ── */
+.sc-box{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:16px 17px}
+.sc-box.b{border-top:3px solid var(--blue2)}.sc-box.bu{border-top:3px solid var(--green2)}.sc-box.be{border-top:3px solid var(--red2)}
+.sc-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.sc-prob{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;line-height:1;margin-bottom:8px}
+.sc-box.b .sc-prob{color:var(--blue)}.sc-box.bu .sc-prob{color:var(--green)}.sc-box.be .sc-prob{color:var(--red)}
+.sc-txt{font-size:12px;line-height:1.6;color:var(--ink2)}
+
+/* ── GESTOR COMMENT ── */
+.cg{background:var(--card);border:1px solid var(--bdr);border-left:4px solid var(--gold-d);border-radius:3px;padding:17px 22px;margin-bottom:0}
+.cg-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.cg-lbl::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.cg-text{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--ink);line-height:1.75;font-weight:500}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--bdr2);margin:28px 0 0}
+.section-block{padding:24px 28px 0;background:var(--bg)}
+
+/* ── RADAR CARDS ── */
+.rc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+.rc.ow{border-top:3px solid var(--green2)}.rc.wt{border-top:3px solid var(--amber2)}
+.rc.nt{border-top:3px solid var(--bdr2)}.rc.ac{border-top:3px solid var(--gold-d)}
+.rc-head{padding:14px 17px 12px;border-bottom:1px solid var(--bdr);background:var(--card-bg)}
+.rc-cat{font-size:9.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.rc-name{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:5px;line-height:1.2}
+.rc-price{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--ink);line-height:1}
+.rc-chg{font-size:11.5px;font-weight:600;margin-top:4px}
+.rc-chg.up{color:var(--green)}.rc-chg.dn{color:var(--red)}.rc-chg.fl{color:var(--ink3)}.rc-chg.ac{color:var(--gold-d)}
+.rc-body{padding:13px 17px 15px}
+.rc-bmk{font-size:10.5px;color:var(--ink3);margin-bottom:9px;padding-bottom:8px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.rc-text{font-size:12.5px;color:var(--ink2);line-height:1.65;margin-bottom:9px}
+.rc-arrow{font-size:11.5px;color:var(--gold-d);font-style:italic;font-weight:500}
+.badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-top:9px}
+.badge.ac{background:var(--green-bg);color:var(--green);border:1px solid rgba(26,107,60,0.2)}
+.badge.wt{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.2)}
+.badge.nt{background:var(--card-bg);color:var(--ink3);border:1px solid var(--bdr)}
+.btag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 7px;border-radius:2px}
+.btag.intl{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(26,64,128,0.15)}
+.btag.local{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.15)}
+
+/* ── CATALYST LIST ── */
+.ci-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ci{background:var(--card);border:1px solid var(--bdr);border-radius:3px;padding:12px 16px;display:flex;gap:13px}
+.ci-n{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--gold-d);min-width:20px;flex-shrink:0;padding-top:1px}
+.ci-t{font-size:13px;color:var(--ink2);line-height:1.55}
+.ci-t strong{color:var(--ink);font-weight:700}
+
+/* ── POSITION CARDS ── */
+.pc{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden}
+.pc-head{padding:11px 15px 10px;border-bottom:1px solid var(--bdr);background:var(--card-bg);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.pc-n{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--gold-d);flex-shrink:0;padding-top:2px}
+.pc-info{flex:1}
+.pc-asset{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:2px}
+.pc-cat{font-size:10px;color:var(--ink3)}
+.pc-badges{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+.pc-met{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--bdr)}
+.pm{padding:7px 9px;border-right:1px solid var(--bdr)}.pm:last-child{border-right:none}
+.pm-l{font-size:7.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.pm-v{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);font-weight:700}
+.pm-v.g{color:var(--green)}.pm-v.r{color:var(--red)}.pm-v.a{color:var(--amber)}.pm-v.c{color:var(--gold-d)}
+.pc-body{padding:11px 15px 13px}
+.pc-bmk{font-size:11px;color:var(--ink3);margin-bottom:7px;padding-bottom:7px;border-bottom:1px dashed var(--bdr);font-style:italic}
+.pc-text{font-size:12.5px;color:var(--ink2);line-height:1.55}
+.pc-text strong{color:var(--ink);font-weight:700}
+.pc-note{margin-top:8px;padding-top:7px;border-top:1px dashed var(--bdr);font-size:10.5px;color:var(--ink3);line-height:1.5}
+
+/* ── AGENDA TABLE ── */
+.atbl-card{background:var(--card);border:1px solid var(--bdr);border-radius:3px;overflow:hidden;margin-bottom:0}
+.atbl{width:100%;border-collapse:collapse}
+.atbl th{padding:8px 13px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);background:var(--card-bg);border-bottom:1px solid var(--bdr)}
+.atbl td{padding:10px 13px;border-bottom:1px solid var(--bdr);font-size:13px;vertical-align:middle;color:var(--ink2)}
+.atbl td:first-child{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-d);font-weight:700;white-space:nowrap}
+.atbl tbody tr:last-child td{border-bottom:none}
+.atbl tbody tr:hover{background:var(--card-bg)}
+.kw{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:2px;margin-left:5px;background:var(--amber-bg);color:var(--amber);border:1px solid rgba(138,90,24,0.2)}
+.kw.bin{background:var(--red-bg);color:var(--red);border:1px solid rgba(168,40,40,0.2)}
+.imp{display:inline-block;width:8px;height:8px;border-radius:50%;vertical-align:middle;margin-right:5px}
+.imp.hi{background:var(--red2)}.imp.md{background:var(--amber2)}.imp.lo{background:var(--green2)}
+
+/* ── DARK FOOTER ── */
+.footer{background:var(--navy2);border-top:1px solid rgba(147,133,101,0.2);padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.footer-disc{font-size:10px;color:rgba(196,184,154,0.45);line-height:1.5;flex:1}
+.footer-next{font-size:11px;color:var(--gold2);font-weight:500;text-align:right;flex-shrink:0}
+
+/* ── SECTION SEPARATOR ── */
+.sec-sep{height:1px;background:var(--bg2);margin:0}
+</style>
+</head>
+<body><div class="wrap">
+<div class="ph">
+  <div class="ph-brand">
+    <div class="ph-logo"><div class="ph-l1">LIBERTY</div><div class="ph-l2">Finance</div></div>
+    <div class="ph-vsep" style="margin:0 16px"></div>
+    <div style="flex:1">
+      <div class="ph-t">Reporte Semanal de Mercados &mdash; 🇨🇱 Chile</div>
+      <div class="ph-s">Semana 4 &ndash; 9 May 2026 &middot; Dep. Research &amp; Estrategia</div>
+      <div class="ph-d">Asesor&iacute;a de Inversiones e Investigaci&oacute;n</div>
+    </div>
+  </div>
+  <div class="ph-right"><div class="ph-sent-badge">⚠️ Cauteloso &middot; Mejorando</div></div>
+</div>
+<div class="ticker">
+  <div class="tk"><span class="tk-l">IPSA</span><span class="tk-v">~10,920</span><span class="tk-c dn">&#9660; &minus;6.8% vs ATH</span></div>
+  <div class="tk"><span class="tk-l">USD / CLP</span><span class="tk-v">~896.61</span><span class="tk-c ac">&#10230; Estable</span></div>
+  <div class="tk"><span class="tk-l">Cobre LME</span><span class="tk-v">~$5.80</span><span class="tk-c ac">&#10230; D&eacute;ficit 330K t</span></div>
+  <div class="tk"><span class="tk-l">TPM BCCh</span><span class="tk-v">4.50%</span><span class="tk-c ac">&#10230; Jun recorte en precio</span></div>
+  <div class="tk"><span class="tk-l">Brent</span><span class="tk-v">~$108</span><span class="tk-c ac">&#10230; Project Freedom</span></div>
+  <div class="tk"><span class="tk-l">XAUUSD</span><span class="tk-v">~$4,615</span><span class="tk-c dn">&#9660; &minus;3.4% sem</span></div>
+</div>
+
+<div class="body">
+  <div class="sentinel">
+    <span class="sent-l">Sentimiento</span>
+    <div class="sent-bar"><div class="sent-dot" style="left:60%;background:#1f9b52"></div></div>
+    <div class="sent-tags">
+      <span class="sent-tag st-neutro">Project Freedom</span>
+      <span class="sent-tag st-neutro" style="background:var(--green-bg);border-color:rgba(31,155,82,0.3);color:var(--green)">&#9679; Cauteloso &middot; Mejorando</span>
+      <span class="sent-tag st-riskoff">FOMC Hawkish</span>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Performance</span><span class="st-sub">&middot; Semana 27 Abr&ndash;2 May &middot; Apertura 4 May</span><div class="st-line"></div></div>
+  <div class="g6040">
+    <div class="card">
+      <table class="ptbl">
+        <thead><tr><th>Instrumento</th><th>Nivel</th><th>Var. Sem.</th><th>Lectura</th></tr></thead>
+        <tbody>
+          <tr><td>S&amp;P IPSA</td><td class="t-fl">~10,920</td><td class="t-dn">&minus;5.0% sem</td><td class="t-fl">S&amp;P ATH nueva &middot; Big Tech beat</td></tr>
+          <tr><td>USD/CLP</td><td class="t-fl">~896.61</td><td class="t-fl">Estable</td><td class="t-fl">DXY debilit&oacute; fin de sem.</td></tr>
+          <tr><td>Cobre LME</td><td class="t-fl">~$5.80/lb</td><td class="t-fl">Estable</td><td class="t-fl">D&eacute;ficit estructural 330K t</td></tr>
+          <tr><td>XAUUSD</td><td class="t-dn">~$4,615</td><td class="t-dn">&minus;3.4%</td><td class="t-dn">FOMC hawkish + S&amp;P ATH pesan</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="lv-row"><span class="lv-k">Resistencia IPSA &mdash; ATH</span><span class="lv-v r">11,100&ndash;11,721</span></div>
+      <div class="lv-row"><span class="lv-k">Soporte IPSA</span><span class="lv-v g">11,200&ndash;11,350</span></div>
+      <div class="lv-row"><span class="lv-k">USD/CLP resistencia</span><span class="lv-v r">905&ndash;910</span></div>
+      <div class="lv-row"><span class="lv-k">USD/CLP soporte</span><span class="lv-v g">880&ndash;885</span></div>
+      <div class="lv-row"><span class="lv-k">Cobre soporte</span><span class="lv-v g">$5.60/lb</span></div>
+      <div class="lv-row"><span class="lv-k">XAUUSD soporte</span><span class="lv-v g">$4,535&ndash;$4,510</span></div>
+      <div class="lv-row"><span class="lv-k">XAUUSD objetivo</span><span class="lv-v c">$4,800&ndash;$4,965</span></div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Noticias de la Semana</span><span class="st-sub">&middot; Filtrado para Chile</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="nc hi">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">Global &middot; Ir&aacute;n</div>
+      <div class="nc-title">Project Freedom &mdash; Trump escolta buques por Hormuz &middot; Ir&aacute;n revisa propuesta</div>
+      <div class="nc-body">Trump lanz&oacute; &ldquo;Project Freedom&rdquo;: EEUU escoltar&aacute; buques civiles de pa&iacute;ses no alineados por el Estrecho de Hormuz. Ir&aacute;n revisa propuesta de 14 puntos. Brent baj&oacute; de $119.50 (m&aacute;x. 29 Abr) a ~$108. WTI $101.70. Esperanza diplom&aacute;tica activa &mdash; ceasefire 10&ordf; semana.</div>
+      <div class="nc-arrow">&rarr; Paz = Brent $80&ndash;85 &rarr; CLP 860&ndash;870 &rarr; BCCh recorta junio &rarr; IPSA 11,300&ndash;11,721</div>
+    </div>
+    <div class="nc neg">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">EE.UU. &middot; FOMC</div>
+      <div class="nc-title">FOMC 8&ndash;4 hawkish &mdash; 4 disidentes &middot; Warsh nuevo Fed Chair</div>
+      <div class="nc-body">Fed hold 3.50&ndash;3.75% con 4 votos en contra del sesgo dovish. Hawkish claro. Powell: &ldquo;Desarrollos en el Medio Oriente contribuyen a incertidumbre excepcional&rdquo;. Kevin Warsh asumi&oacute; como Fed Chair. Mercado: cortes H2-2026 en duda.</div>
+      <div class="nc-arrow">&rarr; Hawkish = T10Y sostenido &rarr; presiona DXY y BCU UF largo plazo</div>
+    </div>
+    <div class="nc pos">
+      <div class="nc-stars">&#9733;&#9733;&#9733;</div>
+      <div class="nc-tag">Global &middot; Tech</div>
+      <div class="nc-title">Big Tech beat &mdash; S&amp;P ATH nuevo &middot; VIX 17.41 &middot; AI $37B run rate</div>
+      <div class="nc-body">Microsoft: AI $37B run rate (+123% YoY). Meta: Q1 beat. Amazon AWS +25% YoY. S&amp;P 500 nuevo ATH 30 Abr. VIX colaps&oacute; -10% a 16.89. IPSA correlaci&oacute;n positiva con risk-on global. PIB EEUU Q1: contracci&oacute;n leve por Brent &rarr; Fed cautelosa.</div>
+      <div class="nc-arrow">&rarr; Risk-on persistente: IPSA puede recuperar 11,300&ndash;11,721 si paz avanza</div>
+    </div>
+    <div class="nc pos">
+      <div class="nc-stars">&#9733;&#9734;&#9734;</div>
+      <div class="nc-tag">Chile &middot; Macro</div>
+      <div class="nc-title">BCCh &mdash; recorte junio en precio &middot; IPC 2.4% &middot; Reforma fiscal Kast</div>
+      <div class="nc-body">IPC Chile 2.4% YoY = BCCh c&oacute;modo. FOMC hawkish introduce dilema para BCCh: si corta en junio y Fed no corta en 2026, diferencial de tasas se estrecha. Morgan Stanley mantiene target IPSA 13,700 (+19%).</div>
+      <div class="nc-arrow">&rarr; BCCh: si Brent baja con paz = luz verde recorte junio &rarr; BCU UF precio sube</div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Escenarios</span><span class="st-sub">&middot; Semana 4 &ndash; 9 May</span><div class="st-line"></div></div>
+  <div class="g3">
+    <div class="sc-box b"><div class="sc-lbl">Escenario Base</div><div class="sc-prob">50%</div><div class="sc-txt">Paz parcial &middot; Brent $95&ndash;110. DXY estable ~98. IPSA 10,800&ndash;11,300. XAUUSD $4,500&ndash;4,700. BCCh recorta junio.</div></div>
+    <div class="sc-box bu"><div class="sc-lbl">Alcista</div><div class="sc-prob">30%</div><div class="sc-txt">Acuerdo Iran&ndash;EEUU &rarr; Brent $80&ndash;85 &rarr; DXY &lt;97 &middot; CLP 860&ndash;870 &middot; IPSA 11,300&ndash;11,721 &middot; BCCh recorta &middot; XAUUSD $4,800+.</div></div>
+    <div class="sc-box be"><div class="sc-lbl">Bajista</div><div class="sc-prob">20%</div><div class="sc-txt">Project Freedom fracasa &rarr; Brent $120+ &rarr; inflaci&oacute;n &rarr; BCCh pausa &middot; CLP 910+ &middot; IPSA 10,400&ndash;10,600 &middot; XAUUSD $4,400.</div></div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Lectura de Apertura</span><span class="st-sub">&middot; 4 May 2026</span><div class="st-line"></div></div>
+  <div class="cg">
+    <div class="cg-lbl">Comentario del Gestor</div>
+    <div class="cg-text">&ldquo;La semana pasada trajo todo a la vez: FOMC hawkish 8&ndash;4, S&amp;P nuevo ATH, Big Tech beat hist&oacute;rico y Brent que toc&oacute; $119 antes de ceder. Esta semana el foco est&aacute; en el &ldquo;Project Freedom&rdquo; de Trump &mdash; si EEUU logra escoltar buques y Ir&aacute;n acepta negociar, Brent colapsa y todo LATAM gana. BCU UF sigue siendo la posici&oacute;n m&aacute;s asim&eacute;trica: el FOMC hawkish refuerza el carry mientras BCCh no corte, y si BCCh recorta en junio, el precio del bono sube. Sin escenario adverso.&rdquo;</div>
+  </div>
+</div>
+
+<div style="background:var(--navy2);padding:10px 28px;border-top:1px solid rgba(147,133,101,0.2);border-bottom:1px solid rgba(147,133,101,0.2)">
+  <span style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold3)">&#8212; Radar de Activos &mdash; Posicionamiento HNWI Chile</span>
+</div>
+
+<div class="body">
+  <div class="st" style="margin-top:0"><div class="st-bar"></div><span class="st-text">Radar de Mercados</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="rc ow">
+      <div class="rc-head">
+        <div class="rc-cat">Local &middot; Renta Fija BCCh</div>
+        <div class="rc-name">BCU 10 a&ntilde;os &mdash; UF</div>
+        <div class="rc-price">2.85% UF</div>
+        <div class="rc-chg ac">FOMC hawkish = carry &uarr; &middot; BCCh recorte = precio &uarr;</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag local">LOCAL</span> OW &middot; posici&oacute;n m&aacute;s asim&eacute;trica del portafolio</div>
+        <div class="rc-text">FOMC 8&ndash;4 hawkish: BCCh no puede cortar si Fed no corta &rarr; carry 4.50% sostenido = BCU OW. Si BCCh recorta junio (si Brent baja): precio sube. Si no recorta: UF sube + carry. Sin escenario adverso estructural.</div>
+        <div class="rc-arrow">&rarr; Mantener OW total &middot; cat&aacute;lisis esta semana: Project Freedom</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+    <div class="rc ow">
+      <div class="rc-head">
+        <div class="rc-cat">Local &middot; Renta Variable</div>
+        <div class="rc-name">IPSA &mdash; Acciones Chile</div>
+        <div class="rc-price">~10,920</div>
+        <div class="rc-chg up">+0.6% abs &middot; &minus;6.8% vs ATH &middot; 4 cat.</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag local">LOCAL</span> OW &middot; ATH 11,721 a solo 1.9%</div>
+        <div class="rc-text">Cobre + reforma fiscal + IPC 2.4% + Morgan Stanley 13,700. S&amp;P ATH global = flujos positivos. Project Freedom = catalizador adicional si paz avanza &rarr; Brent baja &rarr; CLP aprecia &rarr; IPSA 11,300&ndash;11,721.</div>
+        <div class="rc-arrow">&rarr; Acumular retracciones &middot; stop 11,000</div>
+        <div class="badge ac">SOBREPONDERAR</div>
+      </div>
+    </div>
+    <div class="rc wt">
+      <div class="rc-head">
+        <div class="rc-cat">Internacional &middot; Metal Precioso</div>
+        <div class="rc-name">XAUUSD &mdash; Oro CFD</div>
+        <div class="rc-price">~$4,615</div>
+        <div class="rc-chg dn">&minus;3.4% sem &middot; FOMC hawkish + S&amp;P ATH</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">INTL</span> OW &middot; soporte $4,535&ndash;4,510 cr&iacute;tico</div>
+        <div class="rc-text">Ca&iacute;da -3.4% por FOMC hawkish (T10Y sostenido) + S&amp;P ATH (risk-on reduce hedging). Soporte $4,535. Si Project Freedom avanza: Brent baja &rarr; inflaci&oacute;n cae &rarr; oro puede testar $4,400. Si fracasa: Brent sube &rarr; oro rebota $4,800.</div>
+        <div class="rc-arrow">&rarr; Mantener posici&oacute;n &middot; no agregar hasta definici&oacute;n Ir&aacute;n</div>
+        <div class="badge wt">OW &middot; MONITOREAR</div>
+      </div>
+    </div>
+    <div class="rc wt">
+      <div class="rc-head">
+        <div class="rc-cat">Internacional &middot; Cobre NYSE</div>
+        <div class="rc-name">FCX &mdash; Freeport-McMoRan</div>
+        <div class="rc-price">~$65</div>
+        <div class="rc-chg up">D&eacute;ficit 330K t &middot; tesis LP intacta</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-bmk"><span class="btag intl">INTL</span> Hold residual &middot; stop breakeven $56</div>
+        <div class="rc-text">50% cristalizado en ATH $70.71. Mitad residual con stop en BE $56 = riesgo cero. D&eacute;ficit estructural cobre 330K t (JP Morgan). DXY debilitado fin de sem. = soporte para cobre. Si paz avanza: demanda recupera.</div>
+        <div class="rc-arrow">&rarr; Hold residual &middot; riesgo neto cero &middot; nuevo target $75&ndash;80</div>
+        <div class="badge wt">HOLD RESIDUAL</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Catalizadores Institucionales</span><div class="st-line"></div></div>
+  <ul class="ci-list" style="margin-bottom:0">
+    <li class="ci"><span class="ci-n">1.</span><span class="ci-t"><strong>Project Freedom &mdash; Ir&aacute;n (esta semana):</strong> Trump escoltar&aacute; buques por Hormuz desde hoy. Ir&aacute;n revisa propuesta de 14 puntos. Si acuerdo: Brent $80&ndash;85 &rarr; Brent ca&iacute;da &rarr; CLP aprecia &rarr; IPSA 11,300&ndash;11,721 &rarr; BCCh recorta junio. Catalizador definitivo del Q2.</span></li>
+    <li class="ci"><span class="ci-n">2.</span><span class="ci-t"><strong>BAP Q1 Earnings 14 Mayo:</strong> 10 d&iacute;as para el catalizador del a&ntilde;o. EPS consenso $7.06 vs $5.93 Q4 2025. Quiet period activo. La tesis de descuento 31% se resuelve con este n&uacute;mero.</span></li>
+    <li class="ci"><span class="ci-n">3.</span><span class="ci-t"><strong>Warsh &mdash; primer discurso como Fed Chair:</strong> mercado calibra cu&aacute;n hawkish ser&aacute; el nuevo chair. Si m&aacute;s duro que Powell: T10Y sube &rarr; DXY firme &rarr; presi&oacute;n EM. Si dovish de facto: risk-on se extiende.</span></li>
+    <li class="ci"><span class="ci-n">4.</span><span class="ci-t"><strong>Jobless Claims + PMI Servicios (esta semana):</strong> datos post-FOMC. Si labor market se debilita: Fed dovish implica cortes H2-2026 &rarr; bueno para BCCh junio &rarr; BCU UF.</span></li>
+    <li class="ci"><span class="ci-n">5.</span><span class="ci-t"><strong>IPSA a 6.8% del ATH 11,721:</strong> convergencia de 4 catalizadores (cobre d&eacute;ficit, IPC 2.4%, reforma fiscal Kast, S&amp;P ATH). Morgan Stanley 13,700 = +19% potencial.</span></li>
+  </ul>
+</div>
+
+<div style="background:var(--navy2);padding:10px 28px;border-top:1px solid rgba(147,133,101,0.2);border-bottom:1px solid rgba(147,133,101,0.2)">
+  <span style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold3)">&#8212; Top-4 Recomendaciones &amp; Agenda &mdash; Semana 4 May</span>
+</div>
+
+<div class="body">
+  <div class="st" style="margin-top:0"><div class="st-bar"></div><span class="st-text">Top-4 Recomendaciones</span><span class="st-sub">&middot; Semana 4 &ndash; 9 May 2026</span><div class="st-line"></div></div>
+  <div class="g2">
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">01</span><div class="pc-info"><div class="pc-asset">BCU 10 a&ntilde;os &mdash; UF</div><div class="pc-cat">Local &middot; Renta Fija BCCh</div></div><div class="pc-badges"><span class="btag local">LOCAL</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Tasa Ref.</div><div class="pm-v">2.85% UF</div></div>
+        <div class="pm"><div class="pm-l">Target</div><div class="pm-v g">2.40&ndash;2.50%</div></div>
+        <div class="pm"><div class="pm-l">Stop tasa</div><div class="pm-v r">3.20%</div></div>
+        <div class="pm"><div class="pm-l">R.Real</div><div class="pm-v a">+1.5%</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">6&ndash;12 m.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">OW estructural &middot; FOMC hawkish refuerza carry</div>
+        <div class="pc-text">FOMC 8&ndash;4 hawkish: BCCh mantiene 4.50% = carry BCU sostenido. <strong>Si BCCh recorta junio: precio sube. Si no recorta: UF sube. Sin escenario adverso.</strong></div>
+        <div class="pc-note">&#9888; Stop tasa 3.20%. Mantener posici&oacute;n total.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">02</span><div class="pc-info"><div class="pc-asset">IPSA &mdash; Acciones Chile</div><div class="pc-cat">Local &middot; Renta Variable</div></div><div class="pc-badges"><span class="btag local">LOCAL</span><span class="badge ac">SOBREPONDERAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">IPSA</div><div class="pm-v">~10,920</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">11,300&ndash;11,721</div></div>
+        <div class="pm"><div class="pm-l">Stop</div><div class="pm-v r">11,000</div></div>
+        <div class="pm"><div class="pm-l">P/E</div><div class="pm-v a">12.0x</div></div>
+        <div class="pm"><div class="pm-l">MS Target</div><div class="pm-v c">13,700</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">ATH 11,721 a 1.9% &middot; S&amp;P ATH global = flujos positivos</div>
+        <div class="pc-text">Cobre d&eacute;ficit + IPC 2.4% + reforma fiscal + riesgo EM bajo. <strong>Project Freedom: si Brent baja a $85 = IPSA puede ir a 12,000+ esta semana.</strong></div>
+        <div class="pc-note">&#9888; Stop 11,000. Entrada gradual.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">03</span><div class="pc-info"><div class="pc-asset">XAUUSD &mdash; Gold CFD</div><div class="pc-cat">Internacional &middot; Metal Precioso</div></div><div class="pc-badges"><span class="btag intl">INTL</span><span class="badge wt">OW &middot; MONITOREAR</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Nivel</div><div class="pm-v">~$4,615</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">$4,800&ndash;4,965</div></div>
+        <div class="pm"><div class="pm-l">Stop</div><div class="pm-v r">$4,400</div></div>
+        <div class="pm"><div class="pm-l">R:R</div><div class="pm-v a">&asymp;1:1.8</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">4&ndash;8 sem.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">Soporte $4,535&ndash;4,510 cr&iacute;tico &middot; ambos escenarios Ir&aacute;n tienen efecto</div>
+        <div class="pc-text">Cay&oacute; -3.4% sem. <strong>Si paz = Brent baja = inflaci&oacute;n cae = oro puede testear $4,400. Si guerra = inflaci&oacute;n sube = oro $4,800+. No agregar hasta definici&oacute;n.</strong></div>
+        <div class="pc-note">&#9888; Stop $4,400. Esperar direcci&oacute;n Ir&aacute;n esta semana.</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head"><span class="pc-n">04</span><div class="pc-info"><div class="pc-asset">FCX &mdash; Freeport-McMoRan</div><div class="pc-cat">Internacional &middot; Cobre NYSE</div></div><div class="pc-badges"><span class="btag intl">INTL</span><span class="badge wt">HOLD RESIDUAL</span></div></div>
+      <div class="pc-met">
+        <div class="pm"><div class="pm-l">Nivel</div><div class="pm-v">~$65</div></div>
+        <div class="pm"><div class="pm-l">Objetivo</div><div class="pm-v g">$75&ndash;80</div></div>
+        <div class="pm"><div class="pm-l">Stop BE</div><div class="pm-v r">$56</div></div>
+        <div class="pm"><div class="pm-l">R:R</div><div class="pm-v a">&asymp;1:2.0</div></div>
+        <div class="pm"><div class="pm-l">Horizonte</div><div class="pm-v c">4&ndash;8 sem.</div></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-bmk">50% cristalizado &middot; stop BE $56 &middot; riesgo neto cero</div>
+        <div class="pc-text">ATH $70.71 alcanzado. Mitad residual activa. <strong>D&eacute;ficit cobre 330K t + AI + EVs = tesis LP intacta. Si paz: demanda global recupera &rarr; $75+.</strong></div>
+        <div class="pc-note">&#9888; Stop BE $56. Riesgo cero en posici&oacute;n residual.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="st"><div class="st-bar"></div><span class="st-text">Calendario Econ&oacute;mico</span><span class="st-sub">&middot; Semana 4 &ndash; 9 May 2026 &middot; Filtrado para Chile</span><div class="st-line"></div></div>
+  <div class="atbl-card">
+    <table class="atbl">
+      <thead><tr><th>Fecha</th><th>Evento</th><th>Impacto Chile</th></tr></thead>
+      <tbody>
+        <tr><td>Lun 4</td><td><span class="imp hi"></span>Project Freedom &middot; Ir&aacute;n propuesta <span class="kw bin">BINARY</span></td><td>Brent &plusmn;$20 &middot; CLP &middot; BCCh jun &middot; IPSA</td></tr>
+        <tr><td>Mar 5</td><td><span class="imp md"></span>PMI Servicios EE.UU. + ISM</td><td>DXY &middot; cobre &middot; flujos EM</td></tr>
+        <tr><td>Jue 7</td><td><span class="imp md"></span>Jobless Claims EE.UU.</td><td>Mercado laboral &middot; Fed dovish potencial</td></tr>
+        <tr><td>Vie 8</td><td><span class="imp md"></span>U. Michigan Inflaci&oacute;n Expectativas</td><td>DXY &middot; BCCh junio &middot; BCU UF</td></tr>
+        <tr><td>Jue 14</td><td><span class="imp hi"></span>BAP Q1 2026 Earnings <span class="kw">CATALIZADOR</span></td><td>Proxy EM &middot; risk-on LatAm &middot; BAP $360&ndash;380</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-disc">&#9888; Informe con fines exclusivamente informativos. No constituye asesor&iacute;a financiera personalizada. Las inversiones implican riesgos incluyendo p&eacute;rdida del capital. CFDs son instrumentos complejos con alto riesgo. Liberty Finance no asume responsabilidad por decisiones basadas en este an&aacute;lisis.</div>
+  <div class="footer-next" style="margin-left:20px">Liberty Finance &middot; A Legacy with Future</div>
+</div>
+</div></body></html>
